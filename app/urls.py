@@ -9,4 +9,6 @@ urlpatterns = [
     path("", home, name="home"),
     # Pagina de prueba
     path("prueba/", prueba, name="prueba"),
+    # Pagina de reserva para todos
+    path("reserva/", reservas, name="reserva"),
 ]
