@@ -1,0 +1,199 @@
+body {
+  position: relative;
+  background-image: url("../img/fondo.png");
+  background-size: cover;             /* La imagen cubrirá toda la pantalla */
+  background-position: center;        /* Centra la imagen */
+  background-repeat: no-repeat;       /* Evita que se repita */
+  background-attachment: fixed;       /* Fija el fondo al hacer scroll */
+  height: 100vh;                      /* Asegura que ocupe toda la altura de la ventana */
+}
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);  /* Filtro de opacidad sobre la imagen */
+  z-index: -1;                      /* Lo coloca debajo del contenido */
+}
+.reserva-box {
+  background-color: #000000; /* Cambié el color a un tono suave de verde claro */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+}
+
+header img {
+  width: 5%;  /* Hace que el logo sea el 20% del ancho del contenedor */
+  height: auto;
+  margin-right: 20px;
+}
+header {
+  background:#ACB087;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #7a9c75;
+  border-radius: 20px;
+  color: white;
+}
+.reserva-box {
+  background-color: #000000;
+
+}
+.perfil-icon {
+  background-color: #7a9c75;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+}
+nav a.active {
+  background-color: #cbb99e;
+}
+
+.perfil-icon {
+  font-size: 24px;
+}
+
+.reserva-container {
+  padding: 30px 60px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reserva-box {
+  background: #f5f0ea;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.lista-reservas {
+  width: 25%;
+  background: #fdf6ff;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.lista-reservas ul {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-reservas li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #5b7f5c;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.check {
+  height: 15px;
+  width: 15px;
+  background-color: #5b7f5c;
+  display: inline-block;
+}
+
+.crear-btn {
+  margin-top: 20px;
+  padding: 8px;
+  background: #5b7f5c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.formulario {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario label {
+  margin-top: 10px;
+}
+
+
+.formulario input {
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.servicios {
+  width: 30%;
+  background: #fdf6ff;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.servicios div {
+  margin-bottom: 15px;
+}
+
+.servicios span {
+  float: right;
+}
+
+.acciones {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.acciones button {
+  margin: 0 10px;
+  padding: 8px 16px;
+  background: #5b7f5c;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.footer {
+    background-color: #ACB087;
+    color: black;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }

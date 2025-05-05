@@ -15,3 +15,11 @@ def prueba(request):
 # funcion para  la pagina reserva para todos
 def reservas(request):
     return render(request, 'app/Publicas/reserva/reserva.html')
+
+def reserva_emp(request):
+    return render(request, "app/Empleados/reserva-emp/reserva-emp.html")
+
+def perfil_empleado(request):
+    return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
+
+
