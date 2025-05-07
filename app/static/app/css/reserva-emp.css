@@ -40,6 +40,11 @@ header {
 }
 
 
+nav {
+  display: flex;
+  gap: 20px;
+}
+
 nav a {
   margin: 0 15px;
   text-decoration: none;
@@ -47,6 +52,29 @@ nav a {
   background-color: #7a9c75;
   border-radius: 20px;
   color: white;
+  
+}
+header nav {
+  display: flex;
+  gap: 10px; 
+}
+
+header nav a {
+  padding: 8px 16px;               
+  text-decoration: none;           
+  color: #fff;                     
+  background-color: #7a9c75;      
+  border-radius: 8px;              
+  transition: background-color 0.3s ease, color 0.3s ease;  
+}
+
+header nav a:hover {
+  background-color: #5b7f5c;       
+  color: #f0f0f0;                  
+}
+
+header nav a:active {
+  background-color: #7a9c75;      
 }
 .reserva-box {
   background-color: #000000;
@@ -187,13 +215,28 @@ h1 {
 }
 
 .footer {
-    background-color: #ACB087;
-    color: black;
-    text-align: center;
-    padding: 15px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-  }
+  background-color: #ACB087;
+  color: black;
+  text-align: left;
+  padding: 15px 30px; 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  justify-content: flex-start;
+}
+.footer a {
+  display: inline-block;
+  padding: 10px 20px;              
+  margin-bottom: 10px;             
+  background-color: #EADED0;       
+  color: rgb(0, 0, 0);                    
+  text-decoration: none;           
+  border-radius: 12px;             
+  transition: background-color 0.3s ease;  
+}
+
+.footer a:hover {
+  background-color: #7a9c75;       
+}

@@ -10,18 +10,19 @@
 </head>
 
 <body>
-  <header>
+  <header class="header-container">
     <img src="{% static 'app/img/logo.png' %}" alt="Logo de NEW RAPA NUI HOTEL" class="logo img-fluid">
-    <nav>
-        
+    <div class="nav-container">
+      <nav>
         <a href="#">Agenda</a>
         <a href="#">Servicios</a>
         <a href="#">Habitación</a>
         <a href="#">Nosotros</a>
         <a href="#">Contacto</a>
-    </nav>
+      </nav>
+    </div>
     <div class="perfil-icon">
-        <i class="fas fa-user"></i>
+      <i class="fas fa-user"></i>
     </div>
   </header>
   
@@ -77,12 +78,15 @@
         <input type="text" id="numero" placeholder="Ingresa tu número">
       </div>
     </div>
-    <button type="submit">Enviar</button>
   </form>
 
   <footer class="footer">
-    <div><a href="tel:+56997523091">📱 Fono: +56 9 9752 3091</a></div>
-    <div>🏨 Hotel_New_Rapa_Nui</div>
+    <div>
+      <a href="tel:+56997523091">📱 Fono: +56 9 9752 3091</a>
+      <br>
+      <a href="">🏨 Hotel_New_Rapa_Nui</a>
+    </div>
   </footer>
+  
 </body>
 </html>
