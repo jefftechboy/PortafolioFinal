@@ -4,9 +4,29 @@ from django.shortcuts import render
 
 
 
-# funcion para  la pagina home
-def home(request):
-    return render(request, 'app/home.html')
+# funcion para  la pagina inicio
+def inicio(request):
+    return render(request, 'app/Publicas/inicio/inicio.html')
+
+# funcion para  la pagina habitaciones
+def habitaciones(request):
+    return render(request, 'app/Publicas/habitaciones/habitaciones.html')
+
+# funcion para  la pagina detalle habitaciones
+def detalleHabitaciones(request):
+    return render(request, 'app/Publicas/detalle-habitaciones/detalle-habitaciones.html')
+
+# funcion para  la pagina servicios 
+def servicios(request):
+    return render(request, 'app/Publicas/servicios/servicios.html')
+    
+# funcion para  la pagina detalle servicios
+def detalleServicios(request):
+    return render(request, 'ap/Publicasp/detalle-servicios/detalle-servicios.html')
+
+# funcion para  la pagina conocenos
+def conocenos(request):
+    return render(request, 'app/Publicas/conocenos/conocenos.html')
 
 # funcion para  la pagina prueba
 def prueba(request):

@@ -1,0 +1,111 @@
+header {
+    background: #ACB087;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+  }
+  
+  /* Logo: Ajusta el tamaño y margen */
+  header img {
+    width: 5%;  /* Hace que el logo sea el 20% del ancho del contenedor */
+    height: auto;
+    margin-right: 20px;
+}
+
+.perfil-icon {
+    background-color:#EADED0 ;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: rgb(3, 0, 0);
+  }
+
+  /* Menú de navegación */
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    padding: 8px 16px;
+    background-color: #7a9c75;
+    border-radius: 20px;
+    color: white;
+    
+  }
+  header nav {
+    display: flex;
+    gap: 10px; 
+  }
+  
+  header nav a {
+    padding: 8px 16px;               
+    text-decoration: none;           
+    color: #fff;                     
+    background-color: #7a9c75;      
+    border-radius: 8px;              
+    transition: background-color 0.3s ease, color 0.3s ease;  
+  }
+  
+  header nav a:hover {
+    background-color: #5b7f5c;       
+    color: #f0f0f0;                  
+  }
+  
+  header nav a:active {
+    background-color: #7a9c75;      
+  }
+  
+  
+  .menu a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    background-color: #6b8b6d;
+    border-radius: 20px;
+  }
+  
+  /* Icono de perfil */
+  .icon {
+    background-color: #ece8df;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+  .footer {
+    background-color: #ACB087;
+    color: black;
+    text-align: left;
+    padding: 15px 30px;
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: auto;
+}
+  .footer a {
+    display: inline-block;
+    padding: 10px 20px;              
+    margin-bottom: 10px;             
+    background-color: #EADED0;       
+    color: rgb(0, 0, 0);                    
+    text-decoration: none;           
+    border-radius: 12px;             
+    transition: background-color 0.3s ease;  
+  }
+  
+  .footer a:hover {
+    background-color: #7a9c75;       
+  }
+  
+  
