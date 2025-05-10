@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Formulario Hotel Rapa Nui</title>
+    <link rel="stylesheet" href="{% static 'app/css/perfil-usuario.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+  <header class="header-container">
+    <img src="{% static 'app/img/logo.png' %}" alt="Logo de NEW RAPA NUI HOTEL" class="logo img-fluid">
+    <div class="nav-container">
+      <nav>
+        <a href="#">Agenda</a>
+        <a href="#">Servicios</a>
+        <a href="#">Habitación</a>
+        <a href="#">Nosotros</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="perfil-icon">
+      <i class="fas fa-user"></i>
+    </div>
+  </header>
+  
+  <form class="form-container" action="/submit-reservation" method="post">
+    <div class="form-icon">👤Perfil Usuario</div>
+    <div class="form-grid">
+      <div>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" placeholder="Ingresa tu nombre">
+      </div>
+      <div>
+        <label for="nacionalidad">Nacionalidad</label>
+        <input type="text" id="nacionalidad" placeholder="Ingresa tu nacionalidad">
+      </div>
+      <div>
+        <label for="cargo">N° tarjeta de credito</label>
+        <input type="text" id="N-tarjeta" placeholder="Ingresa tu tarjeta">
+      </div>
+      <div>
+        <label for="primer-apellido">Apellidos</label>
+        <input type="text" id="apellidos" placeholder="Ingresa tus dos apellido">
+      </div>
+      <div>
+        <label for="pais-origen">País Origen</label>
+        <input type="text" id="pais-origen" placeholder="Ingresa tu país de origen">
+      </div>
+      <div>
+        <label for="comuna">Nombre tarjeta de credito</label>
+        <input type="text" id="tarjeta-Credito" placeholder="Nombre de la tarjeta de credito">
+      </div>
+      <div>
+        <label for="segundo-apellido">Rut / No° de pasaporte</label>
+        <input type="text" id="Rut" placeholder="Rut / No° de pasaporte">
+      </div>
+      <div>
+        <label for="contacto">N° Contacto</label>
+        <input type="text" id="contacto" placeholder="Ingresa tu número de contacto">
+      </div>
+      <div>
+        <label for="direccion">Fecha de vencimiento</label>
+        <input type="text" id="fechaV" placeholder="Ingresa fecha de vencimiento">
+      </div>
+      <div>
+        <label for="email">E-mail</label>
+        <input type="email" id="email" placeholder="Ingresa tu e-mail">
+      </div>
+      <div>
+        <label for="rut">RUT</label>
+        <input type="text" id="rut" placeholder="Ingresa tu RUT">
+      </div>
+      <div>
+        <label for="numero">CV</label>
+        <input type="text" id="numero" placeholder="Ingresa el CV">
+      </div>
+    </div>
+    <a href="#">Editar Datos</a>
+  </form>
+
+  <footer class="footer">
+    <div>
+      <a href="tel:+56997523091">📱 Fono: +56 9 9752 3091</a>
+      <br>
+      <a href="">🏨 Hotel_New_Rapa_Nui</a>
+    </div>
+  </footer>
+  
+</body>
+</html>

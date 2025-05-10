@@ -42,4 +42,14 @@ def reserva_emp(request):
 def perfil_empleado(request):
     return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
 
+def cliente_emp(request):
+    return render(request, "app/Empleados/cliente-emp/cliente-emp.html")
+
+def habitacion_emp(request):
+    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html")
+
+def perfil_usuario(request):
+    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
+
+
 

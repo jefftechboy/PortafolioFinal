@@ -26,5 +26,13 @@ urlpatterns = [
     
     path("perfil-empleado/", perfil_empleado, name="perfil-empleado"),
 
+    path("cliente-emp/", cliente_emp, name="cliente-emp"),
+
+    path("habitacion-emp/", habitacion_emp, name="habitacion-emp"),
+
+    path("perfil-usuario/", perfil_usuario, name="perfil-usuario"),
+     
+    
+
 
 ]
