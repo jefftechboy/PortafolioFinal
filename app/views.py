@@ -22,7 +22,7 @@ def servicios(request):
     
 # funcion para  la pagina detalle servicios
 def detalleServicios(request):
-    return render(request, 'ap/Publicasp/detalle-servicios/detalle-servicios.html')
+    return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html')
 
 # funcion para  la pagina conocenos
 def conocenos(request):
