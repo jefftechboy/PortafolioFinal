@@ -47,4 +47,6 @@ urlpatterns = [
     path("login/", login, name="login"),
     # Para la pagina de confirmacion de reserva
     path("confirmar_reserva/", confirmar_reserva, name="confirmar-reserva"),
+
+    path("agenda/", agenda, name= "agenda"),
 ]

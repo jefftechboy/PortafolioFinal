@@ -76,3 +76,6 @@ def login(request):
 def confirmar_reserva(request):
     return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html")
 
+def agenda(request):
+    return render(request, "app/Empleados/agenda/agenda.html")
+
