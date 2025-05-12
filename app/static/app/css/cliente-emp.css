@@ -37,6 +37,7 @@ header {
 
 .logo {
   font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 form {
   max-width: 400px;     /* Limita el ancho máximo */
@@ -56,11 +57,13 @@ nav a {
   background-color: #7a9c75;
   border-radius: 20px;
   color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
   
 }
 header nav {
   display: flex;
   gap: 10px; 
+  
 }
 
 header nav a {
@@ -74,7 +77,9 @@ header nav a {
 
 header nav a:hover {
   background-color: #5b7f5c;       
-  color: #f0f0f0;                  
+  color: #f0f0f0;      
+  
+              
 }
 
 header nav a:active {
@@ -94,23 +99,29 @@ header nav a:active {
   justify-content: center;
   font-size: 24px;
   color: white;
+  font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
-nav a.active {
-  background-color: #cbb99e;
-}
+
 
 .perfil-icon {
   font-size: 24px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .cliente-container {
-  padding: 100px 60px;
+  padding: 100px 1px;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
+
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
 }
+
 
 .reserva-box {
   background: #f5f0ea;
@@ -118,6 +129,7 @@ h1 {
   padding: 20px;
   display: flex;
   gap: 20px;
+  
 }
 
 .lista-reservas {
@@ -125,6 +137,7 @@ h1 {
   background: #fdf6ff;
   border-radius: 8px;
   padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .lista-reservas ul {
@@ -165,10 +178,15 @@ h1 {
   cursor: pointer;
 }
 
-.formulario {
-  flex-grow: 1;
+.formulario form {
+    width: 100%;
   display: flex;
   flex-direction: column;
+  max-width: 400px;     
+  margin: 0 auto;       
+  padding: 20px;        
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 .formulario form {
@@ -239,6 +257,7 @@ h1 {
   text-decoration: none;           
   border-radius: 12px;             
   transition: background-color 0.3s ease;  
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .footer a:hover {

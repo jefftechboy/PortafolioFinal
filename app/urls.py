@@ -31,6 +31,8 @@ urlpatterns = [
     path("habitacion-emp/", habitacion_emp, name="habitacion-emp"),
 
     path("perfil-usuario/", perfil_usuario, name="perfil-usuario"),
+
+    path("servicio-emp/", servicio_emp, name="servicio-emp"),
      
     
 

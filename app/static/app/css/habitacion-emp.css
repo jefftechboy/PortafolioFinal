@@ -26,6 +26,7 @@ header img {
   width: 5%;  /* Hace que el logo sea el 20% del ancho del contenedor */
   height: auto;
   margin-right: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 header {
   background:#ACB087;
@@ -52,7 +53,7 @@ nav a {
   background-color: #7a9c75;
   border-radius: 20px;
   color: white;
-  
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 header nav {
   display: flex;
@@ -90,6 +91,7 @@ header nav a:active {
   justify-content: center;
   font-size: 24px;
   color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 nav a.active {
   background-color: #cbb99e;
@@ -116,6 +118,7 @@ h1 {
   gap: 20px;
   max-width: 1000px;
   margin: 0 auto;  
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .lista-habitacion {
@@ -178,12 +181,14 @@ h1 {
 }
 
 .formulario form {
+    width: 100%;
   display: flex;
   flex-direction: column;
-  max-width: 400px;     /* Limita el ancho máximo */
-  margin: 0 auto;       /* Centra horizontalmente */
-  padding: 20px;        /* Espacio interior */
-
+  max-width: 400px;     
+  margin: 0 auto;       
+  padding: 20px;        
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
 .formulario label {
@@ -249,6 +254,7 @@ h1 {
   text-decoration: none;           
   border-radius: 12px;             
   transition: background-color 0.3s ease;  
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .footer a:hover {

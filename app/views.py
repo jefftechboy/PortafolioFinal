@@ -51,5 +51,6 @@ def habitacion_emp(request):
 def perfil_usuario(request):
     return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
 
-
+def servicio_emp(request):
+    return render(request, 'app/Empleados/servicio-emp/servicio-emp.html')
 
