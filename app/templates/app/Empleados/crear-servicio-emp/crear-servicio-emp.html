@@ -1,0 +1,88 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+
+{% block content %}
+<!-- Caja de servicios -->
+<div class="cajaServicios">
+    <!-- Titulo servicio -->
+    <h1 class="reservaTitulo">Servicios</h1>
+    <!-- Contenido -->
+    <div class="container ">
+        <!-- Fila del nombre del servicio -->
+            <!-- titulo del nombre servicio -->
+            <div class="row" >
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Nombre</p>                    
+                </div>                             
+            </div>
+            <!-- input del servicio -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input  class="inputNomSer" type="text" name="nombre" id="nombre" placeholder="Nombre del servicio" >
+                </div>
+            </div>
+        <!-- Fila del nombre de descripcion servicio -->
+            <!-- titulo descripcion servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Descripcion</p>
+                </div>   
+            </div>
+            <!-- input descripcion servicio-->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input class="inputDesSer" type="text" name="descripcion" id="descripcion" placeholder="Descripcion del servicio" >
+                </div>
+            </div>
+        <!-- Fila del nombre del valor de servicio -->
+            <!-- titulo del valor de servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Valor</p>
+                </div>   
+            </div>
+            <!-- input del valor -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input class="inputValSer" type="number" name="valor" id="valor" placeholder="Valor del servicio" >
+                </div>
+            </div>
+        <!-- Fila del nombre del condicion de servicio -->
+            <!-- titulo del condicion servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Condicion</p>
+                </div>   
+            </div>
+            <!-- input de la condicion -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input  class="inputConSer" type="text" name="condicion" id="condicion" placeholder="Condicion del servicio" >
+                </div>
+            </div>
+        <!-- Fila servicio externo -->
+         <div class="filaCheSer">
+             <div class="row" >
+                 <div class="col-7">
+                    <!-- titulo del servicio externo -->
+                    <p class="titSerExt">Servicio externo</p>
+                 </div>
+                 <div class="col-3"></div>
+                 <div class="col-2">
+                    <!-- checkbox servicio externo -->
+                    <input  class="inputCheSer" style="width: 18px; height: 18px;margin-top: 5px;" type="checkbox" name="acepto" value="si">
+                 </div>
+     
+             </div>
+         </div>
+        <!-- boton crear servicio -->
+        <div class="row">
+            <div  class="contenedorInputs">
+                <button  style="width: 60%;" class="button">Crear Servicio</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

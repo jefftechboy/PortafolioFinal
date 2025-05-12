@@ -1,0 +1,73 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+
+{% block content %}
+<!-- Caja de servicios -->
+<div class="cajaServicios">
+    <!-- Titulo servicio -->
+    <h1 class="reservaTitulo">Habitacion</h1>
+    <!-- Contenido -->
+    <div class="container ">
+        <!-- Fila del nombre del servicio -->
+            <!-- titulo del nombre servicio -->
+            <div class="row" >
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Numero Habitacion</p>                    
+                </div>                             
+            </div>
+            <!-- input del servicio -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input  class="inputNomHab" type="number" name="numHabitacion" id="numHabitacion" placeholder="Numero habitacion" >
+                </div>
+            </div>
+        <!-- Fila del nombre de descripcion servicio -->
+            <!-- titulo descripcion servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Descripcion</p>
+                </div>   
+            </div>
+            <!-- input descripcion servicio-->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input class="inputDesHab" type="text" name="descripcion" id="descripcion" placeholder="Descripcion habitacion" >
+                </div>
+            </div>
+        <!-- Fila del nombre del valor de servicio -->
+            <!-- titulo del valor de servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Valor</p>
+                </div>   
+            </div>
+            <!-- input del valor -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input class="inputValHab" type="number" name="valor" id="valor" placeholder="Valor de habitacion" >
+                </div>
+            </div>
+        <!-- Fila del nombre del condicion de servicio -->
+            <!-- titulo del condicion servicio -->
+            <div class="row">
+                <div  style="width: 80%;" class="titulosInputs" >
+                    <p>Condicion</p>
+                </div>   
+            </div>
+            <!-- input de la condicion -->
+            <div class="row">
+                <div  class="contenedorInputs">
+                    <input  class="inputConHab" type="text" name="condicion" id="condicion" placeholder="Condicion de la habitacion" >
+                </div>
+            </div>
+        <!-- boton crear habitacon -->
+        <div class="row">
+            <div  class="contenedorInputs">
+                <button  style="width: 60%;" class="button">Crear habitacion</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
