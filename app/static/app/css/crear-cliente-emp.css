@@ -1,0 +1,54 @@
+.cajaServicios{
+    width: 65%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e9d8c4;      
+    border: 0px ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 5%;
+    
+}
+.button {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #7a9c75; /* Color de fondo */
+}
+.inputNombres {
+    width: 100%;                 /* Ancho del 50% */
+    border-radius: 5px;         /* Bordes redondeados */
+    border: 1px solid #ccc;   /* Borde gris */
+    height: 78%;               /* Altura ajustada */
+    padding: 4px 8px;           /* Relleno en los lados */
+    font-size: 16px;            /* Tamaño de fuente */
+    margin: 0;             /* Centrado horizontal */
+    display: block;             /* Hace que el input se comporte como un bloque */
+    margin-bottom: 3%;         /* Margen inferior */
+    
+}
+
+
+.titulosInputs{
+    margin: 0 auto;             /* Centrado horizontal */
+    width: 70%;  
+}
+
+.filaCheSer{
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.titSerExt{
+    text-align: left;
+    margin: 0%;
+}

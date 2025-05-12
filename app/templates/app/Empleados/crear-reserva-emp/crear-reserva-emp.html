@@ -1,0 +1,123 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+
+{% block content %}
+<!-- Caja de servicios -->
+<div class="cajaServicios">
+    <div class="fluid-container" style="width: 100%;">
+        <!-- Titulo servicio -->
+        <h1 class="reservaTitulo">Reserva</h1>
+        <div class="row" >
+            <!-- Contenido Izquierda -->
+            <div class="col-4" >
+                <div class="container ">
+                    <!-- FILA ID reserva-->
+                        <!-- Fila titulos ID reserva  -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- titulo ID reserva  -->
+                                <p class="titSerExt">ID reserva</p>
+                            </div>
+                        </div>
+                        <!-- Fila de input de nombres cliente -->
+                        <div class="filaCheSer">
+                            <!-- Fila inputs nombres -->
+                            <div class="row" >
+                                <!-- input primer nombre  -->
+                                <input  class="inputNombres" type="text" name="idReserva" id="idReserva" placeholder="ej: diaHoraMinutosMesAnio" >
+                            </div>
+                        </div>
+                    <!-- FILA TELEFONO  -->
+                        <!-- Fila titulos telefono  -->
+                        <div class="filaCheSer">
+                            <!-- Fila titulos telefono  -->
+                            <div class="row" >
+                                <!-- titulo telefono  -->
+                                <p class="titSerExt">Telefono</p>
+                            </div>
+                        </div>
+                        <!-- Fila de input TELEFONO -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- input TELEFONO  -->
+                                <input  class="inputNombres" type="text" name="telefonoCli" id="telefonoCli" placeholder="ej: +569 12345678" >
+                            </div>
+                        </div>
+                    <!-- FILA CORREO  -->
+                        <!-- Fila titulos CORREO  -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- titulo CORREO  -->
+                                <p class="titSerExt">E-mail</p>
+                            </div>
+                        </div>
+                        <!-- Fila de input CORREO  -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- input CORREO  -->
+                                <input  class="inputNombres" type="text" name="correoCli" id="correoCli" placeholder="ej: ejemplo@gmail.com" >
+                            </div>
+                        </div>
+                    <!-- FILA TARJETA PayPal  -->
+                        <!-- Fila titulos TARJETA PayPal  -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- titulo TARJETA PayPal  -->
+                                <p class="titSerExt">N° Tarjeta PayPal</p>
+                            </div>
+                        </div>
+                        <!-- Fila de input TARJETA PayPal -->
+                        <div class="filaCheSer">
+                            <!-- Fila inputs TARJETA PayPal -->
+                            <div class="row" >
+                                <!-- input TARJETA PayPal  -->
+                                <input  class="inputNombres" type="text" name="numTarjCli" id="numTarjCli" placeholder="ej: 1234 4567 8901" >
+                            </div>
+                        </div>
+                    <!-- FILA RUT o Pasaporte  -->
+                        <!-- Fila titulos RUT o Pasaporte  -->
+                        <div class="filaCheSer">
+                            <div class="row" >
+                                <!-- titulo RUT o Pasaporte  -->
+                                <p class="titSerExt">RUT o Pasaporte</p>
+                            </div>
+                        </div>
+                        <!-- Fila de input RUT o Pasaporte -->
+                        <div class="filaCheSer">
+                            <!-- Fila inputs RUT o Pasaporte -->
+                            <div class="row" >
+                                <!-- input RUT o Pasaporte  -->
+                                <input  class="inputNombres" type="text" name="runCli" id="runCli" placeholder="ej: 01.234.567-8" >
+                            </div>
+                        </div>
+                        <!-- boton crear reserva -->
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <!-- Contenido derecha -->
+            <div class="col-3">
+                <div class="row" style="width: 100%;">
+                    <h3 style="width: 100%;margin-left: -5%;">Servicios</h3>
+                    <!-- Aquí va el dropdown con múltiples opciones seleccionables -->
+                    <div class="dropdown" >
+                        <button class="dropdown-btn" style="width: 100%;margin-left: -11%;">Seleccionar opciones</button>
+                        <div class="dropdown-content" style="width: 100%;margin-left: -11%;">
+                        <label><input type="checkbox" value="Opción 1"> Opción 1</label><br>
+                        <label><input type="checkbox" value="Opción 2"> Opción 2</label><br>
+                        <label><input type="checkbox" value="Opción 3"> Opción 3</label><br>
+                        <label><input type="checkbox" value="Opción 4"> Opción 4</label><br>
+                        </div>
+                    </div>
+                </div>                
+                <div class="row" style="width: 100%; margin-top: 80%;">
+                    <button  class="button">Crear Cliente</button>
+                </div>
+            </div>
+            <div class="col-4" style="text-align: left;">                    
+                <!-- Aquí se mostrarán las opciones seleccionadas -->
+                <div id="selected-options" class="selected-options"></div></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

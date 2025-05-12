@@ -1,4 +1,128 @@
-.reservaTitulo {
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .titulo-principal {
     text-align: center;
-    font-size: 420px;
-}
+    font-size: 2rem;
+    margin: 2rem 0 1rem;
+  }
+  
+  .contenedor-formularios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  /* FORMULARIO IZQUIERDA */
+  .formulario-reserva {
+    background: rgba(255,255,255,0.95);
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    width: 350px;
+  }
+  
+  .formulario-reserva h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  .campo-formulario {
+    margin-bottom: 5px;
+  }
+  
+  .campo-formulario input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  .checkbox-condiciones {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .checkbox-condiciones input {
+    margin-right: 0.5rem;
+  }
+  
+  .checkbox-condiciones a {
+    color: #5f3dc4;
+    text-decoration: underline;
+  }
+  
+  .boton-reservar {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  /* FORMULARIO DERECHA */
+  .confirmacion-datos {
+    background: #f8f1e8;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    width: 400px;
+  }
+  
+  .confirmacion-datos h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+
+  
+  .dropdown {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #bbb;
+    border-radius: 0.6rem;
+    background-color: #fff;
+    max-height: 7rem;
+    overflow-y: auto;
+  }
+  
+  .dropdown option {
+    padding: 0.5rem;
+  }
+  
+  .dropdown::-webkit-scrollbar {
+    width: 6px;
+  }
+  .dropdown::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 4px;
+  }
+  .dropdown::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+  
+  .total-confirmacion {
+    background: #e6e1ed;
+    padding: 1rem;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+  

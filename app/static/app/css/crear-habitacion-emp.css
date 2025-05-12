@@ -1,0 +1,108 @@
+.cajaServicios{
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e9d8c4;      
+    border: 0px ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 5%;
+    
+}
+.button {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;      
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #7a9c75; /* Color de fondo */
+    border: 0px;
+}
+.inputNomHab {
+    width: 80%;                 /* Ancho del 50% */
+    border-radius: 5px;         /* Bordes redondeados */
+    border: 1px solid #ccc;   /* Borde gris */
+    height: 72%;               /* Altura ajustada */
+    padding: 4px 8px;           /* Relleno en los lados */
+    font-size: 16px;            /* Tamaño de fuente */
+    margin: 0 auto;             /* Centrado horizontal */
+    display: block;             /* Hace que el input se comporte como un bloque */
+    margin-bottom: 3%;         /* Margen inferior */
+    
+}
+.inputDesHab {
+    width: 80%;                 /* Ancho del 50% */
+    border-radius: 5px;         /* Bordes redondeados */
+    border: 1px solid #ccc;   /* Borde gris */
+    height: 72%;               /* Altura ajustada */
+    padding: 4px 8px;           /* Relleno en los lados */
+    font-size: 16px;            /* Tamaño de fuente */
+    margin: 0 auto;             /* Centrado horizontal */
+    display: block;             /* Hace que el input se comporte como un bloque */
+    margin-bottom: 3%;         /* Margen inferior */
+
+}
+.inputValHab {
+    width: 80%;                 /* Ancho del 50% */
+    border-radius: 5px;         /* Bordes redondeados */
+    border: 1px solid #ccc;   /* Borde gris */
+    height: 72%;               /* Altura ajustada */
+    padding: 4px 8px;           /* Relleno en los lados */
+    font-size: 16px;            /* Tamaño de fuente */
+    margin: 0 auto;             /* Centrado horizontal */
+    display: block;             /* Hace que el input se comporte como un bloque */
+    margin-bottom: 3%;         /* Margen inferior */
+
+}
+.inputConHab {
+    width: 80%;                 /* Ancho del 50% */
+    border-radius: 5px;         /* Bordes redondeados */
+    border: 1px solid #ccc;   /* Borde gris */
+    height: 72%;               /* Altura ajustada */
+    padding: 4px 8px;           /* Relleno en los lados */
+    font-size: 16px;            /* Tamaño de fuente */
+    margin: 0 auto;             /* Centrado horizontal */
+    display: block;             /* Hace que el input se comporte como un bloque */
+    margin-bottom: 3%;         /* Margen inferior */
+
+}
+
+
+.titulosInputs{
+    margin: 0 auto;             /* Centrado horizontal */
+    width: 50%;             /* Ancho del 50% */
+    margin-bottom: -3%;
+    padding-top: 2%;
+}
+.cajaCheck{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e9d8c4;      
+    border: 0px ;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.filaCheSer{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+.titSerExt{
+    text-align: left;
+}
+.contenedorInputs{
+    margin-bottom: 1%;
+}

@@ -20,7 +20,7 @@ urlpatterns = [
     # Pagina de prueba
     path("prueba/", prueba, name="prueba"),
     # Pagina de reserva para todos
-    path("reserva/", reservas, name="reserva"),
+    path("reserva/", reserva, name="reserva"),
 
     path("reserva-emp/", reserva_emp, name="reserva-emp"),
     
@@ -32,9 +32,19 @@ urlpatterns = [
 
     path("perfil-usuario/", perfil_usuario, name="perfil-usuario"),
 
+
     path("servicio-emp/", servicio_emp, name="servicio-emp"),
      
-    
-
-
+     # Pagina de servicios empleado
+    path("crear_servicios_emp/", crear_servicios_emp, name="crear_servicios_emp"),
+    # Pagina de crear habitacion empleado
+    path("crear_habitacion_emp/", crear_habitacion_emp, name="crear_habitacion_emp"),
+    # Pagina de crear cliente empleado
+    path("crear_cliente_emp/", crear_cliente_emp, name="crear_cliente_emp"),
+    # Pagina de crear reserva empleado
+    path("crear_reserva_emp/", crear_reserva_emp, name="crear_reserva_emp"),
+    #Pagina para login
+    path("login/", login, name="login"),
+    # Para la pagina de confirmacion de reserva
+    path("confirmar_reserva/", confirmar_reserva, name="confirmar-reserva"),
 ]

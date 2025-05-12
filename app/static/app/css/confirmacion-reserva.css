@@ -1,0 +1,27 @@
+.info-caja {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+  
+  .info-caja p {
+    margin: 0.3rem 0 0;
+    color: #333;
+  }
+  
+  .total-confirmacion {
+    background: #e6e1ed;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    gap: 1rem;
+  }
+  
