@@ -1,12 +1,14 @@
 body {
   position: relative;
   background-image: url("../img/fondo.png");
-  background-size: cover;             /* La imagen cubrirá toda la pantalla */
-  background-position: center;        /* Centra la imagen */
-  background-repeat: no-repeat;       /* Evita que se repita */
-  background-attachment: fixed;       /* Fija el fondo al hacer scroll */
-  height: 100vh;                      /* Asegura que ocupe toda la altura de la ventana */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
 }
+
 body::before {
   content: '';
   position: absolute;
@@ -14,96 +16,72 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);  /* Filtro de opacidad sobre la imagen */
-  z-index: -1;                      /* Lo coloca debajo del contenido */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
 }
-.reserva-box {
-  background-color: #000000; /* Cambié el color a un tono suave de verde claro */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil para darle profundidad */
+
+header {
+  background: #ACB087;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 header img {
-  width: 5%;  /* Hace que el logo sea el 20% del ancho del contenedor */
+  width: 50px;
   height: auto;
   margin-right: 20px;
-}
-header {
-  background:#ACB087;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 40px;
 }
 
 .logo {
   font-weight: bold;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 
 nav {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 nav a {
-  margin: 0 15px;
   text-decoration: none;
   padding: 8px 16px;
   background-color: #7a9c75;
-  border-radius: 20px;
+  border-radius: 8px;
   color: white;
-  
-}
-header nav {
-  display: flex;
-  gap: 10px; 
+  transition: background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-header nav a {
-  padding: 8px 16px;               
-  text-decoration: none;           
-  color: #fff;                     
-  background-color: #7a9c75;      
-  border-radius: 8px;              
-  transition: background-color 0.3s ease, color 0.3s ease;  
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+nav a:hover {
+  background-color: #5b7f5c;
+  color: #f0f0f0;
 }
 
-header nav a:hover {
-  background-color: #5b7f5c;       
-  color: #f0f0f0;                  
-}
-
-header nav a:active {
-  background-color: #7a9c75;      
-}
-.reserva-box {
-  background-color: #000000;
-
-}
-.perfil-icon {
-  background-color: #7a9c75;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-}
 nav a.active {
   background-color: #cbb99e;
 }
 
 .perfil-icon {
-  font-size: 24px;
+  background-color: #7a9c75;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .reserva-container {
-  padding: 60px 400px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -116,11 +94,13 @@ h1 {
   border-radius: 12px;
   padding: 20px;
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
-.lista-reservas {
-  width: 25%;
+.lista-reservas,
+.servicios {
+  flex: 1 1 100%;
   background: #fdf6ff;
   border-radius: 8px;
   padding: 10px;
@@ -138,18 +118,12 @@ h1 {
   padding: 6px 0;
 }
 
-.dot {
-  height: 15px;
-  width: 15px;
-  background-color: #5b7f5c;
-  border-radius: 50%;
-  display: inline-block;
-}
-
+.dot,
 .check {
   height: 15px;
   width: 15px;
   background-color: #5b7f5c;
+  border-radius: 50%;
   display: inline-block;
 }
 
@@ -165,7 +139,7 @@ h1 {
 }
 
 .formulario {
-  flex-grow: 1;
+  flex: 1 1 100%;
   display: flex;
   flex-direction: column;
 }
@@ -179,19 +153,11 @@ h1 {
   margin-top: 10px;
 }
 
-
 .formulario input {
   padding: 5px;
   margin-top: 5px;
   border-radius: 5px;
   border: 1px solid #ccc;
-}
-
-.servicios {
-  width: 30%;
-  background: #fdf6ff;
-  padding: 10px;
-  border-radius: 8px;
 }
 
 .servicios div {
@@ -221,27 +187,63 @@ h1 {
   background-color: #ACB087;
   color: black;
   text-align: left;
-  padding: 15px 30px; 
-  position: fixed;
+  padding: 15px 30px;
+  position: relative;
   bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 10;
-  justify-content: flex-start;
- 
 }
+
 .footer a {
   display: inline-block;
-  padding: 10px 20px;              
-  margin-bottom: 10px;             
-  background-color: #EADED0;       
-  color: rgb(0, 0, 0);                    
-  text-decoration: none;           
-  border-radius: 12px;             
-  transition: background-color 0.3s ease;  
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #EADED0;
+  color: black;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .footer a:hover {
-  background-color: #7a9c75;       
+  background-color: #7a9c75;
+}
+
+/* Media Queries para Responsividad */
+@media (min-width: 768px) {
+  .reserva-box {
+    flex-wrap: nowrap;
+  }
+
+  .lista-reservas {
+    width: 25%;
+    flex: none;
+  }
+
+  .formulario {
+    flex: 1;
+  }
+
+  .servicios {
+    width: 30%;
+    flex: none;
+  }
+
+  header img {
+    width: 70px;
+  }
+
+  .perfil-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+  }
+
+  .reserva-container {
+    padding: 60px 80px;
+  }
+
+  .footer {
+    position: fixed;
+  }
 }
