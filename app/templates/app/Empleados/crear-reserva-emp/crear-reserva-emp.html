@@ -94,29 +94,45 @@
                         <!-- boton crear reserva -->
                 </div>
             </div>
-            <div class="col-1"></div>
             <!-- Contenido derecha -->
-            <div class="col-3">
+            <div class="col-4">
                 <div class="row" style="width: 100%;">
-                    <h3 style="width: 100%;margin-left: -5%;">Servicios</h3>
-                    <!-- Aquí va el dropdown con múltiples opciones seleccionables -->
-                    <div class="dropdown" >
-                        <button class="dropdown-btn" style="width: 100%;margin-left: -11%;">Seleccionar opciones</button>
-                        <div class="dropdown-content" style="width: 100%;margin-left: -11%;">
-                        <label><input type="checkbox" value="Opción 1"> Opción 1</label><br>
-                        <label><input type="checkbox" value="Opción 2"> Opción 2</label><br>
-                        <label><input type="checkbox" value="Opción 3"> Opción 3</label><br>
-                        <label><input type="checkbox" value="Opción 4"> Opción 4</label><br>
+                    <h3 style="width: 100%;">Servicios</h3>
+                    <!-- Siempre visible el contenido -->
+                    <div class="dropdown-content">
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 1"> Opción 1</label>
                         </div>
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 2"> Opción 2</label>
+                        </div>
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 3"> Opción 3</label>
+                        </div>
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 4"> Opción 4</label>
+                        </div>
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 5"> Opción 5</label>
+                        </div>
+                        <div class="row">
+                            <label><input type="checkbox" value="Opción 6"> Opción 6</label>
+                        </div>
+                        <!-- Puedes agregar más aquí -->
                     </div>
+
                 </div>                
                 <div class="row" style="width: 100%; margin-top: 80%;">
                     <button  class="button">Crear Cliente</button>
                 </div>
             </div>
             <div class="col-4" style="text-align: left;">                    
-                <!-- Aquí se mostrarán las opciones seleccionadas -->
-                <div id="selected-options" class="selected-options"></div></div>
+                <!-- Esto es donde se muestran las opciones seleccionadas -->
+                <div id="selected-options" class="selected-options">
+                    <p><strong>Opciones seleccionadas:</strong></p>
+                    <ul id="options-list"></ul>
+                </div>
+
         </div>
     </div>
 </div>
