@@ -3,7 +3,13 @@ html, body {
   width: 100%;
 }
 
+body {
+  flex: 1;
+}
 
+.main-content {
+  flex: 1; /* Esto empuja el footer al final */
+}
 header {
     background: #ACB087;
     display: flex;
