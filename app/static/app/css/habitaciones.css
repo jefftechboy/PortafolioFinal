@@ -39,8 +39,7 @@ body::before {
 
 /* Cuerpo de las tarjetas */
 .card-body {
-  padding: 50px;
-  position: relative;
+  padding: 20px;
 }
 
 /* Justificar el texto dentro de las tarjetas */
