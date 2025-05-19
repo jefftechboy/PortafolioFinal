@@ -22,18 +22,19 @@ body::before {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
-header img {
-  width: 5%;  /* Hace que el logo sea el 20% del ancho del contenedor */
-  height: auto;
-  margin-right: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-}
 header {
-  background:#ACB087;
+  background: #ACB087;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
+  padding: 10px 20px;
+}
+
+header img {
+  width: 90px;
+  height: auto;
+  margin-right: 20px;
 }
 
 .logo {
@@ -45,7 +46,6 @@ header {
 .logo:hover {
   transform: translateY(-5px);
 }
-
 
 nav {
   display: flex;

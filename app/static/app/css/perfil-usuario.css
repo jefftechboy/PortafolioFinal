@@ -35,11 +35,20 @@ header {
 }
 
 /* Logo: Ajusta el tamaño y margen */
-header img {
-  width: 5%;
-  /* Hace que el logo sea el 20% del ancho del contenedor */
+header a .logo {
+  width: 40%;
   height: auto;
   margin-right: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.logo {
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: translateY(-5px);
 }
 
 .perfil-icon {
@@ -50,27 +59,43 @@ header img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 25px;
   color: white;
-  font-size: 24px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.perfil-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
 
 /* Menú de navegación */
 nav {
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
 
 nav a {
-  margin: 0 15px;
+  margin: 0 10px;
   text-decoration: none;
   padding: 8px 16px;
   background-color: #7a9c75;
-  border-radius: 20px;
+  border-radius: 8px;
   color: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
-  
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav a:hover {
+  background-color: #5b7f5c;
+  color: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+nav a.active {
+  background-color: #cbb99e;
 }
 
 header nav {
@@ -150,6 +175,7 @@ input {
   border: 1px solid #ccc;
 }
 
+/* FOOTER */
 .footer {
   background-color: #ACB087;
   color: black;
@@ -168,17 +194,18 @@ input {
   padding: 10px 20px;
   margin-bottom: 10px;
   background-color: #EADED0;
-  color: rgb(0, 0, 0);
+  color: black;
   text-decoration: none;
   border-radius: 12px;
-  transition: background-color 0.3s ease;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .footer a:hover {
   background-color: #7a9c75;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+  transform: translateY(-5px);
 }
+
 .form-container a {
   padding: 8px 16px;
   text-decoration: none;
