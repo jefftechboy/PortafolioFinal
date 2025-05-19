@@ -5,18 +5,23 @@
     <meta charset="UTF-8">
     <title>Formulario Hotel Rapa Nui</title>
     <link rel="stylesheet" href="{% static 'app/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/detalle-habitaciones.css' %}">
+
     <link rel="stylesheet" href="{% static 'app/css/servicio-emp.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/detalle-servicios.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/inicio.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/habitaciones.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/servicios.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/crear-servicio-emp.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/crear-habitacion-emp.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/crear-cliente-emp.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/crear-reserva-emp.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/login.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/reserva.css' %}">
+    
+    {%block extra_css%}
+      <link rel="stylesheet" href="{% static 'app/css/inicio.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/habitaciones.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/servicios.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/detalle-servicios.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/conocenos.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/detalle-habitaciones.css' %}">
+    {%endblock%}
     
     <!-- Google Font: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">

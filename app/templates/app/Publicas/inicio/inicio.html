@@ -2,9 +2,22 @@
 
 {% block title %}Inicio - Hotel Rapa Nui{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'app/css/inicio.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container mt-5">
 
+        <div class="col-12 mb-4">
+        <div class="tarjeta bienvenida-tarjeta">
+            <div class="card-body">
+            <h1 class="card-title">Bienvenido a Hotel Rapa Nui</h1>
+            <p class="card-text">Explora el encanto de la isla y sumérgete en una experiencia única de descanso, cultura y naturaleza.</p>
+            </div>
+        </div>
+        </div>
+        
     <!-- tarjeta principal -->
     <div class="col-12 mb-4">
         <div class="tarjeta">

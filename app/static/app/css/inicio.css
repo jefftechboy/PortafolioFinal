@@ -26,6 +26,14 @@ body::before {
     /* Lo coloca debajo del contenido */
 }
 
+.bienvenida-tarjeta {
+  background-color: #e9d8c4; /* color de fondo de la empresa */
+  color: black; /* texto negro (o blanco, si preferís) */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+}
 /* Estilo para las tarjetas */
 .tarjeta {
     background-color: #e9d8c4;

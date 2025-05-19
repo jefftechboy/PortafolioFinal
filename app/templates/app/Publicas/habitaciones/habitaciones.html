@@ -2,16 +2,19 @@
 
 {% block title %}Inicio - Hotel Rapa Nui{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'app/css/habitaciones.css' %}">
+{% endblock %}
+
 {% block content %}
 <div class="container mt-5">
 
-  <!-- tarjeta principal -->
+   <!-- tarjeta principal -->
   <div class="col-12 mb-4">
     <div class="tarjeta">
-      <img
-        src="https://images.squarespace-cdn.com/content/v1/56fd6eb3b654f9e0522863e2/1460148383941-LFYSKP0AQ0LMF5Q4CVS4/ISLA+DE+PASCUA+-+KONAKOA+LODGE+-+SIN+LOGO-59.jpg"
-        class="card-img-top" alt="Low Cost">
-      <div class="card-bodyH">
+      <img src="https://images.squarespace-cdn.com/content/v1/56fd6eb3b654f9e0522863e2/1460148383941-LFYSKP0AQ0LMF5Q4CVS4/ISLA+DE+PASCUA+-+KONAKOA+LODGE+-+SIN+LOGO-59.jpg"
+        class="card-img-top" alt="Habitacion Sunset global">
+      <div class="card-body">
         <h5 class="card-title">Habitacion Sunset global</h5>
         <p class="card-text">La Habitación Sunset Global te ofrece una experiencia única en Isla de Pascua, donde cada
           atardecer pinta el cielo de colores vibrantes. Con vistas privilegiadas al océano Pacífico, su diseño combina
@@ -23,19 +26,18 @@
     </div>
   </div>
 
-  <!-- segunda fila -->
+ <!-- segunda fila -->
   <div class="row">
     <!-- Tarjeta 1 -->
     <div class="col-md-4 mb-4">
       <div class="tarjeta">
         <img
           src="https://images.squarespace-cdn.com/content/v1/56fd6eb3b654f9e0522863e2/1460148383941-LFYSKP0AQ0LMF5Q4CVS4/ISLA+DE+PASCUA+-+KONAKOA+LODGE+-+SIN+LOGO-59.jpg"
-          class="card-img-top" alt="Low Cost">
-        <div class="card-bodyH">
+          class="card-img-top" alt="Tour 2 ventanas">
+        <div class="card-body">
           <h5 class="card-title">Habitación Low Cost</h5>
           <p class="card-text">Una opción accesible pensada para los viajeros que valoran la autenticidad. Nuestra
-            habitación Low Cost ofrece comodidad.
-          </p>
+            habitación Low Cost ofrece comodidad.</p>
           <a href="#" class="btn-custom">Ver más</a>
         </div>
       </div>
@@ -44,9 +46,9 @@
     <!-- Tarjeta 2 -->
     <div class="col-md-4 mb-4">
       <div class="tarjeta">
-        <img src="https://www.altiplanico.cl/wp-content/gallery/rapa-nui-habitaciones/ISAL-DE-PASCUA-78.jpg"
-          class="card-img-top" alt="habitacion love4ever">
-        <div class="card-bodyH">
+        <img src="https://www.altiplanico.cl/wp-content/gallery/rapa-nui-habitaciones/ISAL-DE-PASCUA-78.jpg" class="card-img-top"
+          alt="Habitacion love 4 ever">
+        <div class="card-body">
           <h5 class="card-title">Habitacion love 4 ever</h5>
           <p class="card-text">Un espacio íntimo y acogedor, ideal para disfrutar en pareja. Detalles románticos y una
             atmósfera pensada para el amor.</p>
@@ -58,9 +60,10 @@
     <!-- Tarjeta 3 -->
     <div class="col-md-4 mb-4">
       <div class="tarjeta">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOJjKDuNjlF-21_GkyAtuHiGT5oWpp3_YEgA&s"
-          class="card-img-top" alt="habitacion single">
-        <div class="card-bodyH">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOJjKDuNjlF-21_GkyAtuHiGT5oWpp3_YEgA&s"
+          class="card-img-top" alt="habitacion singlei">
+        <div class="card-body">
           <h5 class="card-title">habitacion single</h5>
           <p class="card-text">Perfecta para quienes viajan solos. Cómoda, funcional y con todo lo necesario para una
             estadía tranquila</p>
@@ -69,6 +72,4 @@
       </div>
     </div>
   </div>
-</div>
-
 {% endblock %}

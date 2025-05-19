@@ -15,7 +15,7 @@ body {
 
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -38,13 +38,13 @@ body::before {
 }
 
 /* Cuerpo de las tarjetas */
-.card-bodyH {
-  padding: 20px;
+.card-body {
+  padding: 50px;
   position: relative;
 }
 
 /* Justificar el texto dentro de las tarjetas */
-.card-bodyH p {
+.card-body p {
   text-align: justify;
   font-size: 14px;
   color: #333;
