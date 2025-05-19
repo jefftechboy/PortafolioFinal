@@ -26,6 +26,24 @@ body::before {
     /* Lo coloca debajo del contenido */
 }
 
+/* tarjeta bienvenida */
+.bienvenida-tarjeta {
+  height: auto; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  background-color: #e9d8c4;
+  color: black;
+  padding: 2.5rem 3rem; 
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center; 
+}
+
+.bienvenida-tarjeta .card-text {
+  font-size: 1.2rem; 
+  line-height: 1.5;
+  margin-top: 1rem;
+}
 /* Estilo para las tarjetas */
 .tarjeta {
     background-color: #e9d8c4;
