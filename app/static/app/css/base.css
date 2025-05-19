@@ -1,3 +1,15 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  flex: 1;
+}
+
+.main-content {
+  flex: 1; /* Esto empuja el footer al final */
+}
 header {
     background: #ACB087;
     display: flex;
@@ -25,43 +37,32 @@ header {
     color: rgb(3, 0, 0);
   }
 
-  /* Menú de navegación */
   nav {
-    display: flex;
-    gap: 20px;
-  }
-  
-  nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    padding: 8px 16px;
-    background-color: #7a9c75;
-    border-radius: 20px;
-    color: white;
-    
-  }
-  header nav {
-    display: flex;
-    gap: 10px; 
-  }
-  
-  header nav a {
-    padding: 8px 16px;               
-    text-decoration: none;           
-    color: #fff;                     
-    background-color: #7a9c75;      
-    border-radius: 8px;              
-    transition: background-color 0.3s ease, color 0.3s ease;  
-  }
-  
-  header nav a:hover {
-    background-color: #5b7f5c;       
-    color: #f0f0f0;                  
-  }
-  
-  header nav a:active {
-    background-color: #7a9c75;      
-  }
+  display: flex;
+  gap: 10px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  padding: 8px 16px;
+  background-color: #7a9c75;
+  border-radius: 8px;
+  color: white;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+nav a:hover {
+  background-color: #5b7f5c;
+  color: #f0f0f0;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+nav a.active {
+  background-color: #cbb99e;
+}
   
   
   .menu a {
@@ -84,28 +85,42 @@ header {
   }
 
 
-  .footer {
-    background-color: #ACB087;
-    color: black;
-    text-align: left;
-    padding: 15px 30px;
-    width: 100%;
-    justify-content: flex-start;
-    margin-top: auto;
+/* FOOTER */
+.footer {
+  background-color: #ACB087;
+  color: black;
+  text-align: left;
+  padding: 15px 30px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  justify-content: flex-start;
 }
-  .footer a {
-    display: inline-block;
-    padding: 10px 20px;              
-    margin-bottom: 10px;             
-    background-color: #EADED0;       
-    color: rgb(0, 0, 0);                    
-    text-decoration: none;           
-    border-radius: 12px;             
-    transition: background-color 0.3s ease;  
-  }
+
+.footer a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  background-color: #EADED0;
+  color: black;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer a:hover {
+  background-color: #7a9c75;
+  transform: translateY(-5px);
+}
   
-  .footer a:hover {
-    background-color: #7a9c75;       
-  }
-  
-  
+.logo {
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: translateY(-5px);
+}

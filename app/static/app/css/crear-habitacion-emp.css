@@ -1,5 +1,5 @@
 .cajaServicios{
-    width: 40%;
+    width: 70%;
     height: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -13,7 +13,7 @@
     
 }
 .button {
-    width: 60%;
+    width: 95%;
     height: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -27,7 +27,7 @@
     border: 0px;
 }
 .inputNomHab {
-    width: 80%;                 /* Ancho del 50% */
+    width: 95%;                 /* Ancho del 50% */
     border-radius: 5px;         /* Bordes redondeados */
     border: 1px solid #ccc;   /* Borde gris */
     height: 72%;               /* Altura ajustada */
@@ -39,7 +39,7 @@
     
 }
 .inputDesHab {
-    width: 80%;                 /* Ancho del 50% */
+    width: 95%;                 /* Ancho del 50% */
     border-radius: 5px;         /* Bordes redondeados */
     border: 1px solid #ccc;   /* Borde gris */
     height: 72%;               /* Altura ajustada */
@@ -51,7 +51,7 @@
 
 }
 .inputValHab {
-    width: 80%;                 /* Ancho del 50% */
+    width: 95%;                 /* Ancho del 50% */
     border-radius: 5px;         /* Bordes redondeados */
     border: 1px solid #ccc;   /* Borde gris */
     height: 72%;               /* Altura ajustada */
@@ -63,7 +63,7 @@
 
 }
 .inputConHab {
-    width: 80%;                 /* Ancho del 50% */
+    width: 95%;                 /* Ancho del 50% */
     border-radius: 5px;         /* Bordes redondeados */
     border: 1px solid #ccc;   /* Borde gris */
     height: 72%;               /* Altura ajustada */
@@ -78,12 +78,12 @@
 
 .titulosInputs{
     margin: 0 auto;             /* Centrado horizontal */
-    width: 50%;             /* Ancho del 50% */
+    width: 95%;             /* Ancho del 50% */
     margin-bottom: -3%;
     padding-top: 2%;
 }
 .cajaCheck{
-    width: 50%;
+    width: 95%;
     height: 100%;
     margin: 0 auto;
     padding: 20px;
@@ -95,7 +95,7 @@
     flex-direction: column;
 }
 .filaCheSer{
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     margin-top: 4%;
     margin-bottom: 4%;

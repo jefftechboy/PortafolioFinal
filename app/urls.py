@@ -17,25 +17,21 @@ urlpatterns = [
     path("detalle-servicios/", detalleServicios, name="detalle-servicios"),
     # Pagina de Conocenos
     path("conocenos/", conocenos, name="conocenos"),
-    # Pagina de prueba
-    path("prueba/", prueba, name="prueba"),
     # Pagina de reserva para todos
     path("reserva/", reserva, name="reserva"),
-
+    # Pagina de reserva para empleados
     path("reserva-emp/", reserva_emp, name="reserva-emp"),
-    
+    # Pagina de perfil empleado
     path("perfil-empleado/", perfil_empleado, name="perfil-empleado"),
-
+    # Pagina de cliente empleado
     path("cliente-emp/", cliente_emp, name="cliente-emp"),
-
+    # Pagina de habitacion empleado
     path("habitacion-emp/", habitacion_emp, name="habitacion-emp"),
-
+    # Pagina de perfil usuario
     path("perfil-usuario/", perfil_usuario, name="perfil-usuario"),
-
-
+    # Pagina de servicio empleado
     path("servicio-emp/", servicio_emp, name="servicio-emp"),
-     
-     # Pagina de servicios empleado
+    # Pagina de servicios empleado
     path("crear_servicios_emp/", crear_servicios_emp, name="crear_servicios_emp"),
     # Pagina de crear habitacion empleado
     path("crear_habitacion_emp/", crear_habitacion_emp, name="crear_habitacion_emp"),
@@ -47,6 +43,6 @@ urlpatterns = [
     path("login/", login, name="login"),
     # Para la pagina de confirmacion de reserva
     path("confirmar_reserva/", confirmar_reserva, name="confirmar-reserva"),
-
+    # Para la pagina de confirmacion de reserva
     path("agenda/", agenda, name= "agenda"),
 ]
