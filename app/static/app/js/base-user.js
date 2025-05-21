@@ -16,14 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Enlaces del navbar
-  
-const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('nav a');
   if (navLinks.length) {
-    navLinks[0].addEventListener('click', () => window.location.href = '/servicios/');
+    navLinks[0].addEventListener('click', () => window.location.href = '/servicio/');
     navLinks[1].addEventListener('click', () => window.location.href = '/habitaciones/');
-    navLinks[2].addEventListener('click', () => window.location.href = '/cliente-emp/');
-    navLinks[3].addEventListener('click', () => window.location.href = '/reserva/'); // ya está activo
-    navLinks[4].addEventListener('click', () => window.location.href = '/agenda/');
+    navLinks[2].addEventListener('click', () => window.location.href = '/reserva');
+    
+    navLinks[3].addEventListener('click', () => window.location.href = '/conocenos/');
   }
 });

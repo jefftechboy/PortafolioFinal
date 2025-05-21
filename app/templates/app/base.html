@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-
+    <title>Formulario Hotel Rapa Nui</title>
     <link rel="stylesheet" href="{% static 'app/css/base.css' %}">
     
     <!-- Conexion CSS USUARIOS -->
@@ -27,8 +27,10 @@
 </head>
 <body>
     <header class="header-container">
+      
+      <a href="{% url 'inicio' %}">
       <img src="{% static 'app/img/logo.png' %}" alt="Logo de NEW RAPA NUI HOTEL" class="logo img-fluid">
-      <div class="nav-container">
+    </a>
         <nav>
           <a href="#">Servicios</a>
           <a href="#">Habitación</a>
@@ -55,6 +57,9 @@
 
     <script src="{% static 'app/js/crear-reserva-emp.js' %}"></script>
     <script src="{% static 'app/js/reserva.js' %}"></script>
+    <script src="{% static 'app/js/base-user.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+
 </body>
 </html>
