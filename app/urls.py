@@ -32,17 +32,17 @@ urlpatterns = [
     # Pagina de servicio empleado
     path("servicio-emp/", servicio_emp, name="servicio-emp"),
     # Pagina de servicios empleado
-    path("crear_servicios_emp/", crear_servicios_emp, name="crear_servicios_emp"),
+    path("crear-servicios-emp/", crear_servicios_emp, name="crear-servicios-emp"),
     # Pagina de crear habitacion empleado
-    path("crear_habitacion_emp/", crear_habitacion_emp, name="crear_habitacion_emp"),
+    path("crear-habitacion-emp/", crear_habitacion_emp, name="crear-habitacion-emp"),
     # Pagina de crear cliente empleado
-    path("crear_cliente_emp/", crear_cliente_emp, name="crear_cliente_emp"),
+    path("crear-cliente-emp/", crear_cliente_emp, name="crear-cliente-emp"),
     # Pagina de crear reserva empleado
-    path("crear_reserva_emp/", crear_reserva_emp, name="crear_reserva_emp"),
+    path("crear-reserva-emp/", crear_reserva_emp, name="crear-reserva-emp"),
     #Pagina para login
     path("login/", login, name="login"),
     # Para la pagina de confirmacion de reserva
-    path("confirmar_reserva/", confirmar_reserva, name="confirmar-reserva"),
+    path("confirmar-reserva/", confirmar_reserva, name="confirmar-reserva"),
     # Para la pagina de confirmacion de reserva
     path("agenda/", agenda, name= "agenda"),
 ]
