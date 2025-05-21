@@ -1,6 +1,11 @@
 {% extends 'app/base.html' %}
+{% load static %}
 
 {% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'app/css/reserva.css' %}">
+{% endblock %}
 
 {% block content %}
 <h1 class="titulo-principal">Reserva tu experiencia</h1>

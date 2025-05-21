@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <title>Reservas - Hotel Rapa Nui</title>
+{% extends 'app/base-emp.html' %}
+
+{% load static %}
+
+{% block title %}Habitacion EMP{% endblock %}
+
+{% block extra_css %}
   <link rel="stylesheet" href="{% static 'app/css/habitacion-emp.css' %}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-  <header>
-    <img src="{% static 'app/img/logo.png' %}" alt="Logo de NEW RAPA NUI HOTEL" class="logo img-fluid">
-    <nav>
-      <a href="#">Servicios</a>
-      <a class="active" >Habitación</a>
-      <a href="#">Cliente</a>
-      <a href="#">Reserva</a>
-      <a href="#">Agenda</a>
-    </nav>
-    <div class="perfil-icon">
-      <i class="fas fa-user"></i>
-    </div>
-  </header>
+{% endblock %}
+
+{% block content %}
 
   <main class="habitacion-container">
     
@@ -64,13 +51,4 @@
       <button>Imprimir informe</button>
 
   </main>
-
-  <footer class="footer">
-    <div>
-      <a href="tel:+56997523091">📱 Fono: +56 9 9752 3091</a>
-      <br>
-      <a href="">🏨 Hotel_New_Rapa_Nui</a>
-    </div>
-  </footer>
-</body>
-</html>
+ {% endblock %}

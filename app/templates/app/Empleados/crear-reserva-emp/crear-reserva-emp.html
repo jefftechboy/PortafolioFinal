@@ -1,6 +1,11 @@
-{% extends 'app/base.html' %}
+{% extends 'app/base-emp.html' %}
+{% load static %}
 
 {% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'app/css/crear-reserva-emp.css' %}">
+{% endblock %}
 
 {% block content %}
 <!-- Caja de servicios -->

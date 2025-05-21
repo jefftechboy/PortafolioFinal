@@ -3,15 +3,10 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario Hotel Rapa Nui</title>
-    <link rel="stylesheet" href="{% static 'app/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/crear-servicio-emp.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/crear-habitacion-emp.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/crear-cliente-emp.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/crear-reserva-emp.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/login.css' %}">
-    <link rel="stylesheet" href="{% static 'app/css/reserva.css' %}">
 
+    <link rel="stylesheet" href="{% static 'app/css/base.css' %}">
+    
+    <!-- Conexion CSS USUARIOS -->
     {% block extra_css %}
       <link rel="stylesheet" href="{% static 'app/css/inicio.css' %}">
       <link rel="stylesheet" href="{% static 'app/css/habitaciones.css' %}">
@@ -19,6 +14,10 @@
       <link rel="stylesheet" href="{% static 'app/css/detalle-servicios.css' %}">
       <link rel="stylesheet" href="{% static 'app/css/conocenos.css' %}">
       <link rel="stylesheet" href="{% static 'app/css/detalle-habitaciones.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/login.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/perfil-usuario.css' %}">
+      <link rel="stylesheet" href="{% static 'app/css/reserva.css' %}"> <!-- falta conectar CSS -->
+      <link rel="stylesheet" href="{% static 'app/css/confirmacion-reserva.css' %}"> <!-- falta conectar CSS -->
     {% endblock %}
 
     <!-- Google Font: Inter -->
@@ -31,9 +30,9 @@
       <img src="{% static 'app/img/logo.png' %}" alt="Logo de NEW RAPA NUI HOTEL" class="logo img-fluid">
       <div class="nav-container">
         <nav>
-          <a href="#">Agenda</a>
           <a href="#">Servicios</a>
           <a href="#">Habitación</a>
+          <a href="#">Reservas</a>
           <a href="#">conocenos</a>
         </nav>
       </div>
