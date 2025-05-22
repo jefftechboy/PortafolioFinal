@@ -4,12 +4,12 @@
 {% block title %}Inicio - Hotel Rapa Nui{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'app/css/crear-servicio-emp.css' %}">
+  <link rel="stylesheet" href="{% static 'app/css/crear-habitacion-emp.css' %}">
 {% endblock %}
 
 {% block content %}
 <!-- Caja de servicios -->
-<div class="cajaServicios"style="width: 35%;margin-top: 120px;">
+<div class="cajaServicios" style="width: 35%;margin-top: 120px;">
     <!-- Titulo servicio -->
     <h1 class="reservaTitulo">Servicios</h1>
     <!-- Contenido -->
@@ -18,13 +18,13 @@
             <!-- titulo del nombre servicio -->
             <div class="row" >
                 <div  style="width: 95%;" class="titulosInputs" >
-                    <p>Nombre</p>                    
+                    <p>Codigo servicio</p>                    
                 </div>                             
             </div>
             <!-- input del servicio -->
             <div class="row">
                 <div  class="contenedorInputs">
-                    <input  class="inputNomSer" type="text" name="nombre" id="nombre" placeholder="Nombre del servicio" >
+                    <input  class="inputNomHab" type="number" name="CodServicio" id="CodServicio" placeholder="Codigo servicio" >
                 </div>
             </div>
         <!-- Fila del nombre de descripcion servicio -->
@@ -37,7 +37,7 @@
             <!-- input descripcion servicio-->
             <div class="row">
                 <div  class="contenedorInputs">
-                    <input class="inputDesSer" type="text" name="descripcion" id="descripcion" placeholder="Descripcion del servicio" >
+                    <input class="inputDesHab" type="text" name="descripcion" id="descripcion" placeholder="Descripcion Servicio" >
                 </div>
             </div>
         <!-- Fila del nombre del valor de servicio -->
@@ -50,22 +50,50 @@
             <!-- input del valor -->
             <div class="row">
                 <div  class="contenedorInputs">
-                    <input class="inputValSer" type="number" name="valor" id="valor" placeholder="Valor del servicio" >
+                    <input class="inputValHab" type="number" name="valor" id="valor" placeholder="Valor del servicio" >
                 </div>
             </div>
         <!-- Fila del nombre del condicion de servicio -->
             <!-- titulo del condicion servicio -->
             <div class="row">
                 <div  style="width: 95%;" class="titulosInputs" >
-                    <p>Condicion</p>
+                    <p>Condición</p>
                 </div>   
             </div>
             <!-- input de la condicion -->
             <div class="row">
                 <div  class="contenedorInputs">
-                    <input  class="inputConSer" type="text" name="condicion" id="condicion" placeholder="Condicion del servicio" >
+                    <input  class="inputConHab" type="text" name="condicion" id="condicion" placeholder="Condicion del servicio" >
                 </div>
             </div>
+                    <!-- Fila servicio externo -->
+         <div class="filaCheSer">
+             <div class="row" >
+                 <div class="col-7">
+                    <!-- titulo del servicio externo -->
+                    <p class="titSerExt">Servicio externo</p>
+                 </div>
+                 <div class="col-3"></div>
+                 <div class="col-2">
+                    <!-- checkbox servicio externo -->
+                    <input  class="inputCheSer" style="width: 18px; height: 18px;margin-top: 25px;" type="checkbox" name="acepto" value="si">
+                 </div>
+     
+             </div>
+         </div>    
+
+        <!-- boton crear habitacon -->
+        <div class="row">
+            <div  class="contenedorInputs">
+                <button  style="width: 95%;" class="button">Crear Servicio</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
         <!-- Fila servicio externo -->
          <div class="filaCheSer">
              <div class="row" >
@@ -81,13 +109,3 @@
      
              </div>
          </div>
-        <!-- boton crear servicio -->
-        <div class="row">
-            <div  class="contenedorInputs">
-                <button  style="width: 95%;" class="button">Crear Servicio</button>
-            </div>
-        </div>
-    </div>
-
-</div>
-{% endblock %}

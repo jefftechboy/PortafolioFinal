@@ -18,10 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const navLinks = document.querySelectorAll('nav a');
   if (navLinks.length) {
-    navLinks[0].addEventListener('click', () => window.location.href = '/servicio/');
+    navLinks[0].addEventListener('click', () => window.location.href = '/servicios/');
     navLinks[1].addEventListener('click', () => window.location.href = '/habitaciones/');
     navLinks[2].addEventListener('click', () => window.location.href = '/reserva');
-    
     navLinks[3].addEventListener('click', () => window.location.href = '/conocenos/');
   }
 });

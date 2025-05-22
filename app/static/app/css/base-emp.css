@@ -114,6 +114,20 @@ nav a.active {
   background-color: #5E7C62 /* Nuevo color al pasar el cursor */
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
 
 /* FOOTER */
 .footer {

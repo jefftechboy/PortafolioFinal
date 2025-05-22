@@ -8,156 +8,69 @@
 {% endblock %}
 
 {% block content %}
-<!-- Caja de servicios -->
 <div class="cajaServicios">
-    <!-- Titulo servicio -->
-    <h1 class="reservaTitulo">Cliente</h1>
-    <!-- Contenido -->
-    <div class="container ">
-        <!-- FILA NOMBRES-->
-            <!-- Fila nombres del cliente -->
-            <div class="filaCheSer">
-                <!-- Fila titulos nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- titulo del primer nombre  -->
-                        <p class="titSerExt">Primer Nombre</p>
-                    </div>
-                    <div class="col">
-                        <!-- titulo del segundo nombre  -->
-                        <p class="titSerExt">Segundo Nombre</p>
-                    </div>
-        
-                </div>
-            </div>
-            <!-- Fila de input de nombres cliente -->
-            <div class="filaCheSer">
-                <!-- Fila inputs nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- input primer nombre  -->
-                        <input  class="inputNombres" type="text" name="nombre" id="nombre" placeholder="Primer nombre" >
-                    </div>
-                    <div class="col">
-                        <!-- input del segundo nombre  -->
-                        <input  class="inputNombres" type="text" name="nombre" id="nombre" placeholder="Segundo nombre" >
-                    </div>
-        
-                </div>
-            </div>
-        <!-- FILA APELLIDOS-->
-            <!-- Fila apellidos del cliente -->
-            <div class="filaCheSer">
-                <!-- Fila titulos nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- titulo del primer nombre  -->
-                        <p class="titSerExt">Primer Apellido</p>
-                    </div>
-                    <div class="col">
-                        <!-- titulo del segundo nombre  -->
-                        <p class="titSerExt">Segundo Apellido</p>
-                    </div>
-        
-                </div>
-            </div>
-            <!-- Fila de input de apellidos cliente -->
-            <div class="filaCheSer">
-                <!-- Fila inputs nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- input primer nombre  -->
-                        <input  class="inputNombres" type="text" name="inputPriApellido" id="inputPriApellido" placeholder="Primer Apellido" >
-                    </div>
-                    <div class="col">
-                        <!-- input del segundo nombre  -->
-                        <input  class="inputNombres" type="text" name="inputSegApellido" id="inputSegApellido" placeholder="Segundo Apellido" >
-                    </div>
-        
-                </div>
-            </div>
-        <!-- FILA TELEFONO / PAIS -->
-            <div class="filaCheSer">
-                <!-- Fila titulos telefono / pais -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- titulo telefono  -->
-                        <p class="titSerExt">Telefono</p>
-                    </div>
-                    <div class="col">
-                        <!-- titulo pais  -->
-                        <p class="titSerExt">Pais</p>
-                    </div>
-        
-                </div>
-            </div>
-            <!-- Fila de input de apellidos cliente -->
-            <div class="filaCheSer">
-                <!-- Fila inputs nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- input telefono  -->
-                        <input  class="inputNombres" type="text" name="telefono" id="telefono" placeholder="ej: +569 12345678" >
-                    </div>
-                    <div class="col">
-                        <!-- input pais  -->
-                        <input  class="inputNombres" type="text" name="pais" id="pais" placeholder="ej: Chile" >
-                    </div>
-        
-                </div>
-            </div>
-        <!-- FILA CORREO / DIRECCION -->
-            <!-- Fila titulos CORREO / DIRECCION -->
-            <div class="filaCheSer">
-                <div class="row" >
-                    <div class="col">
-                        <!-- titulo CORREO  -->
-                        <p class="titSerExt">E-mail</p>
-                    </div>
-                    <div class="col">
-                        <!-- titulo Direccion  -->
-                        <p class="titSerExt">Direccion</p>
-                    </div>
-        
-                </div>
-            </div>
-            <!-- Fila de input CORREO / DIRECCION -->
-            <div class="filaCheSer">
-                <!-- Fila inputs nombres -->
-                <div class="row" >
-                    <div class="col">
-                        <!-- input CORREO  -->
-                        <input  class="inputNombres" type="text" name="correoCli" id="correoCli" placeholder="ej: ejemplo@gmail.com" >
-                    </div>
-                    <div class="col">
-                        <!-- input DIRECCION  -->
-                        <input  class="inputNombres" type="text" name="direccionCli" id="direccionCli" placeholder="ej: nombre numero comuna region pais" >
-                    </div>
-        
-                </div>
-            </div>
-        <!-- FILA RUT -->
-            <div class="filaCheSer">
-                <div class="row" >
-                    <!-- titulo RUT  -->
-                    <p class="titSerExt">RUT</p>
-                </div>
-            </div>
-            <!-- Fila de input CORREO / DIRECCION -->
-            <div class="filaCheSer">
-                <!-- Fila inputs RUT -->
-                <div class="row" >
-                    <div class="col-6" >
-                        <!-- input RUT  -->
-                        <input  class="inputNombres" type="text" name="rutCli" id="rutCli" placeholder="ej: 01.234.567-8" >
-                    </div>
-                    <!-- boton crear cliente -->
-                    <div class="col-6" >
-                        <button  style="width: 50%;" class="button">Crear Cliente</button>
-                    </div>
-                </div>
-            </div>
+  <h1 class="reservaTitulo">Cliente</h1>
+  <div class="container">
+
+    {% comment %} Nombres {% endcomment %}
+    <div class="filaCheSer">
+      <div class="row">
+        <div class="col"><p class="titSerExt">Primer Nombre</p></div>
+        <div class="col"><p class="titSerExt">Segundo Nombre</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><input class="inputNombres" type="text" name="primer_nombre" id="primer_nombre" placeholder="Primer nombre"></div>
+        <div class="col"><input class="inputNombres" type="text" name="segundo_nombre" id="segundo_nombre" placeholder="Segundo nombre"></div>
+      </div>
     </div>
 
+    {% comment %} Apellidos {% endcomment %}
+    <div class="filaCheSer">
+      <div class="row">
+        <div class="col"><p class="titSerExt">Primer Apellido</p></div>
+        <div class="col"><p class="titSerExt">Segundo Apellido</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><input class="inputNombres" type="text" name="primer_apellido" id="primer_apellido" placeholder="Primer Apellido"></div>
+        <div class="col"><input class="inputNombres" type="text" name="segundo_apellido" id="segundo_apellido" placeholder="Segundo Apellido"></div>
+      </div>
+    </div>
+
+    {% comment %} Teléfono y País {% endcomment %}
+    <div class="filaCheSer">
+      <div class="row">
+        <div class="col"><p class="titSerExt">Teléfono</p></div>
+        <div class="col"><p class="titSerExt">País</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><input class="inputNombres" type="text" name="telefono" id="telefono" placeholder="ej: +569 12345678"></div>
+        <div class="col"><input class="inputNombres" type="text" name="pais" id="pais" placeholder="ej: Chile"></div>
+      </div>
+    </div>
+
+    {% comment %} Correo y Dirección {% endcomment %}
+    <div class="filaCheSer">
+      <div class="row">
+        <div class="col"><p class="titSerExt">E-mail</p></div>
+        <div class="col"><p class="titSerExt">Dirección</p></div>
+      </div>
+      <div class="row">
+        <div class="col"><input class="inputNombres" type="email" name="correo" id="correo" placeholder="ej: ejemplo@gmail.com"></div>
+        <div class="col"><input class="inputNombres" type="text" name="direccion" id="direccion" placeholder="ej: calle número, comuna, región, país"></div>
+      </div>
+    </div>
+
+    {% comment %} RUT y botón {% endcomment %}
+    <div class="filaCheSer">
+      <div class="row">
+        <div class="col"><p class="titSerExt">RUT</p></div>
+      </div>
+      <div class="row">
+        <div class="col-6"><input class="inputNombres" type="text" name="rut" id="rut" placeholder="ej: 01.234.567-8"></div>
+        <div class="col-6"><button class="button" style="width: 50%;">Crear Cliente</button></div>
+      </div>
+    </div>
+
+  </div>
 </div>
 {% endblock %}
