@@ -108,31 +108,73 @@ nav a.active {
   }
 
 
-/* FOOTER */
+/* Asegura que el body use toda la altura */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body con flex columna */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Altura mínima 100% de la ventana */
+}
+
+/* Main que ocupa el espacio restante */
+main {
+  flex: 1; /* Expande para llenar el espacio vertical restante */
+}
+
+/* Footer fijo al final */
 .footer {
   background-color: #ACB087;
   color: black;
   text-align: left;
   padding: 15px 30px;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  z-index: 10;
+  /* No uses position: fixed para que no quede flotando,
+     sino que siga el flujo normal pero siempre al final */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   justify-content: flex-start;
 }
 
+/* Footer links */
 .footer a {
   display: inline-block;
   padding: 10px 20px;
   margin-bottom: 10px;
   background-color: #EADED0;
   color: black;
-  text-decoration: none;
   border-radius: 12px;
+  text-decoration: none;
   transition: background-color 0.3s ease, transform 0.3s ease;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.footer a:hover {
+  background-color: #7a9c75;
+  transform: translateY(-5px);
+}
+
+/* Responsive footer */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer a {
+    width: 100%;
+    max-width: 200px;
+  }
+}
 .footer a:hover {
   background-color: #7a9c75;
   transform: translateY(-5px);
