@@ -10,68 +10,63 @@
 {% block content %}
 <h1 class="titulo-principal">Detalles de la Reserva</h1>
 
-<div class="contenedor-formularios">
+<div class="caja-unica">
+  <h2>Información del Cliente</h2>
 
-  <!-- INFORMACIÓN IZQUIERDA -->
-  <div class="formulario-reserva">
-    <h2>Información del Cliente</h2>
-
-    <div class="campo-formulario">
-      <label>Nombre Completo</label>
-      <input type="text" value="Juan Pérez" readonly>
-    </div>
-
-    <div class="campo-formulario">
-      <label>Número de Contacto</label>
-      <input type="text" value="+56 9 1234 5678" readonly>
-    </div>
-
-    <div class="campo-formulario">
-      <label>Correo Electrónico</label>
-      <input type="email" value="juan.perez@example.com" readonly>
-    </div>
-
-    <button class="boton-reservar">Descargar Informe</button>
+  <div class="campo-formulario">
+    <label>Nombre Completo</label>
+    <input type="text" value="Juan Pérez" readonly>
   </div>
 
-  <!-- INFORMACIÓN DERECHA -->
-  <div class="confirmacion-datos">
-    <h2>Resumen de Reserva</h2>
+  <div class="campo-formulario">
+    <label>Número de Contacto</label>
+    <input type="text" value="+56 9 1234 5678" readonly>
+  </div>
 
-    <div class="campo-formulario">
-      <label>Inicio de reserva</label>
-      <input type="date" value="2025-06-10" readonly>
+  <div class="campo-formulario">
+    <label>Correo Electrónico</label>
+    <input type="email" value="juan.perez@example.com" readonly>
+  </div>
+
+  <hr>
+
+  <h2>Resumen de Reserva</h2>
+
+  <div class="campo-formulario">
+    <label>Inicio de reserva</label>
+    <input type="date" value="2025-06-10" readonly>
+  </div>
+
+  <div class="campo-formulario">
+    <label>Fin de reserva</label>
+    <input type="date" value="2025-06-15" readonly>
+  </div>
+
+  <div class="info-caja">
+    <strong>Habitación:</strong>
+    <p>Suite Premium - $70.000 por noche - 2 personas</p>
+  </div>
+
+  <div class="info-caja">
+    <strong>Servicio:</strong>
+    <p>Tour Isla Completa - $30.000</p>
+  </div>
+
+  <div class="info-caja">
+    <strong>Otro:</strong>
+    <p>Snorkel - $15.000</p>
+  </div>
+
+  <div class="total-confirmacion">
+    <div>
+      <p><strong>Días:</strong> 5 días</p>
+      <p><strong>Personas:</strong> 2</p>
     </div>
-
-    <div class="campo-formulario">
-      <label>Fin de reserva</label>
-      <input type="date" value="2025-06-15" readonly>
-    </div>
-
-    <div class="info-caja">
-      <strong>Habitación:</strong>
-      <p>Suite Premium - $70.000 por noche - 2 personas</p>
-    </div>
-
-    <div class="info-caja">
-      <strong>Servicio:</strong>
-      <p>Tour Isla Completa - $30.000</p>
-    </div>
-
-    <div class="info-caja">
-      <strong>Otro:</strong>
-      <p>Snorkel - $15.000</p>
-    </div>
-
-    <div class="total-confirmacion">
-      <div>
-        <p><strong>Días:</strong> 5 días</p>
-        <p><strong>Personas:</strong> 2</p>
-      </div>
-      <div>
-        <p><strong>Total:</strong> $365.000</p>
-      </div>
+    <div>
+      <p><strong>Total:</strong> $365.000</p>
     </div>
   </div>
+
+  <button class="boton-reservar">Descargar Informe</button>
 </div>
 {% endblock %}
