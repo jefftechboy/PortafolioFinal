@@ -9,32 +9,16 @@
 {% endblock %}
 
 {% block content %}
-<table  class="table table-striped table-hover table-responsive " style="color: white;" >
-  <tr >
-    <th style="color: white;">Habitacion</th>
-    <th style="color: white;">Descripcion</th>
-    <th style="color: white;">Valor</th>
-  </tr>
-  {% for p in Habitaciones %}
-  <tr>
-      <td  style="color: white;">{{ p.n_habitacion }}</td>
-      <td style="color: white;">{{ p.descripcion }}</td>
-      <td style="color: white;">{{ p.precio }}</td>
-      <td style="color: white;">
-        <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_habitacion_emp' p.n_habitacion %}">Modificar</a>
-      </td>
-      <td style="color: white;">
-        <a class="btn btn-info btn-sm btn-danger" href="{% url 'eliminar_habitacion_emp' p.n_habitacion %}">Eliminar</a>
-      </td>
-  </tr>
-  {% endfor %}
-</table>
 <main class="habitacion-container">
   <div class="habitacion-box" style= "background-color: #e9d8c4";>
     <aside class="lista-habitacion" >
         <ul>
           {% for p in Habitaciones %}
-            <li><span class="dot"></span> {{ p.n_habitacion }} <span class="check"></span></li>
+          <li>
+            <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-pen"></i></a>
+              {{ p.n_habitacion }} 
+            <a class="btn btn-info btn-sm btn-danger" href="{% url 'eliminar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-trash"></i></a>
+          </li>
           {% endfor %}
         </ul>
         <a class="crear-btn" type="button" href="{% url 'crear_habitacion_emp' %}">Crear Nuevo</a>
@@ -42,25 +26,43 @@
 
       <section class="formulario">
         
-        <form>
+        <form method="POST" action="" enctype="multipart/form-data" >
+            {% csrf_token %}
             <h1>Habitación</h1>
           <label>Nombre</label>
-          <input type="text" placeholder="Value">
+            <input 
+              class="inputNomHab"
+              type="text"
+              name="{{ form.n_habitacion.name }}"
+              id="numHabitacion"
+              placeholder="Numero habitacion"
+              value="{{ form.n_habitacion.value|default_if_none:'' }}">
           
           <label>Descripción</label>
-          <input type="text" placeholder="Value">
+          <input 
+            class="inputDesHab" 
+            type="text" 
+            name="{{ form.descripcion.name }}"  
+            id="descripcion" 
+            value="{{ form.descripcion.value|default_if_none:'' }}"  
+            placeholder="Descripcion habitacion" >
 
           <label>Valor</label>
-          <input type="email" placeholder="Value">
-
-          <label>Condición</label>
-          <input type="text" placeholder="Value">
-          
-        </form>
+            <input 
+              class="inputValHab" 
+              type="number" 
+              name="{{ form.precio.name }}" 
+              id="precio" 
+              value="{{ form.precio.value|default_if_none:'' }}" 
+              placeholder="Precio de habitacion" >
+              <!-- boton crear habitacon -->
+              <div class="row">
+                  <div  class="contenedorInputs">
+                      <button  type="submit succes" style="width: 95%;" class="button">Crear habitacion</button>
+                  </div>
+              </div>
+            </form>
         <div class="acciones">
-      <button>Editar</button>
-      <button>Eliminar</button>
-      <button>Imprimir informe</button>
 
   </main>
  {% endblock %}

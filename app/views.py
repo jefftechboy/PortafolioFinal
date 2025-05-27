@@ -111,13 +111,20 @@ def crear_habitacion_emp(request):
     return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html",data)
 # ---------- LISTAR
 def listar_habitacion_emp(request):
-    # Obtener todas las habitaciones de la base de datos
-    Habitaciones = Habitacion.objects.all() # litado de habitaciones
-    # Pasar las habitaciones al contexto del template
     data = {
-        'Habitaciones': Habitaciones
+        'form': habitacionform(),
+        'Habitaciones': Habitacion.objects.all()
     }
-    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html",data)
+    if request.method == 'POST':
+        formulario = habitacionform(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = "Habitación creada correctamente"
+            return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear la habitación"     
+    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
 # ---------- MODIFICAR
 def modificar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
