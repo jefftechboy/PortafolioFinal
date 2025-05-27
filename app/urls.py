@@ -25,16 +25,21 @@ urlpatterns = [
     path("perfil-empleado/", perfil_empleado, name="perfil-empleado"),
     # Pagina de cliente empleado
     path("cliente-emp/", cliente_emp, name="cliente-emp"),
-    # Pagina de habitacion empleado
-    path("habitacion-emp/", habitacion_emp, name="habitacion-emp"),
+
+
+
+    
+
+
+
+
+    
     # Pagina de perfil usuario
     path("perfil-usuario/", perfil_usuario, name="perfil-usuario"),
     # Pagina de servicio empleado
     path("servicio-emp/", servicio_emp, name="servicio-emp"),
     # Pagina de servicios empleado
     path("crear-servicios-emp/", crear_servicios_emp, name="crear-servicios-emp"),
-    # Pagina de crear habitacion empleado
-    path("crear-habitacion-emp/", crear_habitacion_emp, name="crear-habitacion-emp"),
     # Pagina de crear cliente empleado
     path("crear-cliente-emp/", crear_cliente_emp, name="crear-cliente-emp"),
     # Pagina de crear reserva empleado
@@ -45,4 +50,19 @@ urlpatterns = [
     path("confirmar-reserva/", confirmar_reserva, name="confirmar-reserva"),
     # Para la pagina de confirmacion de reserva
     path("agenda/", agenda, name= "agenda"),
+
+
+    # Pagina de habitacion empleado
+        # Pagina habitacion empleado
+            path("listar_habitacion_emp/", listar_habitacion_emp, name="listar_habitacion_emp"),
+        # Ir al CREATE habitacion empleado
+            path("crear_habitacion_emp/", crear_habitacion_emp, name="crear_habitacion_emp"),
+        # Modificar habitacion empleado
+            path("modificar_habitacion_emp/<id>/", modificar_habitacion_emp, name="modificar_habitacion_emp"),
+        # Eliminar habitacion empleado
+            path("eliminar_habitacion_emp/<id>/", eliminar_habitacion_emp, name="eliminar_habitacion_emp"),
+    # Pagina de cliente empleado
+   
+
+
 ]

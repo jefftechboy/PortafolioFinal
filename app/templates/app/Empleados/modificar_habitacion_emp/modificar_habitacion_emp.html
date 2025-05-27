@@ -34,6 +34,7 @@
                             name="{{ form.n_habitacion.name }}"
                             id="numHabitacion"
                             placeholder="Numero habitacion"
+                            readonly
                             value="{{ form.n_habitacion.value|default_if_none:'' }}">
                     </div>
                 </div>
@@ -71,8 +72,8 @@
                         type="number" 
                         name="{{ form.precio.name }}" 
                         id="precio" 
-                        value="{{ form.precio.value|default_if_none:'' }}" 
-                        placeholder="Precio de habitacion" >
+                        placeholder="Precio de habitacion" 
+                        value="{{ form.precio.value }}" >
                 </div>
             </div>
 
@@ -96,7 +97,7 @@
         <!-- boton crear habitacon -->
         <div class="row">
             <div  class="contenedorInputs">
-                <button  type="submit" style="width: 95%;" class="button">Crear habitacion</button>
+                <button  type="submit" style="width: 95%;" class="button">Editar habitacion</button>
             </div>
         </div>
 

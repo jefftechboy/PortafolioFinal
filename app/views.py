@@ -1,5 +1,6 @@
-from django.shortcuts import render
-
+from django.shortcuts import render , redirect , get_object_or_404
+from .forms import habitacionform
+from .models import Habitacion
 # funciones para carga de templates (vistas)
 
 
@@ -45,8 +46,7 @@ def perfil_empleado(request):
 def cliente_emp(request):
     return render(request, "app/Empleados/cliente-emp/cliente-emp.html")
 
-def habitacion_emp(request):
-    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html")
+
 
 def perfil_usuario(request):
     return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
@@ -60,9 +60,9 @@ def servicio_emp(request):
 def crear_servicios_emp(request):
     return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html")
     
-# funcion para la pagina crear habitacion empleado
-def crear_habitacion_emp(request):
-    return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html")
+
+
+
 # funcion para la pagina crear cliente empleado
 def crear_cliente_emp(request):
     return render(request, "app/Empleados/crear-cliente-emp/crear-cliente-emp.html")
@@ -79,3 +79,61 @@ def confirmar_reserva(request):
 def agenda(request):
     return render(request, "app/Empleados/agenda/agenda.html")
 
+
+
+
+
+
+#  --------------------------------------- --------------------- HABITACION EMPLEADOS  
+# ------------------------------ Pagina habitacion empleado 
+def habitacion_emp(request):
+    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html")
+# -------------- ----------------------------------- CRUD HABITACION EMPLEADO 
+# ---------- IR A PAGINA CREAR HABITACION EMPLEADO
+def visCrearHabitacionEmp(request):
+    return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html")
+# ---------- CREAR HABITACION EMPLEADO
+def crear_habitacion_emp(request):
+    # Variable llamada data que contiene el formulario
+    data = {
+        'form': habitacionform()
+    }
+    if request.method == 'POST':
+        formulario = habitacionform(data=request.POST,files=request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Habitación creada correctamente"
+            # Redirigir a la lista de habitaciones
+            return redirect(to="listar_habitacion_emp") #Nombre de la url a la que redirige
+        else:
+            data["form"] = formulario
+            data["mensaje"] = "Error al crear la habitación"
+    return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html",data)
+# ---------- LISTAR
+def listar_habitacion_emp(request):
+    # Obtener todas las habitaciones de la base de datos
+    Habitaciones = Habitacion.objects.all() # litado de habitaciones
+    # Pasar las habitaciones al contexto del template
+    data = {
+        'Habitaciones': Habitaciones
+    }
+    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html",data)
+# ---------- MODIFICAR
+def modificar_habitacion_emp(request, id):
+    habitacion = Habitacion.objects.get(n_habitacion=id)
+    data = {
+        'form': habitacionform(instance=habitacion)
+    }
+    if request.method == 'POST':
+        formulario = habitacionform(data=request.POST, instance=habitacion, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_habitacion_emp")
+        else:
+            data["form"] = formulario
+    return render(request, "app/Empleados/modificar_habitacion_emp/modificar_habitacion_emp.html", data)
+# ---------- ELIMINAR
+def eliminar_habitacion_emp(request, id):
+    habitacion = Habitacion.objects.get(n_habitacion=id)
+    habitacion.delete()
+    return redirect(to="listar_habitacion_emp")
