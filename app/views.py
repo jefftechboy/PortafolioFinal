@@ -109,7 +109,11 @@ def crear_habitacion_emp(request):
             data["form"] = formulario
             data["mensaje"] = "Error al crear la habitación"
     return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html",data)
-# ---------- LISTAR
+
+
+
+
+# ---------- CREAR + LISTAR
 def listar_habitacion_emp(request):
     data = {
         'form': habitacionform(),
@@ -129,7 +133,8 @@ def listar_habitacion_emp(request):
 def modificar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
     data = {
-        'form': habitacionform(instance=habitacion)
+        'form': habitacionform(instance=habitacion),
+        'Habitaciones': Habitacion.objects.all()
     }
     if request.method == 'POST':
         formulario = habitacionform(data=request.POST, instance=habitacion, files=request.FILES)
@@ -138,7 +143,7 @@ def modificar_habitacion_emp(request, id):
             return redirect(to="listar_habitacion_emp")
         else:
             data["form"] = formulario
-    return render(request, "app/Empleados/modificar_habitacion_emp/modificar_habitacion_emp.html", data)
+    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
 # ---------- ELIMINAR
 def eliminar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
