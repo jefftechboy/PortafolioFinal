@@ -70,6 +70,12 @@ urlpatterns = [
             path("eliminar_servicio_ext/<id>/", eliminar_servicio_ext, name="eliminar_servicio_ext"),
         # Modificar habitacion empleado
     
+            # CLIENTE EMP
+            path("cliente_emp/", cliente_emp, name="cliente_emp"),
+            path("listar_cliente_emp/", listar_cliente_emp, name="listar_cliente_emp"),
+            path("crear_cliente_emp/", crear_cliente_emp, name="crear_cliente_emp"), 
+            path("modificar_cliente_emp/<id>/", modificar_cliente_emp, name="modificar_cliente_emp"),
+            path("eliminar_cliente_emp/<id>/", eliminar_cliente_emp, name="eliminar_cliente_emp"),
       
        
 
