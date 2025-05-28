@@ -1,8 +1,7 @@
 {% extends 'app/base-emp.html' %}
-
 {% load static %}
 
-{% block title %}Habitacion EMP{% endblock %}
+{% block title %}SERVICIOS{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'app/css/habitacion-emp.css' %}">
@@ -10,66 +9,55 @@
 
 {% block content %}
 <main class="habitacion-container">
-  <div class="habitacion-box" style= "background-color: #e9d8c4";>
-    <aside class="lista-habitacion" >
-        <ul>
-          {% for p in servicio %}
+  <div class="habitacion-box" style="background-color: #e9d8c4;">
+    <aside class="lista-habitacion">
+      <ul>
+        {% for p in servicios %}
           <li>
             <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_servicio_ext' p.n_s_ext %}"><i class="fas fa-pen"></i></a>
-              {{ p.n_s_ext }} 
+            {{ p.n_s_ext }}
             <a class="btn btn-info btn-sm btn-danger" href="{% url 'eliminar_servicio_ext' p.n_s_ext %}"><i class="fas fa-trash"></i></a>
           </li>
-          {% endfor %}
-        </ul>
-        <a class="btn btn-success"   style="width: 95%; margin-left: 2.5% ;margin-top: 10px;" type="button" href="{% url 'listar_habitacion_emp' %}">Crear Nuevo</a>
-      </aside>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-success"   style="width: 95%; margin-left: 2.5% ;margin-top: 10px;" type="button" href="{% url 'listar_servicio' %}">Crear Nuevo</a>
+    </aside>
+    <form method="POST" action="" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <h1>Servicio</h1>
 
-      <section class="formulario">
-        
-        <form method="POST" action="" enctype="multipart/form-data" >
-            {% csrf_token %}
-            <h1>Servicio</h1>
-          <label>Servicio</label>
-            <input
-              class="inputNomHab"
-              type="text"
-              id="numHabitacion"
-              placeholder="Servicio"
-              name="{{ form.n_s_ext.name }}" 
-              value="{{ form.n_s_ext.value|default_if_none:'' }}" 
-          >
-          <label>Descripción</label>
-          <input 
-            class="inputDesHab" 
-            type="text" 
-            name="{{ form.descripcions_ext.name }}"
-            id="descripcion" 
-            value="{{ form.descripcions_ext.value|default_if_none:'' }}" 
-            placeholder="Descripcion" >
+        <label>Nombre</label>
+        <input 
+          class="inputNomHab"
+          type="text"
+          placeholder="Número habitación"
+          name="{{ form.n_s_ext.name }}"
+          value="{{ form.n_s_ext.value|default_if_none:'' }}">
 
-          <label>Valor</label>
-            <input 
-              class="inputValHab" 
-              type="number" 
-              name="{{ form.precio_ext.name }}" 
-              id="precio" 
-              value="{{ form.precios_ext.value|default_if_none:'' }}"
-              placeholder="Precio del Servicio" >
-              <!-- boton crear habitacon -->
-              
-              <div class="titulosInputs">
-                <p>Empresa</p>
-            </div>
-            <div class="contenedorInputs">
-                {{ form.empresa }}
-            </div>
-            <div class="row">
-                  <div  class="contenedorInputs">
-                    <button type="submit" class="btn btn-success" style="width: 95%; margin-left: 2.5% ;margin-top: 10px;">Confirmar</button>
-                  </div>
-              </div>
-            </form>
-        <div class="acciones">
+        <label>Descripción</label>
+        <input 
+          class="inputDesHab"
+          type="text"
+          name="{{ form.descripcions_ext.name }}"
+          placeholder="Descripción habitación"
+          value="{{ form.descripcions_ext.value|default_if_none:'' }}">
 
-  </main>
- {% endblock %}
+        <label>Valor</label>
+        <input 
+          class="inputValHab"
+          type="number"
+          name="{{ form.precios_ext.name }}"
+          placeholder="Precio habitación"
+          value="{{ form.precios_ext.value|default_if_none:'' }}">
+        <label>Valor</label>
+        {{ form.empresa }}
+        <div class="row">
+          <div class="contenedorInputs">
+            <button type="submit" class="button" style="width: 95%;">Crear servicio</button>
+          </div>
+        </div>
+    </form>
+    </section>
+  </div>
+</main>
+{% endblock %}

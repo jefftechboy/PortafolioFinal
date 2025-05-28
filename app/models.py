@@ -58,7 +58,19 @@ class Servicio_Int(models.Model):
     
     def __str__(self):
         return self.n_s_int
+
+
+# SERVICIOS TODOS
+class Servicio(models.Model):
+    n_s_int = models.CharField(max_length=10, primary_key=True)
+    descripcion_s_int = models.TextField(max_length=100)
+    precio_s_int = models.IntegerField()
     
+    def __str__(self):
+        return self.n_s_int
+    
+
+
 class Habitacion(models.Model):
     n_habitacion = models.CharField(max_length=10, primary_key=True)
     descripcion = models.TextField(max_length=100)
