@@ -54,6 +54,8 @@ urlpatterns = [
 
     # Pagina de habitacion empleado
         # Pagina habitacion empleado
+            path("habitacion_emp/", habitacion_emp, name="habitacion_emp"),
+        # Pagina habitacion empleado
             path("listar_habitacion_emp/", listar_habitacion_emp, name="listar_habitacion_emp"),
         # Ir al CREATE habitacion empleado
             path("crear_habitacion_emp/", crear_habitacion_emp, name="crear_habitacion_emp"),

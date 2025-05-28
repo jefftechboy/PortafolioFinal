@@ -1,21 +1,32 @@
 {% extends 'app/base-emp.html' %}
 {% load static %}
 
-{% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+{% block title %}Habitaciones{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'app/css/crear-habitacion-emp.css' %}">
+  <link rel="stylesheet" href="{% static 'app/css/habitacion-emp.css' %}">
 {% endblock %}
 
 {% block content %}
-{{ mensaje }}
-<!-- Caja de servicios -->
-<div class="cajaServicios" style="width: 35%;margin-top: 120px;">
-    <!-- Titulo servicio -->
-    <h1 class="reservaTitulo">Habitacion</h1>
-    <!-- Contenido -->
-    <div class="container ">
+<main class="habitacion-container">
+  <div class="habitacion-box" style="background-color: #e9d8c4;">
+    <aside class="lista-habitacion">
+      <ul>
+        {% for p in Habitaciones %}
+        <li>
+          <a class="btn btn-sm btn-primary" href="{% url 'modificar_habitacion_emp' p.n_habitacion %}">
+            <i class="fas fa-pen"></i>
+          </a>
+          {{ p.n_habitacion }}
+          <a class="btn btn-sm btn-danger" href="{% url 'eliminar_habitacion_emp' p.n_habitacion %}">
+            <i class="fas fa-trash"></i>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
 
+<<<<<<< HEAD
         <form method="POST" action="" enctype="multipart/form-data" >
             {% csrf_token %}
         <!-- Fila del nombre del servicio -->
@@ -75,38 +86,48 @@
                         placeholder="Precio de habitacion" >
                 </div>
             </div>
+=======
+    <section class="formulario">
+      {% if mensaje %}
+        <div class="alert alert-info">{{ mensaje }}</div>
+      {% endif %}
+>>>>>>> 58c219a2c92c0bbc4ebb97a86a409515c28c1a51
 
+    <form method="POST" action="" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <h1>Habitación</h1>
 
-        <!-- 
-            
-            <div class="row">
-                <div  style="width: 95%;" class="titulosInputs" >
-                    <p>Condicion</p>
-                </div>   
-            </div>
-            
-            <div class="row">
-                <div  class="contenedorInputs">
-                    <input  class="inputConHab" type="text" name="condicion" id="condicion" placeholder="Condicion de la habitacion" >
-                </div>
-            </div>
+        <label>Nombre</label>
+        <input 
+          class="inputNomHab"
+          type="text"
+          placeholder="Número habitación"
+          name="{{ form.n_habitacion.name }}"
+          value="{{ form.n_habitacion.value|default_if_none:'' }}">
 
-        Fila del nombre del condicion de servicio -->
+        <label>Descripción</label>
+        <input 
+          class="inputDesHab"
+          type="text"
+          name="{{ form.descripcion.name }}"
+          placeholder="Descripción habitación"
+          value="{{ form.descripcion.value|default_if_none:'' }}">
 
-        <!-- boton crear habitacon -->
+        <label>Valor</label>
+        <input 
+          class="inputValHab"
+          type="number"
+          name="{{ form.precio.name }}"
+          placeholder="Precio habitación"
+          value="{{ form.precio.value|default_if_none:'' }}">
+
         <div class="row">
-            <div  class="contenedorInputs">
-                <button  type="submit" style="width: 95%;" class="button">Crear habitacion</button>
-            </div>
+          <div class="contenedorInputs">
+            <button type="submit" class="button" style="width: 95%;">Crear habitación</button>
+          </div>
         </div>
-
-
-
-
-    </div>
-
-</div>
-
-
-
+      </form>
+    </section>
+  </div>
+</main>
 {% endblock %}
