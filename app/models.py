@@ -37,6 +37,11 @@ class Empresa(models.Model):
     def __str__(self):
         return self.Rut_empresa
     
+
+
+# Modelo para los servicios externos e internos
+
+    
 class Servicio_Ext(models.Model):
     n_s_ext = models.CharField(max_length=10, primary_key=True)
     descripcions_ext = models.TextField(max_length=100)

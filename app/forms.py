@@ -7,3 +7,8 @@ class habitacionform(forms.ModelForm):
         model = Habitacion # Nombre modelo de Habitacion
         # Campos que se van a mostrar en el formulario
         fields = '__all__'
+        
+class ServicioExtForm(forms.ModelForm):
+    class Meta:
+        model = Servicio_Ext
+        fields = '__all__'        

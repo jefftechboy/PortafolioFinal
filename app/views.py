@@ -1,8 +1,9 @@
-from django.shortcuts import render , redirect , get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import habitacionform
 from .models import Habitacion
-# funciones para carga de templates (vistas)
-
+# funciones para carga de templates (vistas)from django.shortcuts import render, redirect, get_object_or_404
+from .models import Servicio_Ext
+from .forms import ServicioExtForm
 
 
 # funcion para  la pagina inicio
@@ -137,3 +138,57 @@ def eliminar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
     habitacion.delete()
     return redirect(to="listar_habitacion_emp")
+
+
+
+
+
+# Crear servicio externo
+def listar_servicio(request):
+    data = {
+        'form': ServicioExtForm(),
+        'servicio': Servicio_Ext.objects.all()
+    }
+    if request.method == 'POST':
+        formulario = ServicioExtForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = "Servicio creado correctamente"
+            return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear la habitación"
+    return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
+
+# Modificar servicio externo
+
+def modificar_servicio_ext(request, id):
+    servicio = Servicio_Ext.objects.get(n_s_ext=id)
+    data = {
+        'form': ServicioExtForm(instance=servicio),
+        'servicio': servicio.objects.all()
+    }
+    if request.method == 'POST':
+        formulario = ServicioExtForm(data=request.POST, instance= servicio, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_servicio")
+        else:
+            data["form"] = formulario
+    return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
+
+
+
+# Eliminar servicio externo
+def eliminar_servicio_ext(request, id):
+    servicio = Servicio_Ext.objects.get(n_s_ext=id)
+    servicio.delete()
+    return redirect(to="listar_servicio_emp")
+
+
+# Listar servicios externos
+
+# Vista para el template principal servicio-emp.html
+def servicio_emp_view(request):
+    servicios_ext = Servicio_Ext.objects.select_related('empresa').all()  # Traemos servicios con la empresa relacionada
+    return render(request, 'app/servicio-emp.html', {'servicios_ext': servicios_ext})

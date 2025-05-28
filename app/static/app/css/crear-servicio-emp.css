@@ -2,15 +2,10 @@ body {
   position: relative;
   background-image: url("../img/fondo.png");
   background-size: cover;
-  /* La imagen cubrirá toda la pantalla */
   background-position: center;
-  /* Centra la imagen */
   background-repeat: no-repeat;
-  /* Evita que se repita */
   background-attachment: fixed;
-  /* Fija el fondo al hacer scroll */
   height: 100vh;
-  /* Asegura que ocupe toda la altura de la ventana */
 }
 
 body::before {
@@ -21,116 +16,90 @@ body::before {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
-  /* Filtro de opacidad sobre la imagen */
   z-index: -1;
-  /* Lo coloca debajo del contenido */
 }
 
-.cajaServicios{
-    width: 70%;
-    max-width: 600px;
-    height: auto;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #e9d8c4;      
-    border: 0px ;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 5%;
-    
+.cajaServicios {
+  width: 90%;
+  max-width: 600px;
+  margin: 120px auto 5%;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #EADED0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.button {
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #f9f9f9;      
 
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: #7a9c75; /* Color de fondo */
-    border: 0px;
+.reservaTitulo {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
 }
-.inputNomHab {
-    width: 95%;                 /* Ancho del 50% */
-    border-radius: 5px;         /* Bordes redondeados */
-    border: 1px solid #ccc;   /* Borde gris */
-    padding: 4px 8px;           /* Relleno en los lados */
-    font-size: 16px;            /* Tamaño de fuente */
-    margin: 0 auto;             /* Centrado horizontal */
-    display: block;             /* Hace que el input se comporte como un bloque */
-    margin-bottom: 3%;         /* Margen inferior */
-    
-}
-.inputDesHab {
-    width: 95%;                 /* Ancho del 50% */
-    border-radius: 5px;         /* Bordes redondeados */
-    border: 1px solid #ccc;   /* Borde gris */
-    height: 72%;               /* Altura ajustada */
-    padding: 4px 8px;           /* Relleno en los lados */
-    font-size: 16px;            /* Tamaño de fuente */
-    margin: 0 auto;             /* Centrado horizontal */
-    display: block;             /* Hace que el input se comporte como un bloque */
-    margin-bottom: 3%;         /* Margen inferior */
 
+.mensaje-error {
+  color: red;
+  margin-bottom: 15px;
+  text-align: center;
 }
-.inputValHab {
-    width: 95%;                 /* Ancho del 50% */
-    border-radius: 5px;         /* Bordes redondeados */
-    border: 1px solid #ccc;   /* Borde gris */
-    height: 72%;               /* Altura ajustada */
-    padding: 4px 8px;           /* Relleno en los lados */
-    font-size: 16px;            /* Tamaño de fuente */
-    margin: 0 auto;             /* Centrado horizontal */
-    display: block;             /* Hace que el input se comporte como un bloque */
-    margin-bottom: 3%;         /* Margen inferior */
 
+.titulosInputs {
+  width: 95%;
+  margin: 0 auto;
+  margin-bottom: -3%;
+  padding-top: 2%;
 }
+
+.titulosInputs p {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #444;
+}
+
+.contenedorInputs {
+  margin-bottom: 1%;
+  width: 100%;
+}
+
+.inputNomHab,
+.inputDesHab,
+.inputValHab,
 .inputConHab {
-    width: 95%;                 /* Ancho del 50% */
-    border-radius: 5px;         /* Bordes redondeados */
-    border: 1px solid #ccc;   /* Borde gris */
-    height: 72%;               /* Altura ajustada */
-    padding: 4px 8px;           /* Relleno en los lados */
-    font-size: 16px;            /* Tamaño de fuente */
-    margin: 0 auto;             /* Centrado horizontal */
-    display: block;             /* Hace que el input se comporte como un bloque */
-    margin-bottom: 3%;         /* Margen inferior */
-
+  width: 95%;
+  border-radius: 5px;
+  border: 1.5px solid rgb(163, 163, 163); /* borde negro */
+  padding: 8px;
+  font-size: 16px;
+  margin: 0 auto 15px;
+  display: block;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* sombra suave */
 }
 
 
-.titulosInputs{
-    margin: 0 auto;             /* Centrado horizontal */
-    width: 95%;             /* Ancho del 50% */
-    margin-bottom: -3%;
-    padding-top: 2%;
+.button {
+  width: 95%;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #7a9c75;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-.cajaCheck{
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #e9d8c4;      
-    border: 0px ;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+
+.button:hover {
+  background-color: #6a8b66;
 }
-.filaCheSer{
-    width: 95%;
-    margin: 0 auto;
-    margin-top: 4%;
-    margin-bottom: 4%;
-}
-.titSerExt{
-    text-align: left;
-}
-.contenedorInputs{
-    margin-bottom: 1%;
+select {
+  width: 100%;
+  border-radius: 5px;
+  border: 1.5px solid rgb(163, 163, 163); /* borde negro */
+  padding: 8px;
+  font-size: 16px;
+  margin: 0 auto 15px;
+  display: block;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* sombra suave */
+  
 }

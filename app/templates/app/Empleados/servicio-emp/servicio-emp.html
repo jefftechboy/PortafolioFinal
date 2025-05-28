@@ -1,5 +1,4 @@
 {% extends 'app/base-emp.html' %}
-
 {% load static %}
 
 {% block title %}Servicio EMP{% endblock %}
@@ -9,47 +8,65 @@
 {% endblock %}
 
 {% block content %}
-  <main class="servicio-container">
+<main class="servicio-container">
+
+  <div class="servicio-box" style="background-color: #e9d8c4;">
     
-    <div class="servicio-box" style= "background-color: #e9d8c4";>
-      <aside class="lista-servicio" >
-        <ul>
-          <li><span class="dot"></span> Tour completo <span class="check"></span></li>
-          <li><span class="dot"></span> Vista Amanecer <span class="check"></span></li>
-          <li><span class="dot"></span> Anakena <span class="check"></span></li>
-          <li><span class="dot"></span> Paseo en balsa Motus <span class="check"></span></li>
-          <li><span class="dot"></span> All Inclusive <span class="check"></span></li>
-          <li><span class="dot"></span> Desayuno Tradicional <span class="check"></span></li>
-          <li><span class="dot"></span> Desayuno Premium <span class="check"></span></li>
-          <li><span class="dot"></span> Viaje Aeropuerto <span class="check"></span></li>
-          <li><span class="dot"></span> Tour Cena <span class="check"></span></li> 
-        </ul>
+    <!-- Lista de Servicios Externos -->
+    <aside class="lista-servicio">
+      <ul>
+        <h3>Servicios</h3>
+        {% if servicios_ext %}
+          {% for servicio in servicios_ext %}
+            <li>
+              <span class="dot"></span> 
+              {{ servicio.n_s_ext }} - {{ servicio.descripcion_s_ext }} ({{ servicio.precio_s_ext }}) 
+              <span class="check"></span>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li>No hay servicios externos registrados.</li>
+        {% endif %}
+      </ul>
+      <a href="{% url 'listar_servicio' %}">
         <button class="crear-btn">Crear Nuevo</button>
-      </aside>
+      </a>
+    </aside>
 
-      <section class="formulario">
-        
-        <form>
-            <h1>Servicios</h1>
-          <label>Nombre</label>
-          <input type="text" placeholder="Value">
-          
-          <label>Descripción</label>
-          <input type="text" placeholder="Value">
+    <!-- Formulario -->
+    <section class="formulario">
+      <form method="post" action="">
+        {% csrf_token %}
+        <h1>Servicios </h1>
 
-          <label>Valor</label>
-          <input type="email" placeholder="Value">
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Nombre del servicio">
 
-          <label>Condición</label>
-          <input type="text" placeholder="Value">
-          <li><span class="dot"></span> Servicio Externo <span class="check"></span></li> 
-          <label>Empresa</label>
-          <input type="text" placeholder="Value">
-        </form>
+        <label>Descripción</label>
+        <input type="text" name="descripcion" placeholder="Descripción del servicio">
+
+        <label>Valor</label>
+        <input type="number" name="valor" placeholder="Valor del servicio" step="0.01">
+
+        <label>Condición</label>
+        <input type="text" name="condicion" placeholder="Condición">
+
+        <label>Empresa</label>
+        <input type="text" name="empresa" placeholder="Nombre de la empresa externa">
+
         <div class="acciones">
-      <button>Editar</button>
-      <button>Eliminar</button>
-      <button>Imprimir informe</button>
+          <button type="submit">Guardar</button>
+          <button type="reset">Limpiar</button>
+        </div>
+      </form>
 
-  </main>
+      <div class="acciones-secundarias">
+        <button>Editar</button>
+        <button>Eliminar</button>
+        <button>Imprimir informe</button>
+      </div>
+    </section>
+
+  </div>
+</main>
 {% endblock %}
