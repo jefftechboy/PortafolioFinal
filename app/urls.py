@@ -69,9 +69,8 @@ urlpatterns = [
             path("modificar_servicio_ext/<id>/", modificar_servicio_ext, name="modificar_servicio_ext"),
             path("eliminar_servicio_ext/<id>/", eliminar_servicio_ext, name="eliminar_servicio_ext"),
         # Modificar habitacion empleado
-    
-      
-       
 
-
+            path("listar_reservas_emp/", listar_reservas_emp, name="listar_reservas_emp"),
+            path("modificar_reserva_emp/<id>/", modificar_reserva_emp, name="modificar_reserva_emp"),
+            path("eliminar_reserva_emp/<id>/", eliminar_reserva_emp, name="eliminar_reserva_emp"),
 ] 

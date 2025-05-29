@@ -4,60 +4,61 @@
 {% block title %}SERVICIOS{% endblock %}
 
 {% block extra_css %}
-  <link rel="stylesheet" href="{% static 'app/css/habitacion-emp.css' %}">
+  <link rel="stylesheet" href="{% static 'app/css/crear-servicio-emp.css' %}">
 {% endblock %}
 
 {% block content %}
-<main class="habitacion-container">
-  <div class="habitacion-box" style="background-color: #e9d8c4;">
-    <aside class="lista-habitacion">
+<main class="contenedor-recuadro">
+
+  <!-- Recuadro único que contiene lista y formulario -->
+  <div class="recuadro-servicio">
+
+    <!-- Lista de Servicios -->
+    <div class="lado izquierdo">
+      <h3>Servicios Existentes</h3>
       <ul>
         {% for p in servicios %}
           <li>
-            <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_servicio_ext' p.n_s_ext %}"><i class="fas fa-pen"></i></a>
             {{ p.n_s_ext }}
-            <a class="btn btn-info btn-sm btn-danger" href="{% url 'eliminar_servicio_ext' p.n_s_ext %}"><i class="fas fa-trash"></i></a>
+            <span>
+              <a class="btn btn-warning btn-sm" href="{% url 'modificar_servicio_ext' p.n_s_ext %}">
+                <i class="fas fa-pen"></i>
+              </a>
+              <a class="btn btn-danger btn-sm" href="{% url 'eliminar_servicio_ext' p.n_s_ext %}">
+                <i class="fas fa-trash"></i>
+              </a>
+            </span>
           </li>
         {% endfor %}
       </ul>
-      <a class="btn btn-success"   style="width: 95%; margin-left: 2.5% ;margin-top: 10px;" type="button" href="{% url 'listar_servicio' %}">Crear Nuevo</a>
-    </aside>
-    <form method="POST" action="" enctype="multipart/form-data" >
+      <a class="btn btn-success" href="{% url 'listar_servicio' %}">Crear Nuevo</a>
+    </div>
+
+    <!-- Formulario -->
+    <div class="lado derecho">
+      <h2 class="reservaTitulo">Crear Servicio</h2>
+
+      <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <h1>Servicio</h1>
 
-        <label>Nombre</label>
-        <input 
-          class="inputNomHab"
-          type="text"
-          placeholder="Número habitación"
-          name="{{ form.n_s_ext.name }}"
-          value="{{ form.n_s_ext.value|default_if_none:'' }}">
+        <div class="titulosInputs"><p>Nombre</p></div>
+        <input type="text" name="{{ form.n_s_ext.name }}" value="{{ form.n_s_ext.value|default_if_none:'' }}" placeholder="Nombre del servicio">
 
-        <label>Descripción</label>
-        <input 
-          class="inputDesHab"
-          type="text"
-          name="{{ form.descripcions_ext.name }}"
-          placeholder="Descripción habitación"
-          value="{{ form.descripcions_ext.value|default_if_none:'' }}">
+        <div class="titulosInputs"><p>Descripción</p></div>
+        <input type="text" name="{{ form.descripcions_ext.name }}" value="{{ form.descripcions_ext.value|default_if_none:'' }}" placeholder="Descripción del servicio">
 
-        <label>Valor</label>
-        <input 
-          class="inputValHab"
-          type="number"
-          name="{{ form.precios_ext.name }}"
-          placeholder="Precio habitación"
-          value="{{ form.precios_ext.value|default_if_none:'' }}">
-        <label>Valor</label>
+        <div class="titulosInputs"><p>Valor</p></div>
+        <input type="number" name="{{ form.precios_ext.name }}" value="{{ form.precios_ext.value|default_if_none:'' }}" placeholder="Precio del servicio">
+
+        <div class="titulosInputs"><p>Empresa</p></div>
         {{ form.empresa }}
-        <div class="row">
-          <div class="contenedorInputs">
-            <button type="submit" class="button" style="width: 95%;">Crear servicio</button>
-          </div>
+
+        <div class="contenedorInputs">
+          <button type="submit" class="button">Crear servicio</button>
         </div>
-    </form>
-    </section>
+      </form>
+    </div>
+
   </div>
 </main>
 {% endblock %}

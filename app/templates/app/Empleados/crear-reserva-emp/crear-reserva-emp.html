@@ -1,69 +1,64 @@
 {% extends 'app/base-emp.html' %}
 {% load static %}
 
-{% block title %}Inicio - Hotel Rapa Nui{% endblock %}
+{% block title %}Reservas{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'app/css/crear-reserva-emp.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="form-wrapper"> <!-- Contenedor para centrar -->
-  <div class="containerReserva">
-    <h2>Reservas</h2>
-    <div class="formReserva">
-      <div class="form-left">
-        <label>Nombre</label>
-        <input type="text" placeholder="Value" />
+<main class="contenedor-recuadro">
 
-        <label>Telefono contacto</label>
-        <input type="text" placeholder="Value" />
+  <!-- Recuadro único que contiene lista y formulario -->
+  <div class="recuadro-servicio">
 
-        <label>E-Mail</label>
-        <input type="email" placeholder="Value" />
-
-        <label>N° tarjeta de Credito</label>
-        <input type="text" placeholder="Value" />
-
-        <label>Rut / N° Pasaporte</label>
-        <input type="text" placeholder="Value" />
-      </div>
-
-      <div class="form-right">
-        <div class="servicio-item">
-          <div>
-            <strong>Habitación Costa New</strong><br />
-            cantidad: 6 Noches
-          </div>
-          <div>$89.990</div>
-        </div>
-
-        <div class="servicio-item">
-          <div>
-            <strong>Tour día completo</strong><br />
-            cantidad: 2 Personas
-          </div>
-          <div>$79.990</div>
-        </div>
-
-        <div class="servicio-item">
-          <div>
-            <strong>Vista del amanecer.</strong><br />
-            cantidad: 2 Personas
-          </div>
-          <div>$79.990</div>
-        </div>
-
-        <div class="servicio-item total-servicio">
-          <div><strong>TOTAL:</strong><br />cantidad: 2 Personas</div>
-          <div>$859.900</div>
-          
-        </div>
-        <button class="btnReserva">Crear Reserva</button>
-      </div>
-    </div>
-    
-  </div>
+    <!-- Lista de Reservas (Izquierda) -->
+    <div class="lado izquierdo">
+  <h3>Reservas Existentes</h3>
+  <table style="width:100%; font-size:14px;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+        <th>Cliente</th>
+        <th>Servicio Ext</th>
+        <th>Habitación</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ul>
+          {% for r in reservas %}
+          <li>
+            <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_reserva_emp' r.id_reserva %}"><i class="fas fa-pen"></i></a>
+              {{ r.id_reserva }}
+            <a class="btn btn-info btn-sm btn-danger" href="{% url 'eliminar_reserva_emp' r.id_reserva %}"><i class="fas fa-trash"></i></a>
+          </li>
+          {% endfor %}
+        </ul>
+    </tbody>
+  </table>
 </div>
-{% endblock %}
+    <!-- Formulario de Reserva -->
+    <div class="lado derecho">
+      <h2 class="reservaTitulo">Crear Reserva</h2>
+      
+    
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
 
+        <div class="titulosInputs"><p>ID Reserva</p></div>
+        {{ form }}
+        
+
+        <div class="contenedorInputs">
+          <button type="submit" class="button">Crear Reserva</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</main>
+{% endblock %}

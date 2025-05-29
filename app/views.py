@@ -5,6 +5,9 @@ from .models import Habitacion
 from .models import Servicio_Ext
 from .forms import ServicioExtForm
 
+from .models import reserva
+from .forms import ReservaForm
+
 
 # funcion para  la pagina inicio
 def inicio(request):
@@ -35,11 +38,10 @@ def prueba(request):
     return render(request, 'app/paginaPrueba.html')
 
 # funcion para  la pagina reserva para todos
-def reserva(request):
-    return render(request, 'app/Publicas/reserva/reserva.html')
-
 def reserva_emp(request):
-    return render(request, "app/Empleados/reserva-emp/reserva-emp.html")
+    return render(request, 'app/Publicas/reserva_emp/reserva_emp.html')
+
+
 
 def perfil_empleado(request):
     return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
@@ -192,3 +194,47 @@ def eliminar_servicio_ext(request, id):
     return redirect(to="listar_servicio")
 
 
+
+
+
+
+
+def listar_reservas_emp(request):
+    data = {
+        'form': ReservaForm(),
+        'reservas': reserva.objects.all()
+    }
+    if request.method == 'POST':
+        formulario = ReservaForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = "Reserva creada correctamente"
+            data['form'] = ReservaForm()
+            data['reservas'] = reserva.objects.all()  # Actualiza la lista tras crear
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear la reserva"
+            data['reservas'] = reserva.objects.all()
+    return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
+
+# Modificar reserva empleado
+def modificar_reserva_emp(request, id):
+    reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
+    data = {
+        'form': ReservaForm(instance=reservas),
+        'reservas': reserva.objects.all()  # Cambiar a tu modelo de reservas
+    }
+    if request.method == 'POST':
+        formulario = ReservaForm(data=request.POST, instance=reservas, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="listar_reservas_emp")
+        else:
+            data["form"] = formulario
+    return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
+
+# Eliminar reserva empleado
+def eliminar_reserva_emp(request, id):
+    reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
+    reservas.delete()
+    return redirect(to="listar_reservas_emp")

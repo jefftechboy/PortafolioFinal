@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Cliente(models.Model):
     Rut_cliente = models.CharField(max_length=10, primary_key=True)
     Pnombre_cliente = models.CharField(max_length=40)
@@ -92,9 +93,7 @@ class reserva(models.Model):
     fecha = models.DateField()
     hora = models.TimeField()
     rut_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
-    rut_empleado = models.ForeignKey(Empleado, on_delete=models.PROTECT)
     n_s_ext = models.ForeignKey(Servicio_Ext, on_delete=models.PROTECT)
-    n_s_int = models.ForeignKey(Servicio_Int, on_delete=models.PROTECT)
     n_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT)
     id_pais = models.ForeignKey(pais, on_delete=models.PROTECT)
     
