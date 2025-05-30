@@ -187,13 +187,6 @@ def eliminar_servicio_ext(request, id):
     servicio.delete()
     return redirect(to="listar_servicio")
 
-
-
-
-
-
-
-
 def listar_reservas_emp(request):
     data = {
         'form': ReservaForm(),
@@ -213,6 +206,7 @@ def listar_reservas_emp(request):
     return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
 
 # Modificar reserva empleado
+
 def modificar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
     data = {
@@ -250,28 +244,28 @@ def listar_cliente_emp(request):
         if formulario.is_valid():
             formulario.save()
             data['mensaje'] = "Cliente creado correctamente"
+            return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear el cliente"
-
-    return render(request, "app/Empleados/cliente_emp/cliente_emp.html", data)
+            data['clientes'] = Cliente.objects.all()
+    return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
 
 """ MODIFICAR CLIENTE """ 
 def modificar_cliente_emp(request, id):
-    cliente = get_object_or_404(Cliente, pk=id)
+    cliente = Cliente.objects.get(pk=id)
     data = {
-        'form': ClienteForm(instance=cliente)
+        'form': ClienteForm(instance=cliente),
+        'clientes': Cliente.objects.all()
     }
-
     if request.method == 'POST':
-        formulario = ClienteForm(request.POST, instance=cliente)
+        formulario = ClienteForm(request.POST, instance=cliente, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
             return redirect("listar_cliente_emp")
         else:
             data["form"] = formulario
-
-    return render(request, "app/Empleados/modificar_cliente_emp/modificar_cliente_emp.html", data)
+    return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
 
 """ ELIMINAR CLIENTE """
 def eliminar_cliente_emp(request, id):
