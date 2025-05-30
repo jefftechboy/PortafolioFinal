@@ -1,12 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import habitacionform
-from .models import Habitacion
-# funciones para carga de templates (vistas)from django.shortcuts import render, redirect, get_object_or_404
-from .models import Servicio_Ext
-from .forms import ServicioExtForm
-
-from .models import reserva
-from .forms import ReservaForm
+from .models import *
+from .forms import *
 
 
 # funcion para  la pagina inicio
@@ -199,6 +193,7 @@ def eliminar_servicio_ext(request, id):
 
 
 
+
 def listar_reservas_emp(request):
     data = {
         'form': ReservaForm(),
@@ -238,3 +233,48 @@ def eliminar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
     reservas.delete()
     return redirect(to="listar_reservas_emp")
+
+def cliente_emp(request):
+    return render(request, "app/Empleados/cliente-emp/cliente-emp.html")
+
+
+""" CREAR Y LISTAR CLIENTES"""
+def listar_cliente_emp(request):
+    data = {
+        'form': ClienteForm(),
+        'clientes': Cliente.objects.all()
+    }
+
+    if request.method == 'POST':
+        formulario = ClienteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = "Cliente creado correctamente"
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear el cliente"
+
+    return render(request, "app/Empleados/cliente_emp/cliente_emp.html", data)
+
+""" MODIFICAR CLIENTE """ 
+def modificar_cliente_emp(request, id):
+    cliente = get_object_or_404(Cliente, pk=id)
+    data = {
+        'form': ClienteForm(instance=cliente)
+    }
+
+    if request.method == 'POST':
+        formulario = ClienteForm(request.POST, instance=cliente)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect("listar_cliente_emp")
+        else:
+            data["form"] = formulario
+
+    return render(request, "app/Empleados/modificar_cliente_emp/modificar_cliente_emp.html", data)
+
+""" ELIMINAR CLIENTE """
+def eliminar_cliente_emp(request, id):
+    cliente = get_object_or_404(Cliente, pk=id)
+    cliente.delete()
+    return redirect("listar_cliente_emp")

@@ -15,9 +15,19 @@ class ServicioExtForm(forms.ModelForm):
 
 
 
+
 class ReservaForm(forms.ModelForm):
     class Meta:
         model = reserva
         fields = '__all__'
     
    
+
+        
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente 
+        
+        fields = '__all__'
+        
+

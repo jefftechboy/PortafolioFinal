@@ -1,53 +1,81 @@
 {% extends 'app/base-emp.html' %}
-
 {% load static %}
 
-{% block title %}Clientes EMP{% endblock %}
+{% block title %}Cliente EMP{% endblock %}
 
 {% block extra_css %}
   <link rel="stylesheet" href="{% static 'app/css/cliente-emp.css' %}">
 {% endblock %}
 
 {% block content %}
-  <main class="cliente-container">
+<main class="cliente-container">
+
+  <div class="cliente-box" style="background-color: #e9d8c4;">
     
-    <div class="reserva-box" style= "background-color: #e9d8c4";>
-      <aside class="lista-reservas" >
-        <ul>
-          <li><span class="dot"></span> 04.08.19.001 <span class="check"></span></li>
-          <li><span class="dot"></span> 04.08.19.002 <span class="check"></span></li>
-          <li><span class="dot"></span> 04.08.19.003 <span class="check"></span></li>
-          <li><span class="dot"></span> 04.08.19.004 <span class="check"></span></li>
-          <li><span class="dot"></span> 04.08.19.005 <span class="check"></span></li>
-          <li><span class="dot"></span> 05.08.19.001 <span class="check"></span></li>
-          <li><span class="dot"></span> 05.08.19.002 <span class="check"></span></li>
-          <li><span class="dot"></span> 05.08.19.003 <span class="check"></span></li>
-          <li><span class="dot"></span> 05.08.19.004 <span class="check"></span></li>
-        </ul>
+    <!-- Lista de Clientes -->
+    <aside class="lista-cliente">
+      <ul>
+        <h3>Clientes</h3>
+        {% if clientes %}
+          {% for cliente in clientes %}
+            <li>
+              <span class="dot"></span> 
+              {{ cliente.Rut_cliente }} - {{ cliente.Pnombre_cliente }} {{ cliente.Papellido_cliente }} ({{ cliente.telefono_cliente }})
+              <span class="check"></span>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li>No hay clientes registrados.</li>
+        {% endif %}
+      </ul>
+      <a href="{% url 'listar_cliente_emp' %}">
         <button class="crear-btn">Crear Nuevo</button>
-      </aside>
+      </a>
+    </aside>
 
-      <section class="formulario">
-        <form>
-          <label>Nombre</label>
-          <input type="text" placeholder="Value">
-          
-          <label>Telefono contacto</label>
-          <input type="text" placeholder="Value">
+    <!-- Formulario -->
+    <section class="formulario">
+      <form method="post" action="">
+        {% csrf_token %}
+        <h1>Clientes</h1>
 
-          <label>E-Mail</label>
-          <input type="email" placeholder="Value">
+        <label>Rut</label>
+        <input type="text" name="Rut_cliente" placeholder="Rut del cliente" value="{{ form.Rut_cliente.value|default_if_none:'' }}">
 
-          <label>N° tarjeta de Credito</label>
-          <input type="text" placeholder="Value">
+        <label>Primer Nombre</label>
+        <input type="text" name="Pnombre_cliente" placeholder="Primer nombre" value="{{ form.Pnombre_cliente.value|default_if_none:'' }}">
 
-          <label>Rut / N° Pasaporte</label>
-          <input type="text" placeholder="Value">
-        </form>
+        <label>Segundo Nombre</label>
+        <input type="text" name="Snombre_cliente" placeholder="Segundo nombre" value="{{ form.Snombre_cliente.value|default_if_none:'' }}">
+
+        <label>Primer Apellido</label>
+        <input type="text" name="Papellido_cliente" placeholder="Primer apellido" value="{{ form.Papellido_cliente.value|default_if_none:'' }}">
+
+        <label>Segundo Apellido</label>
+        <input type="text" name="Sapellido_cliente" placeholder="Segundo apellido" value="{{ form.Sapellido_cliente.value|default_if_none:'' }}">
+
+        <label>Email</label>
+        <input type="email" name="email_cliente" placeholder="Email" value="{{ form.email_cliente.value|default_if_none:'' }}">
+
+        <label>Teléfono</label>
+        <input type="number" name="telefono_cliente" placeholder="Teléfono" value="{{ form.telefono_cliente.value|default_if_none:'' }}">
+
+        <label>Dirección</label>
+        <input type="text" name="direccion_cliente" placeholder="Dirección" value="{{ form.direccion_cliente.value|default_if_none:'' }}">
+
         <div class="acciones">
-      <button>Editar</button>
-      <button>Eliminar</button>
-      <button>Imprimir informe</button>
+          <button type="submit">Guardar</button>
+          <button type="reset">Limpiar</button>
+        </div>
+      </form>
 
-  </main>
+      <div class="acciones-secundarias">
+        <button>Editar</button>
+        <button>Eliminar</button>
+        <button>Imprimir informe</button>
+      </div>
+    </section>
+
+  </div>
+</main>
 {% endblock %}
