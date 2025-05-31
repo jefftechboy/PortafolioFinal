@@ -14,15 +14,17 @@ def habitaciones(request):
 # funcion para  la pagina detalle habitaciones
 def detalleHabitaciones(request):
     return render(request, 'app/Publicas/detalle-habitaciones/detalle-habitaciones.html')
-
-# funcion para  la pagina servicios 
+# funcion para  la pagina servicios
 def servicios(request):
     return render(request, 'app/Publicas/servicios/servicios.html')
-    
+  
 # funcion para  la pagina detalle servicios
 def detalleServicios(request):
     return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html')
 
+def reservas(request):
+    return render(request, 'app/Publicas/reserva/reservas.html')
+# funcion para  la pagina servicios 
 # funcion para  la pagina conocenos
 def conocenos(request):
     return render(request, 'app/Publicas/conocenos/conocenos.html')
@@ -33,7 +35,7 @@ def prueba(request):
 
 # funcion para  la pagina reserva para todos
 def reserva_emp(request):
-    return render(request, 'app/Publicas/reserva_emp/reserva_emp.html')
+    return render(request, 'app/Publicas/reserva-emp/reserva-emp.html')
 
 
 

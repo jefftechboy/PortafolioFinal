@@ -9,15 +9,16 @@ urlpatterns = [
     path("", inicio, name="inicio"),
     # Pagina de Habitacion
     path("habitaciones/", habitaciones, name="habitaciones"),
+    
+    path("servicios/", servicios, name="servicios"),
     # Pagina de Detalle habitacion
     path("detalle-habitaciones/", detalleHabitaciones, name="detalle-habitaciones"),
-    # Pagina de Servicio
     # Pagina de Detalle Servicio
     path("detalle-servicios/", detalleServicios, name="detalle-servicios"),
     # Pagina de Conocenos
     path("conocenos/", conocenos, name="conocenos"),
     # Pagina de reserva para todos
-    path("reserva/", reserva, name="reserva"),
+    path("reservas/", reservas, name="reservas"),
     # Pagina de reserva para empleados
     path("reserva-emp/", reserva_emp, name="reserva-emp"),
     # Pagina de perfil empleado
@@ -76,9 +77,6 @@ urlpatterns = [
             path("eliminar_cliente_emp/<id>/", eliminar_cliente_emp, name="eliminar_cliente_emp"),
       
        
-
-
-
             path("listar_reservas_emp/", listar_reservas_emp, name="listar_reservas_emp"),
             path("modificar_reserva_emp/<id>/", modificar_reserva_emp, name="modificar_reserva_emp"),
             path("eliminar_reserva_emp/<id>/", eliminar_reserva_emp, name="eliminar_reserva_emp"),

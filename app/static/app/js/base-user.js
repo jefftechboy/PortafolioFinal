@@ -20,7 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
   if (navLinks.length) {
     navLinks[0].addEventListener('click', () => window.location.href = '/servicios/');
     navLinks[1].addEventListener('click', () => window.location.href = '/habitaciones/');
-    navLinks[2].addEventListener('click', () => window.location.href = '/reserva');
+    navLinks[2].addEventListener('click', () => window.location.href = '/reservas');
     navLinks[3].addEventListener('click', () => window.location.href = '/conocenos/');
+    /* EMPLEADOS */
+    navLinks[4].addEventListener('click', () => window.location.href = '/servicio-emp/');
+    navLinks[5].addEventListener('click', () => window.location.href = '/habitacion_emp/');
+    navLinks[6].addEventListener('click', () => window.location.href = '/cliente-emp/');
+    navLinks[7].addEventListener('click', () => window.location.href = '/reserva_emp/'); 
+    navLinks[8].addEventListener('click', () => window.location.href = '/agenda/');
   }
 });
+    
