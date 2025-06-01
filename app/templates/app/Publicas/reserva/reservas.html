@@ -19,79 +19,83 @@
 
     <div class="campo-formulario">
       <label>Nombre Completo</label>
-      <input type="text" placeholder="Tu nombre completo">
-    </div>
-
-    <div class="campo-formulario">
-      <label>Número de Contacto</label>
-      <input type="text" placeholder="+56 9 1234 5678">
-    </div>
-
-    <div class="campo-formulario">
-      <label>Correo Electrónico</label>
-      <input type="email" placeholder="correo@ejemplo.com">
+          <input type="text" name="rut" 
+          value="{{ clienteInfo.Pnombre_cliente }} {{ clienteInfo.Snombre_cliente }} {{ clienteInfo.Papellido_cliente }} {{ clienteInfo.Sapellido_cliente }}"  
+          readonly>
+        </div>
+        
+        <div class="campo-formulario">
+          <label>Número de Contacto</label>
+          <input type="text" name="rut" 
+          value="+569 {{ clienteInfo.telefono_cliente }}"  
+          readonly>
+        </div>
+        
+        <div class="campo-formulario">
+          <label>Correo Electrónico</label>
+          <input type="text" name="rut" 
+          value="{{ clienteInfo.email_cliente }}"  
+          readonly>
     </div>
 
     <div class="checkbox-condiciones">
       <input type="checkbox" checked>
       <label>He leído y acepto los <a href="#">términos y condiciones</a></label>
     </div>
-
-    <button class="boton-reservar">Generar Reserva</button>
   </div>
 
   <!-- FORMULARIO DERECHA -->
   <div class="confirmacion-datos">
-    <h2>Confirmación de Reserva</h2>
+    <!-- Template reservas.html -->
 
-    <div class="campo-formulario">
-      <label>Inicio de reserva</label>
-      <input type="date" id="fechaInicio">
-    </div>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
 
-    <div class="campo-formulario">
-      <label>Fin de reserva</label>
-      <input type="date" id="fechaFin">
-    </div>
+       <!-- Oculta el dropdown generado automáticamente -->
+      <div style="display: none;">
+          {{ form.rut_cliente }}
+      </div>
 
-    <div class="dropdown-section">
-      <label>Habitación</label>
-      <select class="dropdown" id="habitacion">
-        <option value="0|0">-- Selecciona --</option>
-        <option value="50000|2">Habitación 15C - $50.000 (2 personas)</option>
-        <option value="60000|2">Habitación Vista Mar - $60.000 (2 personas)</option>
-        <option value="70000|3">Suite Premium - $70.000 (3 personas)</option>
-        <option value="80000|4">Villa Rapa Nui - $80.000 (4 personas)</option>
-      </select>
-    </div>
+      <!-- Campo personalizado para escribir el RUT -->
+      <input type="hidden" id="rut_cliente_input" name="{{ form.rut_cliente.name }}" value="{{ clienteInfo.Rut_cliente }}">
 
-    <div class="dropdown-section">
-      <label>Servicio</label>
-      <select class="dropdown" id="servicio">
-        <option value="0">-- Selecciona --</option>
-        <option value="30000">Tour Isla Completa - $30.000</option>
-        <option value="20000">Desayuno Buffet - $20.000</option>
-        <option value="15000">Transporte Aeropuerto - $15.000</option>
-        <option value="25000">Cena Cultural - $25.000</option>
-      </select>
-    </div>
 
-    <div class="dropdown-section">
-      <label>Otro</label>
-      <select class="dropdown" id="extra">
-        <option value="0">-- Selecciona --</option>
-        <option value="10000">Kayak - $10.000</option>
-        <option value="15000">Snorkel - $15.000</option>
-        <option value="12000">Bicicleta - $12.000</option>
-        <option value="30000">Cabalgata - $30.000</option>
-      </select>
-    </div>
+      <div class="titulosInputs"><p>N° Reversa
+        <input type="number" name="{{ form.id_reserva.name }}" value="{{ identificador }}" readonly>
+      </p></div>
 
-    <div class="total-confirmacion">
-      <div><span>Días:</span> <span id="infoDias">0 días</span></div>
-      <div><span>Personas:</span> <span id="infoPersonas">0 personas</span></div>
-      <div><strong>TOTAL:</strong> <span id="total">$0</span></div>
-    </div>
+      <div class="titulosInputs">
+        <p>Fecha ingreso  
+          <input type="date" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}" placeholder="Fecha Inicio">
+        </p></div>
+
+      <div class="titulosInputs"><p>Fecha partida
+        <input type="date" name="{{ form.fechaFinal.name }}" value="{{ form.fechaFinal.value }}" placeholder="Fecha Final">
+      </p></div>
+      
+      <div class="titulosInputs"><p>Servicio
+        {{ form.n_s_ext }}
+      </p></div>
+      
+      <div class="titulosInputs"><p>Habitacion
+        {{ form.n_habitacion }}
+      </p></div>
+
+      <div class="titulosInputs"><p>Nacionalidad
+        {{ form.id_pais }}
+      </p></div>
+
+      <div class="titulosInputs"><p>Total
+        <input type="number" name="{{ form.precio_total.name }}" value="{{ form.precio_total.value }}" placeholder="Valor Total">
+      </p></div>
+
+      
+
+      <div class="contenedorInputs">
+        <button type="submit" class="boton-reservar">Crear Reserva</button>
+      </div>
+</form>
+
   </div>
 </div>
 {% endblock %}

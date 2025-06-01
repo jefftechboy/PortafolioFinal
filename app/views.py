@@ -1,117 +1,137 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
+from django.utils.dateparse import parse_date
+from datetime import datetime
 
-
-# funcion para  la pagina inicio
+""" --------------------------------- VISTAS SIN FUNCIONES --------------------------------- """
+# VISTA INICIO 
 def inicio(request):
     return render(request, 'app/Publicas/inicio/inicio.html')
-
-# funcion para  la pagina habitaciones
-def habitaciones(request):
-    return render(request, 'app/Publicas/habitaciones/habitaciones.html')
-
-# funcion para  la pagina detalle habitaciones
-def detalleHabitaciones(request):
-    return render(request, 'app/Publicas/detalle-habitaciones/detalle-habitaciones.html')
-# funcion para  la pagina servicios
-def servicios(request):
-    return render(request, 'app/Publicas/servicios/servicios.html')
-  
-# funcion para  la pagina detalle servicios
-def detalleServicios(request):
-    return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html')
-
-def reservas(request):
-    return render(request, 'app/Publicas/reserva/reservas.html')
-# funcion para  la pagina servicios 
-# funcion para  la pagina conocenos
+# VISTA CONOCENOS
 def conocenos(request):
     return render(request, 'app/Publicas/conocenos/conocenos.html')
 
-# funcion para  la pagina prueba
-def prueba(request):
-    return render(request, 'app/paginaPrueba.html')
 
-# funcion para  la pagina reserva para todos
-def reserva_emp(request):
-    return render(request, 'app/Publicas/reserva-emp/reserva-emp.html')
+""" --------------------------------- CRUD PENDIENTES --------------------------------- """
 
-
-
+# VISTA PERFIL EMPLEADO
 def perfil_empleado(request):
     return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
-
-def cliente_emp(request):
-    return render(request, "app/Empleados/cliente-emp/cliente-emp.html")
-
-
-
-def perfil_usuario(request):
-    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
-
-
-def servicio_emp(request):
-    return render(request, 'app/Empleados/servicio-emp/servicio-emp.html')
-
-
-# funcion para  la pagina servicios empleado
-def crear_servicios_emp(request):
-    return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html")
-    
-
-
-
-# funcion para la pagina crear cliente empleado
-def crear_cliente_emp(request):
-    return render(request, "app/Empleados/crear-cliente-emp/crear-cliente-emp.html")
-# funcion para la pagina crear reserva empleado
-def crear_reserva_emp(request):
-    return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html")
-# funcion para crear login 
+# VISTA LOGIN
 def login(request):
     return render(request, "app/Login/login.html")
-# funcion para confirmar reserva
+# VISTA CONFIRMACION RESERVA
 def confirmar_reserva(request):
     return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html")
 
+# VISTA SERVICIOS
+def servicios(request):
+    return render(request, 'app/Publicas/servicios/servicios.html')
+# VISTA SERVICIOS
+def detalle_servicios(request):
+    return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html', data)
+
+# VISTA PERFIL USUARIO
+def perfil_usuario(request):
+    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
+# VISTA AGENDA
 def agenda(request):
     return render(request, "app/Empleados/agenda/agenda.html")
 
 
+""" --------------------------------- CRUD COMPLETADOS --------------------------------- """
 
 
 
 
-#  --------------------------------------- --------------------- HABITACION EMPLEADOS  
-# ------------------------------ Pagina habitacion empleado 
-def habitacion_emp(request):
-    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html")
-# -------------- ----------------------------------- CRUD HABITACION EMPLEADO 
-# ---------- IR A PAGINA CREAR HABITACION EMPLEADO
-def visCrearHabitacionEmp(request):
-    return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html")
-# ---------- CREAR HABITACION EMPLEADO
-def crear_habitacion_emp(request):
-    # Variable llamada data que contiene el formulario
+"""" RESERVAS CLIENTES """
+# VISTA RESERVAS
+
+
+def reservas(request, id):
+    cliente = Cliente.objects.get(Rut_cliente=id)
+
+    now = datetime.now()
+    # Formato con milisegundos: %f da microsegundos, tomamos los primeros 3 dígitos
+    identificador = now.strftime("%Y%m%d%H%M%S") + now.strftime("%f")[:3]
+
     data = {
-        'form': habitacionform()
+        'form': ReservaForm(initial={'rut_cliente': id}),
+        'clienteInfo': cliente,
+        'identificador': identificador,
     }
+
     if request.method == 'POST':
-        formulario = habitacionform(data=request.POST,files=request.POST)
+        formulario = ReservaForm(request.POST, request.FILES)
         if formulario.is_valid():
-            formulario.save()
-            data["mensaje"] = "Habitación creada correctamente"
-            # Redirigir a la lista de habitaciones
-            return redirect(to="listar_habitacion_emp") #Nombre de la url a la que redirige
+            # Asignar el cliente al campo rut_cliente
+            formfinal = formulario.save(commit=False)
+            # Asignar el identificador al campo id_reserva
+            formfinal.rut_cliente = cliente  
+            # Asignar el identificador al campo id_reserva
+            formfinal.save()
+            data['mensaje'] = "Reserva creada correctamente"
+            return render(request, "app/Publicas/reserva/reservas.html", data)
         else:
-            data["form"] = formulario
-            data["mensaje"] = "Error al crear la habitación"
-    return render(request, "app/Empleados/crear-habitacion-emp/crear-habitacion-emp.html",data)
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear la reserva"  
+
+    return render(request, 'app/Publicas/reserva/reservas.html', data)
 
 
 
 
+
+
+
+""" INFORMACION HABITACIONES """
+def informacion_habitaciones(request):
+    habitaciones = Habitacion.objects.all()
+    data = {
+        'habitaciones': habitaciones
+    }
+    return render(request, "app/Publicas/habitaciones/habitaciones.html", data)
+
+""" INFORMACION HABITACIONES DETALLE """
+def detalle_Habitaciones(request,id):
+    habitacionde = Habitacion.objects.get(n_habitacion=id)
+    data = {
+        'Habitaciones': habitacionde
+    }
+    return render(request, 'app/Publicas/detalle-habitaciones/detalle-habitaciones.html',data)
+
+
+"""  INFORMACION SERVICIOS """
+def informacion_servicios(request):
+    servicios = Servicio_Ext.objects.all()
+    data = {
+        'servicios': servicios
+    }
+    return render(request, "app/Publicas/servicios/servicios.html", data)
+
+
+""" INFORMACION SERVICIOS DETALLE """
+def detalle_servicios(request,id):
+    serviciode = Servicio_Ext.objects.get(n_s_ext=id)
+    data = {
+        'servicio': serviciode
+    }
+    return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html', data)
+
+
+
+
+""" PERFIL EMPREADO  """
+# ---------- LISTAR EMPLEADO LOGEADO
+def listar_empleado(request,id):
+    empleado = Empleado.objects.get(Rut_Empleado=id)
+    data = {
+        'empleadoDatos': empleado
+    }
+    return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html", data)
+
+""" HABITACION EMPLEADO """
 # ---------- CREAR + LISTAR
 def listar_habitacion_emp(request):
     data = {
@@ -149,8 +169,8 @@ def eliminar_habitacion_emp(request, id):
     habitacion.delete()
     return redirect(to="listar_habitacion_emp")
 
-
-# Crear servicio externo
+""" SERVICIO EMPLEADO """
+# ---------- CREAR + LISTAR
 def listar_servicio(request):
     data = {
         'form': ServicioExtForm(),
@@ -166,7 +186,7 @@ def listar_servicio(request):
             data['form'] = formulario
             data['mensaje'] = "Error al crear la habitación"
     return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)  
-# Modificar servicio externo
+# ---------- MODIFICAR
 def modificar_servicio_ext(request, id):
     servicio = Servicio_Ext.objects.get(n_s_ext=id)
     data = {
@@ -181,21 +201,21 @@ def modificar_servicio_ext(request, id):
         else:
             data["form"] = formulario
     return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
-
-
-# Eliminar servicio externo
+# ---------- ELIMINAR
 def eliminar_servicio_ext(request, id):
     servicio = Servicio_Ext.objects.get(n_s_ext=id)
     servicio.delete()
     return redirect(to="listar_servicio")
 
+""" RESERVA EMPLEADO """
+# ---------- CREAR Y LISTAR
 def listar_reservas_emp(request):
     data = {
         'form': ReservaForm(),
         'reservas': reserva.objects.all()
     }
     if request.method == 'POST':
-        formulario = ReservaForm(request.POST)
+        formulario = ReservaForm(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
             data['mensaje'] = "Reserva creada correctamente"
@@ -206,9 +226,7 @@ def listar_reservas_emp(request):
             data['mensaje'] = "Error al crear la reserva"
             data['reservas'] = reserva.objects.all()
     return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
-
-# Modificar reserva empleado
-
+# ---------- MODIFICAR RESERVA
 def modificar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
     data = {
@@ -223,18 +241,14 @@ def modificar_reserva_emp(request, id):
         else:
             data["form"] = formulario
     return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
-
-# Eliminar reserva empleado
+# ---------- ELIMINAR RESERVA
 def eliminar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
     reservas.delete()
     return redirect(to="listar_reservas_emp")
 
-def cliente_emp(request):
-    return render(request, "app/Empleados/cliente-emp/cliente-emp.html")
-
-
-""" CREAR Y LISTAR CLIENTES"""
+""" CLIENTE EMPLEADO """
+# ---------- CREAR + LISTAR CLIENTE
 def listar_cliente_emp(request):
     data = {
         'form': ClienteForm(),
@@ -252,8 +266,7 @@ def listar_cliente_emp(request):
             data['mensaje'] = "Error al crear el cliente"
             data['clientes'] = Cliente.objects.all()
     return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
-
-""" MODIFICAR CLIENTE """ 
+# ---------- MODIFICAR CLIENTE
 def modificar_cliente_emp(request, id):
     cliente = Cliente.objects.get(pk=id)
     data = {
@@ -268,9 +281,33 @@ def modificar_cliente_emp(request, id):
         else:
             data["form"] = formulario
     return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
-
-""" ELIMINAR CLIENTE """
+# ---------- ELIMINAR CLIENTE
 def eliminar_cliente_emp(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     cliente.delete()
     return redirect("listar_cliente_emp")
+
+""" AGENDA RESERVAS """
+# ---------- LISTAR RESERVAS
+
+def listar_agenda_emp(request):
+    reservas = reserva.objects.all()
+
+    fecha_inicio = request.GET.get('fecha_inicio')
+    fecha_fin = request.GET.get('fecha_fin')
+
+    if fecha_inicio and fecha_fin:
+        fecha_inicio = parse_date(fecha_inicio)
+        fecha_fin = parse_date(fecha_fin)
+
+        if fecha_inicio and fecha_fin:
+
+            reservas = reserva.objects.filter(
+             fechaInicio__lte=fecha_fin,
+             fechaFinal__gte=fecha_inicio
+            )
+
+    data = {
+        'reservas': reservas
+    }
+    return render(request, "app/Empleados/agenda/agenda.html", data)

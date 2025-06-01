@@ -44,6 +44,9 @@
         <div class="titulosInputs"><p>Nombre</p></div>
         <input type="text" name="{{ form.n_s_ext.name }}" value="{{ form.n_s_ext.value|default_if_none:'' }}" placeholder="Nombre del servicio">
 
+        <div class="titulosInputs"><p>Descripción Breve</p></div>
+        <input type="text" name="{{ form.descripcion_breve.name }}" value="{{ form.descripcion_breve.value|default_if_none:'' }}" placeholder="Descripción del servicio">
+        
         <div class="titulosInputs"><p>Descripción</p></div>
         <input type="text" name="{{ form.descripcions_ext.name }}" value="{{ form.descripcions_ext.value|default_if_none:'' }}" placeholder="Descripción del servicio">
 
@@ -52,7 +55,7 @@
 
         <div class="titulosInputs"><p>Empresa</p></div>
         {{ form.empresa }}
-
+        {{ form.imagen }}
         <div class="contenedorInputs">
           <button type="submit" class="button">Crear servicio</button>
         </div>

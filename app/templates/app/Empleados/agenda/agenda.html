@@ -11,42 +11,113 @@
 {% endblock %}
 
 {% block content %}
-<body>
 
   <main class="main-content">
     <div class="flex-container">
       <div class="servicio-box" style="background-color: #e9d8c4;">
         <section class="calendar-section">
-          <label for="date">📅 Selecciona una fecha</label>
-          <input type="text" id="date" name="date" />
+          <form method="get">
+            <label for="fecha_inicio" style="margin-bottom: 70px;">📅 Selecciona una fecha</label>
+
+            <label for="fecha_inicio">Fecha inicio</label>
+            <input type="date" name="fecha_inicio" id="fecha_inicio"
+                  value="{{ request.GET.fecha_inicio }}"/>
+
+            <label for="fecha_fin">Fecha final</label>
+            <input type="date" name="fecha_fin" id="fecha_fin"
+                  value="{{ request.GET.fecha_fin }}"/>
+
+            <button type="submit"
+                    style="background-color: green; color: white; margin-top: 50px; margin-bottom: 45px;">
+              Buscar reservas
+            </button>
+          </form>
         </section>
 
+
+
         <div class="right-content">
-          <section class="info-section">
-            <div class="column">
-              <h2>Habitación</h2>
-              <div class="card">Habitación Costa New<br><small>2 Personas</small><span>Abonado</span></div>
-              <div class="card">Habitación Costa Sunset<br><small>2 Personas</small><span>Abonado</span></div>
-              <div class="card">Habitación Costa New<br><small>2 Personas</small><span>Abonado</span></div>
-            </div>
+          {% if reservas %}
+            {% for r in reservas %}
+             <section class="info-section">
+                <div class="column">
+                  <h2>Habitación</h2>
+                  <div class="card">
+                    Reserva N°: {{ r.id_reserva }}<br>
+                    <small>Del: {{ r.fechaInicio }}</small>
+                    <small>Hasta: {{ r.fechaFinal }}</small>
+                  </div>
+                </div>
+                <div class="column">
+                  <h2>Detalles</h2>
+                  <div class="card">
+                    <small>Cliente: {{ r.rut_cliente.Pnombre_cliente }} {{ r.rut_cliente.Papellido_cliente }} {{ r.rut_cliente.Sapellido_cliente }}</small>
 
-            <div class="column">
-              <h2>Servicios</h2>
-              <div class="card">Tour día completo<br><small>cantidad: 2 Personas</small><span>Cancelado</span></div>
-              <div class="card">Vista del amanecer<br><small>cantidad: 2 Personas</small><span>Abonado</span></div>
-              <div class="card">Vista del amanecer<br><small>cantidad: 2 Personas</small><span>Abonado</span></div>
-            </div>
-          </section>
+                    <!-- Botón del modal -->
+                    <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal{{ r.id_reserva }}">
+                      Ver detalles
+                    </button>
+                  </div>
+                </div>
 
-          <div class="acciones">
-            <div class="button-container">
-              <button>Imprimir informe</button>
-            </div>
-          </div>
-        </div>
+                <!-- Modal por reserva -->
+                <div class="modal fade" id="modal{{ r.id_reserva }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ r.id_reserva }}" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel{{ r.id_reserva }}">Detalles de la reserva N°{{ r.id_reserva }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p><strong>Habitacion:</strong> {{ r.n_habitacion }}</p>
+                        <p style="margin-left: 40px;"><strong>Tipo/Cantidad: </strong> {{ r.n_habitacion.descripcion_breve }}</p>
+                        <p><strong>Cliente:</strong></p>
+                        <p style="margin-left: 40px;"><strong>Nombre:</strong> {{ r.rut_cliente.Pnombre_cliente }} {{ r.rut_cliente.Papellido_cliente }} {{ r.rut_cliente.Sapellido_cliente }}</p>
+                        <p style="margin-left: 40px;"><strong>Rut: </strong> {{ r.rut_cliente.Rut_cliente }}</p>
+                        <p style="margin-left: 40px;"><strong>Telefono: </strong>{{ r.rut_cliente.telefono_cliente }}</p>
+                        <p style="margin-left: 40px;"><strong>Correo: </strong>{{ r.rut_cliente.email_cliente }}</p>
+                        <p style="margin-left: 40px;"><strong>Direccion: </strong>{{ r.rut_cliente.direccion_cliente }}</p>
+                        <p><strong>Fecha: </strong></p>
+                        <p style="margin-left: 40px;"><strong>Desde:</strong> {{ r.fechaInicio }}</p>
+                        <p style="margin-left: 40px;"><strong>Hasta:</strong> {{ r.fechaFinal }}</p>
+                        <p><strong>Total:</strong> ${{ r.precio_total }} CLP</p>
+                        <h2>Extras</h2>
+                        <p><strong>Servicio:</strong> {{ r.n_s_ext }}</p>
+                        <!-- Puedes añadir más campos aquí -->
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            {% endfor %}
+          {% else %}
+            <p>No hay reservas en el rango de fechas seleccionado.</p>
+          {% endif %}
+
+
       </div>
     </div>
   </main>
+
+  
+
+
+
+
+
+
+
+
+
+
+    
+
 
   <!-- Flatpickr Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -64,6 +135,19 @@
       });
     });
   </script>
-</body>
-</html>
+
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+
+  <!-- Flatpickr -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+
+
+
+
+
 {% endblock %}

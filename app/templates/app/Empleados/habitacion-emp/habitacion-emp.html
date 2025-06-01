@@ -21,7 +21,7 @@
           </li>
           {% endfor %}
         </ul>
-        <button class="crear-btn">Crear Nuevo</button>
+        <a class="crear-btn  btn-success"  href="{% url 'listar_habitacion_emp' %}" >Crear Nuevo</a>
       </aside>
 
       <section class="formulario">
@@ -38,6 +38,14 @@
               placeholder="Numero habitacion"
               value="{{ form.n_habitacion.value|default_if_none:'' }}">
           
+          <label>Breve Descripción</label>
+          <input 
+            class="inputDesHab" 
+            type="text" 
+            name="{{ form.descripcion_breve.name }}"  
+            id="descripcion_breve" 
+            value="{{ form.descripcion_breve.value|default_if_none:'' }}"  
+            placeholder="Descripcion breve habitacion" >
           <label>Descripción</label>
           <input 
             class="inputDesHab" 
@@ -55,6 +63,8 @@
               id="precio" 
               value="{{ form.precio.value|default_if_none:'' }}" 
               placeholder="Precio de habitacion" >
+          <label>Imagen</label>
+            {{ form.imagen }}
               <!-- boton crear habitacon -->
               <div class="row">
                   <div  class="contenedorInputs">

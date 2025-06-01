@@ -15,7 +15,7 @@
   <table style="width:100%; font-size:14px;">
     <tbody>
         <ul>
-          {% for r in Cliente %}
+          {% for r in clientes %}
           <li>
             <a  class="btn btn-info btn-sm btn-warning" href="{% url 'modificar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-pen"></i></a>
               {{ r.Rut_cliente }}

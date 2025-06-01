@@ -29,51 +29,27 @@
   </div>
 
  <!-- segunda fila -->
-  <div class="row">
-    <!-- Tarjeta 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="tarjeta">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOJjKDuNjlF-21_GkyAtuHiGT5oWpp3_YEgA&s"
-          class="card-img-top" alt="Habitación Low Cost">
-        <div class="card-body">
-          <h5 class="card-title">Habitación Low Cost</h5>
-          <p class="card-text">Una opción accesible pensada para los viajeros que valoran la autenticidad. Nuestra
-            habitación Low Cost ofrece comodidad.</p>
-          <a href="#" class="btn-custom">Ver más</a>
-        </div>
-      </div>
-    </div>
+{% for h in habitaciones %}
+  {% if forloop.counter0|divisibleby:3 %}
+    <div class="row mb-3"> <!-- Abrimos nueva fila cada 3 cards -->
+  {% endif %}
 
-    <!-- Tarjeta 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="tarjeta">
-        <img src="https://www.altiplanico.cl/wp-content/gallery/rapa-nui-habitaciones/ISAL-DE-PASCUA-78.jpg" class="card-img-top"
-          alt="Habitacion love 4 ever">
-        <div class="card-body">
-          <h5 class="card-title">Habitacion love 4 ever</h5>
-          <p class="card-text">Un espacio íntimo y acogedor, ideal para disfrutar en pareja. Detalles románticos y una
-            atmósfera pensada para el amor.</p>
-          <a href="#" class="btn-custom">Ver más</a>
+      <div class="col-md-4 mb-4">
+        <div class="tarjeta">
+          <img src="{{ h.imagen.url }}" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">{{ h.n_habitacion }}</h5>
+            <p class="card-text">{{ h.descripcion_breve }}</p>
+            <a href="{% url 'detalle_Habitaciones' h.n_habitacion %}" class="btn-custom">Ver más</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Tarjeta 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="tarjeta">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOJjKDuNjlF-21_GkyAtuHiGT5oWpp3_YEgA&s"
-          class="card-img-top" alt="Ahu Tongariki">
-        <div class="card-body">
-          <h5 class="card-title">habitacion single</h5>
-          <p class="card-text">Perfecta para quienes viajan solos. Cómoda, funcional y con todo lo necesario para una
-            estadía tranquila</p>
-          <a href="#" class="btn-custom">Ver más</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% if forloop.counter|divisibleby:3 or forloop.last %}
+    </div> <!-- Cerramos la fila -->
+  {% endif %}
+{% endfor %}
+
 </div>
 {% endblock %}
 
