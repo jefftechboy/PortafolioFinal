@@ -9,18 +9,23 @@ urlpatterns = [
     path("", inicio, name="inicio"),
     # Pagina de Conocenos
     path("conocenos/", conocenos, name="conocenos"),
-    #Pagina para login
-    path("login/", login, name="login"),
+
 
 
 # ---------------------------------------------------- CRUD   ! PENDIENTES ¡ -------------------------------------------------
     # Para la pagina de confirmacion de reserva
     path("confirmar-reserva/", confirmar_reserva, name="confirmar_reserva"),
-    # Pagina de perfil usuario
-    path("perfil_usuario/", perfil_usuario, name="perfil_usuario"),
     # Para la pagina de agenda de la empresa
     path("agenda/", listar_agenda_emp, name= "agenda"),
 
+
+
+    # Pagina de perfil usuario
+    path("perfil_usuario/<id>/", perfil_usuario, name="perfil_usuario"),
+    # editar perfil usuario
+    path("editar_perfil_usuario/<id>/", editar_perfil_usuario, name="editar_perfil_usuario"),
+    # eliminar perfil usuario
+    path("eliminar_perfil_usuario/<id>/", eliminar_perfil_usuario, name="eliminar_perfil_usuario"),
 
     
 

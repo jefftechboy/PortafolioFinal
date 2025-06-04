@@ -111,8 +111,10 @@ class reserva(models.Model):
     id_pais = models.ForeignKey(pais, on_delete=models.PROTECT)
     precio_total = models.IntegerField(default=0)
     
+
     def __str__(self):
-        return self.id_reserva    
+        return str(self.id_reserva)
+    
     
 class boleta(models.Model):
     id_boleta = models.CharField(max_length=10, primary_key=True)

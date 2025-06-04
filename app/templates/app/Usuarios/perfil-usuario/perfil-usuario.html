@@ -8,71 +8,99 @@
 {% endblock %}
 
 {% block content %}
-  <form class="form-container" action="/submit-reservation" method="post">
-    <div class="form-icon">👤Perfil Usuario</div>
-    <div class="form-grid">
-      <div>
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" placeholder="Ingresa tu nombre">
-      </div>
-      <div>
-        <label for="nacionalidad">Nacionalidad</label>
-        <input type="text" id="nacionalidad" placeholder="Ingresa tu nacionalidad">
-      </div>
-      <div>
-        <label for="cargo">N° tarjeta de credito</label>
-        <input type="text" id="N-tarjeta" placeholder="Ingresa tu tarjeta">
-      </div>
-      <div>
-        <label for="primer-apellido">Apellidos</label>
-        <input type="text" id="apellidos" placeholder="Ingresa tus dos apellido">
-      </div>
-      <div>
-        <label for="pais-origen">País Origen</label>
-        <input type="text" id="pais-origen" placeholder="Ingresa tu país de origen">
-      </div>
-      <div>
-        <label for="comuna">Nombre tarjeta de credito</label>
-        <input type="text" id="tarjeta-Credito" placeholder="Nombre de la tarjeta de credito">
-      </div>
-      <div>
-        <label for="segundo-apellido">Rut / No° de pasaporte</label>
-        <input type="text" id="Rut" placeholder="Rut / No° de pasaporte">
-      </div>
-      <div>
-        <label for="contacto">N° Contacto</label>
-        <input type="text" id="contacto" placeholder="Ingresa tu número de contacto">
-      </div>
-      <div>
-        <label for="direccion">Fecha de vencimiento</label>
-        <input type="text" id="fechaV" placeholder="Ingresa fecha de vencimiento">
-      </div>
-      <div>
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="Ingresa tu e-mail">
-      </div>
-      <div>
-        <label for="rut">RUT</label>
-        <input type="text" id="rut" placeholder="Ingresa tu RUT">
-      </div>
-      <div>
-        <label for="numero">CV</label>
-        <input type="text" id="numero" placeholder="Ingresa el CV">
-      </div>
+<div class="container-fluid" style="margin-bottom: 300px;">
+  <div class="row">
+    <div class="col-8">
+      <form class="form-container" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-icon">👤Perfil Usuario</div>
+        <div class="form-grid">
+          <div>
+            <label for="nombre">Rut</label>
+            <input type="text" id="Rut_cliente" name="{{ clientes.Rut_cliente.name }}" value="{{ clientes.Rut_cliente.value }}"  placeholder="Ingresa tu nombre">
+          </div>
+          <div>
+            <label for="nombre">1° Nombre</label>
+            <input type="text" id="Rut_cliente" name="{{ clientes.Pnombre_cliente.name }}" value="{{ clientes.Pnombre_cliente.value }}"  placeholder="Ingresa tu nombre">
+          </div>
+          <div>
+            <label for="cargo">2° Nombre</label>
+            <input type="text" id="Rut_cliente" name="{{ clientes.Snombre_cliente.name }}" value="{{ clientes.Snombre_cliente.value }}" placeholder="Ingresa tu tarjeta">
+          </div>
+          <div>
+            <label for="primer-apellido">1er Apellido</label>
+            <input type="text" id="apellidos" name="{{ clientes.Papellido_cliente.name }}" value="{{ clientes.Papellido_cliente.value }}" placeholder="Ingresa tus dos apellido">
+          </div>
+          <div>
+            <label for="pais-origen">2er Apellido</label>
+            <input type="text" id="pais-origen" name="{{ clientes.Sapellido_cliente.name }}" value="{{ clientes.Sapellido_cliente.value }}" placeholder="Ingresa tu país de origen">
+          </div>
+          <div>
+            <label for="comuna">Correo</label>
+            <input type="text" id="tarjeta-Credito" name="{{ clientes.email_cliente.name }}" value="{{ clientes.email_cliente.value }}" placeholder="Nombre de la tarjeta de credito">
+          </div>
+          <div>
+            <label for="segundo-apellido">Telefono</label>
+            <input type="text" id="Rut" name="{{ clientes.telefono_cliente.name }}" value="{{ clientes.telefono_cliente.value }}"  placeholder="Rut / No° de pasaporte">
+          </div>
+          <div>
+            <label for="contacto">Direccion</label>
+            <input type="text" id="contacto" name="{{ clientes.direccion_cliente.name }}" value="{{ clientes.direccion_cliente.value }}"  placeholder="Ingresa tu número de contacto">
+          </div>
+        </div>
+        <button type="submit" >Guardar cambios</button>
+        <a href="#">Ingresar perfil</a>
+        <a href="{% url 'eliminar_perfil_usuario' clientes.instance.Rut_cliente %}">Eliminar perfil</a>
+        <a href="{% url 'editar_perfil_usuario' clientes.instance.Rut_cliente %}">Editar perfil</a>
+      </form>
     </div>
-    <a href="#">Editar Datos</a>
-  </form>
-
-  <footer class="footer">
-    <div>
-      <a href="tel:+56997523091">📱 Fono: +56 9 9752 3091</a>
-      <br>
-      <a href="">🏨 Hotel_New_Rapa_Nui</a>
+    <div class="row col-4" style="background-color: bisque;margin-top: 70px;border-radius: 9px;height: 415px; overflow-y: auto;">
+      <h2 style="color: black;text-align: center;margin-top: 15px;" >RESERVAS</h2>
+      {% for r in reservas %}
+            <div class="card">
+              Reserva N°: {{ r.id_reserva }}<br>
+              <small>Del: {{ r.fechaInicio }}</small>
+              <small>Hasta: {{ r.fechaFinal }}</small>
+              <!-- Botón del modal -->
+              <button type="button" class="btn btn-success mt-3" data-toggle="modal" data-target="#modal{{ r.id_reserva }}">
+                Ver detalles
+              </button>
+            </div>
+                      <!-- Modal por reserva -->
+                      <div class="modal fade" id="modal{{ r.id_reserva }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ r.id_reserva }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="modalLabel{{ r.id_reserva }}">Detalles de la reserva N°{{ r.id_reserva }}</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p><strong>Habitacion:</strong> {{ r.n_habitacion }}</p>
+                              <p style="margin-left: 40px;"><strong>Tipo/Cantidad: </strong> {{ r.n_habitacion.descripcion_breve }}</p>
+                              <p><strong>Cliente:</strong></p>
+                              <p style="margin-left: 40px;"><strong>Nombre:</strong> {{ r.rut_cliente.Pnombre_cliente }} {{ r.rut_cliente.Papellido_cliente }} {{ r.rut_cliente.Sapellido_cliente }}</p>
+                              <p style="margin-left: 40px;"><strong>Rut: </strong> {{ r.rut_cliente.Rut_cliente }}</p>
+                              <p style="margin-left: 40px;"><strong>Telefono: </strong>{{ r.rut_cliente.telefono_cliente }}</p>
+                              <p style="margin-left: 40px;"><strong>Correo: </strong>{{ r.rut_cliente.email_cliente }}</p>
+                              <p style="margin-left: 40px;"><strong>Direccion: </strong>{{ r.rut_cliente.direccion_cliente }}</p>
+                              <p><strong>Fecha: </strong></p>
+                              <p style="margin-left: 40px;"><strong>Desde:</strong> {{ r.fechaInicio }}</p>
+                              <p style="margin-left: 40px;"><strong>Hasta:</strong> {{ r.fechaFinal }}</p>
+                              <p><strong>Total:</strong> ${{ r.precio_total }} CLP</p>
+                              <h2>Extras</h2>
+                              <p><strong>Servicio:</strong> {{ r.n_s_ext }}</p>
+                              <!-- Puedes añadir más campos aquí -->
+                               <button type="button" class="btn btn-warning "  >Descargar informe</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      {% endfor %}
     </div>
-  </footer>
-  
-</body>
-</html>
+  </div>
+</div>
 {% endblock %}
 
  

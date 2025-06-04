@@ -18,9 +18,11 @@ def conocenos(request):
 # VISTA PERFIL EMPLEADO
 def perfil_empleado(request):
     return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
-# VISTA LOGIN
-def login(request):
-    return render(request, "app/Login/login.html")
+
+
+
+
+
 # VISTA CONFIRMACION RESERVA
 def confirmar_reserva(request):
     return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html")
@@ -32,15 +34,65 @@ def servicios(request):
 def detalle_servicios(request):
     return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html', data)
 
-# VISTA PERFIL USUARIO
-def perfil_usuario(request):
-    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html")
 # VISTA AGENDA
 def agenda(request):
     return render(request, "app/Empleados/agenda/agenda.html")
 
 
 """ --------------------------------- CRUD COMPLETADOS --------------------------------- """
+
+""" -------- PERFIL EXISTENTES ------ """
+# VISTA PERFIL USUARIO
+def perfil_usuario(request, id):
+    reserv = reserva.objects.filter(rut_cliente=id)
+    cliente = Cliente.objects.get(Rut_cliente=id)
+    data = {
+        'reservas': reserv,
+        'clientes': ClienteForm(instance=cliente),
+
+    }
+    if request.method == 'POST':
+        formulario = ClienteForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] = "Perfil creado correctamente"
+            return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html",data)
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear el perfil"
+            data['clientes'] = Cliente.objects.get(Rut_cliente=id)
+    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html",data)
+
+# VISTA PERFIL USUARIO
+def editar_perfil_usuario(request, id):
+    reserv = reserva.objects.filter(rut_cliente=id)
+    cliente = Cliente.objects.get(Rut_cliente=id)
+    data = {
+        'reservas': reserv,
+        'clientes': ClienteForm(instance=cliente),
+    }
+    if request.method == 'POST':
+        formulario = ClienteForm(data=request.POST, instance=cliente, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="perfil_usuario",id=cliente.Rut_cliente)
+        else:
+            data["form"] = formulario
+    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html", data)
+
+# ---------- ELIMINAR
+def eliminar_perfil_usuario(request, id):
+    cliente = Cliente.objects.filter(Rut_cliente=id)
+    cliente.delete()
+    return redirect(to="inicio")
+
+
+
+
+
+
+
+
 
 
 
@@ -78,12 +130,6 @@ def reservas(request, id):
             data['mensaje'] = "Error al crear la reserva"  
 
     return render(request, 'app/Publicas/reserva/reservas.html', data)
-
-
-
-
-
-
 
 """ INFORMACION HABITACIONES """
 def informacion_habitaciones(request):
