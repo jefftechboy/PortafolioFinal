@@ -3,6 +3,8 @@ from .models import *
 from .forms import *
 from django.utils.dateparse import parse_date
 from datetime import datetime
+from django.contrib.auth.models import User,Group
+from django.contrib.auth import authenticate, login, logout
 
 """ --------------------------------- VISTAS SIN FUNCIONES --------------------------------- """
 # VISTA INICIO 
@@ -357,3 +359,33 @@ def listar_agenda_emp(request):
         'reservas': reservas
     }
     return render(request, "app/Empleados/agenda/agenda.html", data)
+
+
+
+
+""" REGISTRO DE USUARIOS """
+def registro_usuario(request):
+    data = {
+        'form': UserRegisterForm()
+    }
+    if request.method == 'POST':
+        formulario = UserRegisterForm(data = request.POST)
+        if formulario.is_valid():
+            user = formulario.save()
+
+             # Agregar al grupo "Clientes"
+            grupo_clientes, creado = Group.objects.get_or_create(name='Clientes')
+            user.groups.add(grupo_clientes)
+
+
+            user = authenticate(
+                username=formulario.cleaned_data['username'], 
+                password=formulario.cleaned_data['password1']
+            )
+            login(request, user)
+            
+            return redirect(to="inicio")
+        else:
+            data['form'] = formulario
+            data['mensaje'] = "Error al crear el usuario"
+    return render(request, "registration/registro.html",data)

@@ -17,19 +17,21 @@ urlpatterns = [
     path("confirmar-reserva/", confirmar_reserva, name="confirmar_reserva"),
     # Para la pagina de agenda de la empresa
     path("agenda/", listar_agenda_emp, name= "agenda"),
+    
+    # registro de usuario
+    path("registro_usuario/", registro_usuario, name="registro_usuario"),
 
 
 
+    
+
+# ---------------------------------------------------- CREATE READ UPDATE DELETE  -------------------------------------------------
     # Pagina de perfil usuario
     path("perfil_usuario/<id>/", perfil_usuario, name="perfil_usuario"),
     # editar perfil usuario
     path("editar_perfil_usuario/<id>/", editar_perfil_usuario, name="editar_perfil_usuario"),
     # eliminar perfil usuario
     path("eliminar_perfil_usuario/<id>/", eliminar_perfil_usuario, name="eliminar_perfil_usuario"),
-
-    
-
-# ---------------------------------------------------- CREATE READ UPDATE DELETE  -------------------------------------------------
     # RESERVA CLIENTES
     path("reservas/<id>/", reservas, name="reservas"),
 

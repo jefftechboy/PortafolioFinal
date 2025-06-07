@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class habitacionform(forms.ModelForm):
     class Meta:
@@ -37,3 +38,7 @@ class ClienteForm(forms.ModelForm):
         fields = '__all__'
         
 
+class UserRegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username','email','password1', 'password2')
