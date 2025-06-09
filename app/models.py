@@ -13,18 +13,7 @@ class Cliente(models.Model):
 
     def __str__(self):
         return self.Rut_cliente
-class pais(models.Model):
-    id_pais = models.CharField(max_length=3, primary_key=True)
-    nombre_pais = models.CharField(max_length=40)            
-    
-    def __str__(self):
-        return self.id_pais    
-class ComunaModelo(models.Model):
-    idComuna = models.CharField(max_length=10, primary_key=True)
-    nombreComuna = models.CharField(max_length=20)
-    
-    def __str__(self):
-        return self.nombreComuna
+
         
 class Empleado(models.Model):
     Rut_Empleado = models.CharField(max_length=10,primary_key=True)
@@ -32,10 +21,8 @@ class Empleado(models.Model):
     Papellido_Empleado = models.CharField(max_length=40)
     Sapellido_Empleado = models.CharField(max_length=40)
     email_Empleado = models.EmailField()
-    id_Nacionalidad = models.ForeignKey(pais, on_delete=models.PROTECT,default=None)
     telefono_Empleado = models.IntegerField()
     cargo = models.CharField(max_length=30,default='')
-    comuna = models.ForeignKey(ComunaModelo, on_delete=models.PROTECT)
     direccion = models.CharField(max_length=60,default='')
     def __str__(self):
         return self.Rut_Empleado
@@ -56,7 +43,6 @@ class Empresa(models.Model):
     
 
 
-# Modelo para los servicios externos e internos
 
     
 class Servicio_Ext(models.Model):
@@ -69,24 +55,8 @@ class Servicio_Ext(models.Model):
     def __str__(self):
         return self.n_s_ext
     
-class Servicio_Int(models.Model):
-    n_s_int = models.CharField(max_length=10, primary_key=True)
-    descripcion_s_int = models.TextField(max_length=100)
-    precio_s_int = models.IntegerField()
-    
-    def __str__(self):
-        return self.n_s_int
 
 
-# SERVICIOS TODOS
-class Servicio(models.Model):
-    n_s_int = models.CharField(max_length=10, primary_key=True)
-    descripcion_s_int = models.TextField(max_length=100)
-    precio_s_int = models.IntegerField()
-    
-    def __str__(self):
-        return self.n_s_int
-    
 
 
 class Habitacion(models.Model):
@@ -108,7 +78,6 @@ class reserva(models.Model):
     rut_cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     n_s_ext = models.ForeignKey(Servicio_Ext, on_delete=models.PROTECT)
     n_habitacion = models.ForeignKey(Habitacion, on_delete=models.PROTECT)
-    id_pais = models.ForeignKey(pais, on_delete=models.PROTECT)
     precio_total = models.IntegerField(default=0)
     
 

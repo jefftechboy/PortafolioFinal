@@ -36,6 +36,10 @@ class ClienteForm(forms.ModelForm):
         model = Cliente 
         
         fields = '__all__'
+    def __init__(self, *args, **kwargs):
+        super(ClienteForm, self).__init__(*args, **kwargs)
+        self.fields['Rut_cliente'].widget.attrs['readonly'] = True
+        self.fields['email_cliente'].widget.attrs['readonly'] = True
         
 
 class UserRegisterForm(UserCreationForm):

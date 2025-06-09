@@ -13,11 +13,16 @@
     <div class="col-8">
       <form class="form-container" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="form-icon">👤Perfil Usuario</div>
+        {% if datos == "Listado" %}
+          <div class="form-icon">👤Datos Usuario</div>
+        {% endif %}
+        {% if datos == "Editar" %}
+          <div class="form-icon">👤Editar Datos Usuario</div>
+        {% endif %}
         <div class="form-grid">
           <div>
             <label for="nombre">Rut</label>
-            <input type="text" id="Rut_cliente" name="{{ clientes.Rut_cliente.name }}" value="{{ clientes.Rut_cliente.value }}"  placeholder="Ingresa tu nombre">
+            <input type="text" readonly id="Rut_cliente" name="{{ clientes.Rut_cliente.name }}" value="{{ clientes.Rut_cliente.value }}"  placeholder="Ingresa tu nombre">
           </div>
           <div>
             <label for="nombre">1° Nombre</label>
@@ -37,7 +42,7 @@
           </div>
           <div>
             <label for="comuna">Correo</label>
-            <input type="text" id="tarjeta-Credito" name="{{ clientes.email_cliente.name }}" value="{{ clientes.email_cliente.value }}" placeholder="Nombre de la tarjeta de credito">
+            <input type="text" readonly id="tarjeta-Credito" name="{{ clientes.email_cliente.name }}" value="{{ clientes.email_cliente.value }}" placeholder="Nombre de la tarjeta de credito">
           </div>
           <div>
             <label for="segundo-apellido">Telefono</label>
@@ -48,10 +53,13 @@
             <input type="text" id="contacto" name="{{ clientes.direccion_cliente.name }}" value="{{ clientes.direccion_cliente.value }}"  placeholder="Ingresa tu número de contacto">
           </div>
         </div>
-        <button type="submit" >Guardar cambios</button>
-        <a href="#">Ingresar perfil</a>
-        <a href="{% url 'eliminar_perfil_usuario' clientes.instance.Rut_cliente %}">Eliminar perfil</a>
-        <a href="{% url 'editar_perfil_usuario' clientes.instance.Rut_cliente %}">Editar perfil</a>
+        {% if datos == "Listado" %}
+          <a href="{% url 'eliminar_perfil_usuario' clientes.instance.Rut_cliente %}">Eliminar perfil</a>
+          <a href="{% url 'editar_perfil_usuario' clientes.instance.Rut_cliente %}">Editar perfil</a>
+        {% endif %}
+        {% if datos == "Editar" %}
+          <button type="submit" >Guardar cambios</button>
+        {% endif %}
       </form>
     </div>
     <div class="row col-4" style="background-color: bisque;margin-top: 70px;border-radius: 9px;height: 415px; overflow-y: auto;">

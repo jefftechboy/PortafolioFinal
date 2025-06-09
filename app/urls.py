@@ -13,8 +13,6 @@ urlpatterns = [
 
 
 # ---------------------------------------------------- CRUD   ! PENDIENTES ¡ -------------------------------------------------
-    # Para la pagina de confirmacion de reserva
-    path("confirmar-reserva/", confirmar_reserva, name="confirmar_reserva"),
     # Para la pagina de agenda de la empresa
     path("agenda/", listar_agenda_emp, name= "agenda"),
     
@@ -22,6 +20,7 @@ urlpatterns = [
     path("registro_usuario/", registro_usuario, name="registro_usuario"),
 
 
+    path("crear_usuario/<id>/", crear_usuario, name="crear_usuario"),
 
     
 

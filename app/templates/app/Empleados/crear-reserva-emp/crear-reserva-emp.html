@@ -39,10 +39,10 @@
         <input type="text" name="{{ form.id_reserva.name }}" value="{{ form.id_reserva.value|default_if_none:'' }}" placeholder="Nombre del servicio">
         
         <div class="titulosInputs"><p>Fecha ingreso</p></div>
-        <input type="date" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}" placeholder="Nombre del servicio">
+        <input type="datetime" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}" placeholder="Nombre del servicio">
         
         <div class="titulosInputs"><p>Fecha partida</p></div>
-        <input type="date" name="{{ form.fechaFinal.name }}" value="{{ form.fechaFinal.value }}" placeholder="Nombre del servicio">
+        <input type="datetime" name="{{ form.fechaFinal.name }}" value="{{ form.fechaFinal.value }}" placeholder="Nombre del servicio">
         
         <div class="titulosInputs"><p>RUT</p></div>
         {{ form.rut_cliente }}
@@ -61,7 +61,7 @@
         
         
         <div class="contenedorInputs">
-          <button type="submit" class="button">Crear Reserva</button>
+          <button type="submit" class="button">Confirmar</button>
         </div>
       </form>
     </div>

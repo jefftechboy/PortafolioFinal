@@ -8,65 +8,47 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="titulo-principal">Detalles de la Reserva</h1>
-
-<div class="caja-unica">
-  <h2>Información del Cliente</h2>
-
-  <div class="campo-formulario">
-    <label>Nombre Completo</label>
-    <input type="text" value="Juan Pérez" readonly>
-  </div>
-
-  <div class="campo-formulario">
-    <label>Número de Contacto</label>
-    <input type="text" value="+56 9 1234 5678" readonly>
-  </div>
-
-  <div class="campo-formulario">
-    <label>Correo Electrónico</label>
-    <input type="email" value="juan.perez@example.com" readonly>
-  </div>
-
+<div class="container" style="color: white;">
+  <h1 class="text-center">Confirmación de Reserva</h1>
+  <p class="text-center">¡Gracias por reservar con nosotros!</p>
+  <p class="text-center">A continuación, encontrará los detalles de su reserva:</p>
   <hr>
+  <h2>Detalles de la Reserva</h2>
+  <p><strong>RUT del Cliente:</strong> {{ rut_cliente }}</p>
+  <p><strong>ID de Reserva:</strong> {{ id_reserva }}</p>
+  <p><strong>Fecha de Inicio:</strong> {{ fechaInicio }}</p>
+  <p><strong>Fecha Final:</strong> {{ fechaFinal }}</p>
+  <p style="margin-left: 30px;"><strong>Dias de estadia:</strong> {{ dias_diferencia }}</p>
+  <p><strong>Habitación:</strong> {{ n_habitacion }}</p>
+  <!-- OBTENER EL VALOR HABITACION POR DIA -->
+  {% for s in habitaciones %}
+  {% if s == n_habitacion %}
+  <p style="margin-left: 30px;"><strong>Precio Habitacion por noche:</strong> {{ s.precio }}</p>
+  {% endif %}
+  {% endfor %}
+  <p><strong>ID del País:</strong> {{ id_pais }}</p>
+  <!-- OBTENER EL VALOR DERL SERVICIOS -->
+  <p><strong> Servicio:</strong> {{ serv }}</p>
+  {% for s in servicios %}
+    {% if s == serv %}
+      <p style="margin-left: 30px;"><strong>Precio Servicio por dia:</strong> {{ s.precios_ext }}</p>
+    {% endif %}
+  {% endfor %}
+  <p><strong>Total a pagar:</strong> ${{ total_calculado }}</p>
 
-  <h2>Resumen de Reserva</h2>
-
-  <div class="campo-formulario">
-    <label>Inicio de reserva</label>
-    <input type="date" value="2025-06-10" readonly>
-  </div>
-
-  <div class="campo-formulario">
-    <label>Fin de reserva</label>
-    <input type="date" value="2025-06-15" readonly>
-  </div>
-
-  <div class="info-caja">
-    <strong>Habitación:</strong>
-    <p>Suite Premium - $70.000 por noche - 2 personas</p>
-  </div>
-
-  <div class="info-caja">
-    <strong>Servicio:</strong>
-    <p>Tour Isla Completa - $30.000</p>
-  </div>
-
-  <div class="info-caja">
-    <strong>Otro:</strong>
-    <p>Snorkel - $15.000</p>
-  </div>
-
-  <div class="total-confirmacion">
-    <div>
-      <p><strong>Días:</strong> 5 días</p>
-      <p><strong>Personas:</strong> 2</p>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="{{ form.id_reserva.name }}" value="{{ id_reserva }}">
+    <input type="hidden" name="{{ form.rut_cliente.name }}" value="{{ rut_cliente.Rut_cliente }}">
+    <input type="hidden" name="{{ form.n_s_ext.name }}" value="{{ serv.id }}">
+    <input type="hidden" name="{{ form.n_habitacion.name }}" value="{{ n_habitacion.id }}">
+    <input type="hidden" name="{{ form.fechaInicio.name }}" value="{{ fechaInicio }}">
+    <input type="hidden" name="{{ form.fechaFinal.name }}" value="{{ fechaFinal }}">
+    <input type="hidden" name="{{ form.precio_total.name }}" value="{{ total_calculado }}">
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Confirmar Reserva</button>
     </div>
-    <div>
-      <p><strong>Total:</strong> $365.000</p>
-    </div>
-  </div>
-
-  <button class="boton-reservar">Descargar Informe</button>
+  </form>
 </div>
+
 {% endblock %}

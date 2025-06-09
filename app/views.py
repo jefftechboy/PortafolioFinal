@@ -25,9 +25,7 @@ def perfil_empleado(request):
 
 
 
-# VISTA CONFIRMACION RESERVA
-def confirmar_reserva(request):
-    return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html")
+
 
 # VISTA SERVICIOS
 def servicios(request):
@@ -42,28 +40,64 @@ def agenda(request):
 
 
 """ --------------------------------- CRUD COMPLETADOS --------------------------------- """
+def crear_usuario(request):
 
+    return render(request, "app/Usuarios/perfil-usuario/crear_perfil_usuario.html", data)
 """ -------- PERFIL EXISTENTES ------ """
 # VISTA PERFIL USUARIO
+
+
+
+
+
+
 def perfil_usuario(request, id):
+    try:
+        cliente = Cliente.objects.get(Rut_cliente=id)
+    except Cliente.DoesNotExist:
+        return redirect('crear_usuario', id=id)  # Usa el name correcto de tu URL
+
     reserv = reserva.objects.filter(rut_cliente=id)
-    cliente = Cliente.objects.get(Rut_cliente=id)
     data = {
         'reservas': reserv,
         'clientes': ClienteForm(instance=cliente),
-
+        'datos': "Listado"
     }
+
     if request.method == 'POST':
-        formulario = ClienteForm(request.POST)
+        formulario = ClienteForm(request.POST, instance=cliente)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = "Perfil creado correctamente"
-            return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html",data)
+            data['mensaje'] = "Perfil actualizado correctamente"
         else:
             data['form'] = formulario
-            data['mensaje'] = "Error al crear el perfil"
-            data['clientes'] = Cliente.objects.get(Rut_cliente=id)
-    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html",data)
+            data['mensaje'] = "Error al actualizar el perfil"
+
+    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html", data)
+
+
+def crear_usuario(request, id):
+    data = {
+        'form': ClienteForm(initial={
+                'Rut_cliente': id,  # o cliente.id si es una FK
+                'email_cliente': request.user.email
+            }),    
+    }
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    return render(request, 'app/Usuarios/perfil-usuario/crear_perfil_usuario.html', data)
+
+
+
+
+
+
+
+
+
 
 # VISTA PERFIL USUARIO
 def editar_perfil_usuario(request, id):
@@ -72,6 +106,8 @@ def editar_perfil_usuario(request, id):
     data = {
         'reservas': reserv,
         'clientes': ClienteForm(instance=cliente),
+        'datos': "Editar"
+
     }
     if request.method == 'POST':
         formulario = ClienteForm(data=request.POST, instance=cliente, files=request.FILES)
@@ -100,14 +136,11 @@ def eliminar_perfil_usuario(request, id):
 
 
 """" RESERVAS CLIENTES """
-# VISTA RESERVAS
-
-
+    # VISTA RESERVAS
 def reservas(request, id):
     cliente = Cliente.objects.get(Rut_cliente=id)
 
     now = datetime.now()
-    # Formato con milisegundos: %f da microsegundos, tomamos los primeros 3 dígitos
     identificador = now.strftime("%Y%m%d%H%M%S") + now.strftime("%f")[:3]
 
     data = {
@@ -119,17 +152,74 @@ def reservas(request, id):
     if request.method == 'POST':
         formulario = ReservaForm(request.POST, request.FILES)
         if formulario.is_valid():
-            # Asignar el cliente al campo rut_cliente
             formfinal = formulario.save(commit=False)
-            # Asignar el identificador al campo id_reserva
-            formfinal.rut_cliente = cliente  
-            # Asignar el identificador al campo id_reserva
-            formfinal.save()
+            formfinal.rut_cliente = cliente
+
+            # Fechas
+            fecha_inicio = formulario.cleaned_data['fechaInicio']
+            fecha_final = formulario.cleaned_data['fechaFinal']
+            diferencia_dias = (fecha_final - fecha_inicio).days
+
+            # Obtener objeto habitación y servicio
+            n_habitacion = formulario.cleaned_data['n_habitacion']
+            serv = formulario.cleaned_data['n_s_ext']
+
+            # Buscar precio de habitación
+            precio_habitacion = 0
+            habitacion_obj = None
+            if hasattr(n_habitacion, 'pk'):
+                habitacion_obj = n_habitacion
+            else:
+                habitacion_obj = Habitacion.objects.filter(pk=n_habitacion).first()
+            if habitacion_obj:
+                precio_habitacion = habitacion_obj.precio
+
+            # Buscar precio servicio
+            precio_servicio = 0
+            servicio_obj = None
+            if hasattr(serv, 'pk'):
+                servicio_obj = serv
+            else:
+                servicio_obj = Servicio_Ext.objects.filter(pk=serv).first()
+            if servicio_obj:
+                precio_servicio = servicio_obj.precios_ext
+
+            # Calcular total
+            total_calculado = diferencia_dias * precio_habitacion + precio_servicio * diferencia_dias
+            if(total_calculado<0):
+                data = {
+                    'error_fecha': "Dia fecha invalida",
+                    'form': ReservaForm(initial={'rut_cliente': id}),
+                    'clienteInfo': cliente,
+                    'identificador': identificador,
+                }
+                return render(request, 'app/Publicas/reserva/reservas.html', data)
+                
+            
+            datos_reserva = {
+                'rut_cliente': formulario.cleaned_data['rut_cliente'],
+                'id_reserva': formulario.cleaned_data['id_reserva'],
+                'fechaInicio': fecha_inicio,
+                'fechaFinal': fecha_final,
+                'dias_diferencia': diferencia_dias,
+                'serv': serv,
+                'n_habitacion': n_habitacion,
+                'servicios': Servicio_Ext.objects.all(),
+                'habitaciones': Habitacion.objects.all(),
+                'total_calculado': total_calculado,
+                'form': ReservaForm(),
+            }
+            if request.method == 'POST':
+                formulario = ReservaForm(request.POST, request.FILES)
+                if formulario.is_valid():
+                    formfinal = formulario.save(commit=False)  # esto te da el modelo
+                    formfinal.precio_total = total_calculado   # aquí asignas el valor correcto
+                    formfinal.save()
             data['mensaje'] = "Reserva creada correctamente"
-            return render(request, "app/Publicas/reserva/reservas.html", data)
+            return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html", datos_reserva)
         else:
             data['form'] = formulario
-            data['mensaje'] = "Error al crear la reserva"  
+            data['mensaje'] = "Error al crear la reserva"
 
     return render(request, 'app/Publicas/reserva/reservas.html', data)
 
@@ -256,7 +346,30 @@ def eliminar_servicio_ext(request, id):
     return redirect(to="listar_servicio")
 
 """ RESERVA EMPLEADO """
+
+
+
+
+
+
+
+
+
+
 # ---------- CREAR Y LISTAR
+
+
+
+
+
+
+
+
+
+
+
+
+
 def listar_reservas_emp(request):
     data = {
         'form': ReservaForm(),
@@ -274,6 +387,22 @@ def listar_reservas_emp(request):
             data['mensaje'] = "Error al crear la reserva"
             data['reservas'] = reserva.objects.all()
     return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ---------- MODIFICAR RESERVA
 def modificar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
