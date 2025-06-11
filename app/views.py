@@ -518,3 +518,34 @@ def registro_usuario(request):
             data['form'] = formulario
             data['mensaje'] = "Error al crear el usuario"
     return render(request, "registration/registro.html",data)
+
+
+def enviar_correo(request):
+    enviado = False
+    error = None
+
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        email = request.POST.get('email')
+        mensaje = request.POST.get('mensaje')
+
+        if nombre and email and mensaje:
+            mensaje_completo = f"Mensaje de {nombre} ({email}):\n\n{mensaje}"
+            try:
+                send_mail(
+                    'Nuevo mensaje de contacto',
+                    mensaje_completo,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.DEFAULT_FROM_EMAIL],
+                    fail_silently=False,
+                )
+                enviado = True
+            except Exception as e:
+                error = str(e)
+        else:
+            error = "Por favor complete todos los campos."
+
+    return render(request, 'app/Empleados/listar_reservas_emp.html', {
+        'enviado': enviado,
+        'error': error,
+    })
