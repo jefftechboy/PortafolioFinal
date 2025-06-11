@@ -519,33 +519,38 @@ def registro_usuario(request):
             data['mensaje'] = "Error al crear el usuario"
     return render(request, "registration/registro.html",data)
 
+from django.core.mail import send_mail
+from django.conf import settings
+
+
+
+
+
+
 
 def enviar_correo(request):
     enviado = False
-    error = None
 
     if request.method == 'POST':
         nombre = request.POST.get('nombre')
-        email = request.POST.get('email')
+        email = request.POST.get('email')  # correo del destinatario desde el formulario
         mensaje = request.POST.get('mensaje')
 
-        if nombre and email and mensaje:
+        if nombre and email and mensaje and request.user.is_authenticated:
             mensaje_completo = f"Mensaje de {nombre} ({email}):\n\n{mensaje}"
-            try:
-                send_mail(
-                    'Nuevo mensaje de contacto',
-                    mensaje_completo,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [settings.DEFAULT_FROM_EMAIL],
-                    fail_silently=False,
-                )
-                enviado = True
-            except Exception as e:
-                error = str(e)
-        else:
-            error = "Por favor complete todos los campos."
+            remitente = settings.EMAIL_HOST_USER  # debe coincidir con el correo configurado para enviar
 
-    return render(request, 'app/Empleados/listar_reservas_emp.html', {
-        'enviado': enviado,
-        'error': error,
-    })
+            send_mail(
+                'Nuevo mensaje de contacto',
+                mensaje_completo,
+                remitente,       # Desde
+                [email],         # A: correo ingresado en el formulario
+                fail_silently=False,
+            )
+            enviado = True
+
+    return render(request, 'app/paginaPrueba.html', {'enviado': enviado})
+
+
+
+

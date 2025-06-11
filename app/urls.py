@@ -1,7 +1,7 @@
 from django.urls import path
-
-# importacion de las vistas
+from django.contrib.auth import views as auth_views
 from .views import *
+# importacion de las vistas
 
 # Declaracion de url de navegacion para la aplicacion
 urlpatterns = [
@@ -22,7 +22,48 @@ urlpatterns = [
 
     path("crear_usuario/<id>/", crear_usuario, name="crear_usuario"),
 
-    
+    # enviar correo
+    path("enviar_correo/",enviar_correo,name="enviar_correo"),
+
+
+
+
+
+
+    # Paso 1: ingresar correo
+    path('password-reset/', auth_views.PasswordResetView.as_view(
+            template_name='registration/formularioCambioContrasena.html',
+            email_template_name='registration/password_reset_email.html',
+            subject_template_name='registration/password_reset_subject.txt',
+            success_url='/password-reset/done/',
+        ), name='password-reset'),
+    # Paso 2: confirmación de que se envió el correo
+    path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(
+        template_name='registration/CambioContrasenaEnviado.html'
+    ), name='password_reset_done'),
+
+
+
+    path('accounts/reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+    template_name='registration/ActualizarContrasenas.html',
+    success_url='/reset/done/'
+    ), name='password_reset_confirm'),
+
+
+
+
+    # Paso 4: contraseña cambiada correctamente
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
+        template_name='registration/CambioContrasenaCompletado.html'
+    ), name='password_reset_complete'),
+
+
+
+
+
+
+
+    path("crear_usuario/<id>/", crear_usuario, name="crear_usuario"),
 
 # ---------------------------------------------------- CREATE READ UPDATE DELETE  -------------------------------------------------
     # Pagina de perfil usuario

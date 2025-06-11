@@ -1,0 +1,17 @@
+<!-- myapp/custom_password_reset.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Restablecer contraseña</title>
+</head>
+<body>
+    <h1>Restablecer contraseña</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.email.label_tag }}<br />
+        {{ form.email }}<br />
+        <button type="submit">Enviar correo para restablecer</button>
+    </form>
+</body>
+</html>

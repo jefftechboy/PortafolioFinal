@@ -55,11 +55,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "newRapaNui.urls"
-
+import os
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -135,4 +135,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'newrapanui@gmail.com'        # Tu correo Gmail
 EMAIL_HOST_PASSWORD = 'dciw nulh ccpd ulnt'    # Contraseña de aplicación
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = 'jeffrypersonal942001@gmail.com'
