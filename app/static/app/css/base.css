@@ -27,9 +27,9 @@ header {
 
 /* Logo a la izquierda */
 header img.logo {
-  width: 16%;
+  width: 13%;
   height: auto;
-  margin-right: 385px;
+  margin-right: 500px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s ease, transform 0.2s ease;
   cursor: pointer; /* cambia el cursor para que parezca clickeable */
@@ -93,8 +93,8 @@ nav .nav-profile a {
   color: white;
   background-color: #7a9c75;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 65px;
+  height: 65px;
   border: none;
   cursor: pointer;
   display: flex;
@@ -141,7 +141,7 @@ nav .nav-profile a:hover {
 }
 
 .perfil-icon-custom i {
-  font-size: 25px;
+  font-size: 35px;
 }
 
 /* Footer fijo al final */

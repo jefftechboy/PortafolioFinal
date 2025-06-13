@@ -1,17 +1,87 @@
-<!-- myapp/custom_password_reset.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <title>Restablecer contraseña</title>
+  <meta charset="UTF-8" />
+  <title>Restablecer contraseña</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("{% static 'app/img/fondoContra.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.6); /* Fondo negro translúcido */
+      padding: 50px 35px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      max-width: 300px;
+      width: 100%;
+      text-align: center;
+      color: white; /* Texto blanco */
+    }
+
+    .card h1 {
+      margin-bottom: 25px;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ddd;
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #888;
+      font-size: 14px;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #000;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #7a9c75;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #688562;
+    }
+  </style>
 </head>
 <body>
+  <div class="card">
     <h1>Restablecer contraseña</h1>
     <form method="post">
-        {% csrf_token %}
-        {{ form.email.label_tag }}<br />
-        {{ form.email }}<br />
-        <button type="submit">Enviar correo para restablecer</button>
+      {% csrf_token %}
+      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+      {{ form.email }}
+      <button type="submit">Enviar correo para restablecer</button>
     </form>
+  </div>
 </body>
 </html>

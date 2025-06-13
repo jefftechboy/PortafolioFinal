@@ -38,7 +38,7 @@
             <a href="{% url 'informacion_servicios' %}">Servicios</a>
             <a href="{% url 'informacion_habitaciones' %}">Habitación</a>
             <a href="{% url 'conocenos' %}">Conocenos</a>
-            <a href="{% url 'enviar_correo' %}">Correo</a>
+
           </div>
 
           <div class="nav-profile">
@@ -96,7 +96,7 @@
         {% endif %}
         <form method="POST" action="{% url 'logout' %}">
           {% csrf_token %}
-          <a href="{% url 'password-reset' %}">Password reset</a>
+          
           <button class="a" type="submit">Cerrar sesión</button>
         </form>
       </div>
