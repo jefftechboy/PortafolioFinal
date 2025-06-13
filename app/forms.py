@@ -14,6 +14,30 @@ class habitacionform(forms.ModelForm):
         # Campos que se van a mostrar en el formulario
         fields = '__all__'
         
+
+
+
+
+
+
+class boletaform(forms.ModelForm):
+    class Meta:
+        model = boleta 
+        
+        fields = '__all__'
+class pagoform(forms.ModelForm):
+    class Meta:
+        model = pago 
+        
+        fields = '__all__'
+        
+
+
+
+
+
+
+
 class ServicioExtForm(forms.ModelForm):
     class Meta:
         model = Servicio_Ext

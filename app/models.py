@@ -86,7 +86,7 @@ class reserva(models.Model):
     
     
 class boleta(models.Model):
-    id_boleta = models.CharField(max_length=10, primary_key=True)
+    id_boleta = models.CharField(max_length=50, primary_key=True)
     fecha = models.DateField()
     hora = models.TimeField()
     id_reserva = models.ForeignKey(reserva, on_delete=models.PROTECT)
@@ -95,7 +95,7 @@ class boleta(models.Model):
         return self.id_boleta    
     
 class pago(models.Model):
-    id_pago = models.CharField(max_length=10, primary_key=True)
+    id_pago = models.CharField(max_length=50, primary_key=True)
     monto = models.IntegerField()
     fecha = models.DateField()
     id_boleta = models.ForeignKey(boleta, on_delete=models.PROTECT)

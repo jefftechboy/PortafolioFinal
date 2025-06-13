@@ -18,25 +18,51 @@
   <p><strong>ID de Reserva:</strong> {{ id_reserva }}</p>
   <p><strong>Fecha de Inicio:</strong> {{ fechaInicio }}</p>
   <p><strong>Fecha Final:</strong> {{ fechaFinal }}</p>
-  <p style="margin-left: 30px;"><strong>Dias de estadia:</strong> {{ dias_diferencia }}</p>
+  <p style="margin-left: 30px;"><strong>Días de estadía:</strong> {{ dias_diferencia }}</p>
   <p><strong>Habitación:</strong> {{ n_habitacion }}</p>
-  <!-- OBTENER EL VALOR HABITACION POR DIA -->
+
   {% for s in habitaciones %}
-  {% if s == n_habitacion %}
-  <p style="margin-left: 30px;"><strong>Precio Habitacion por noche:</strong> {{ s.precio }}</p>
-  {% endif %}
-  {% endfor %}
-  <p><strong>ID del País:</strong> {{ id_pais }}</p>
-  <!-- OBTENER EL VALOR DERL SERVICIOS -->
-  <p><strong> Servicio:</strong> {{ serv }}</p>
-  {% for s in servicios %}
-    {% if s == serv %}
-      <p style="margin-left: 30px;"><strong>Precio Servicio por dia:</strong> {{ s.precios_ext }}</p>
+    {% if s == n_habitacion %}
+      <p style="margin-left: 30px;"><strong>Precio Habitación por noche:</strong> {{ s.precio }}</p>
     {% endif %}
   {% endfor %}
+
+  <p><strong>ID del País:</strong> {{ id_pais }}</p>
+  <p><strong>Servicio:</strong> {{ serv }}</p>
+
+  {% for s in servicios %}
+    {% if s == serv %}
+      <p style="margin-left: 30px;"><strong>Precio Servicio por día:</strong> {{ s.precios_ext }}</p>
+    {% endif %}
+  {% endfor %}
+
   <p><strong>Total a pagar:</strong> ${{ total_calculado }}</p>
 
-  <form method="POST" enctype="multipart/form-data">
+  <!-- CAMPO OCULTO PARA EL CORREO -->
+  <textarea id="mensajeCorreoReserva" hidden>
+    ¡Gracias por tu reserva!
+
+    Aquí están los detalles:
+
+      ID de Reserva: {{ id_reserva }}
+      RUT del Cliente: {{ rut_cliente }}
+      Fecha de Estadia: {{ fechaInicio }} - {{ fechaFinal }}
+      Días de estadía: {{ dias_diferencia }}
+      Habitación: {{ n_habitacion }}
+        {% for s in habitaciones %}{% if s == n_habitacion %}Precio Habitación por noche: {{ s.precio }}{% endif %}{% endfor %}
+      Servicio: {{ serv }}
+        {% for s in servicios %}{% if s == serv %}Precio Servicio por día: {{ s.precios_ext }}{% endif %}{% endfor %}
+      
+        Total a pagar: ${{ total_calculado }}
+    
+    ¡Recuerda mostrar este correo al llegar a nuestro hotel!
+  </textarea>
+
+
+
+
+
+  <form method="POST" id="reservaForm" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="{{ form.id_reserva.name }}" value="{{ id_reserva }}">
     <input type="hidden" name="{{ form.rut_cliente.name }}" value="{{ rut_cliente.Rut_cliente }}">
@@ -53,7 +79,6 @@
 
 <script src="https://www.paypal.com/sdk/js?client-id=Abd4Pm8N7gxOZSIfQ3VIzz1BXMlEN8wBUj-zdrL2ylSRrDynDR03wRzzqpI0C0QFAlzruMtnx_Ow0w-9&currency=USD"></script>
 
-
 <script>
   paypal.Buttons({
     createOrder: function (data, actions) {
@@ -67,9 +92,33 @@
     },
     onApprove: function (data, actions) {
       return actions.order.capture().then(function (details) {
-        alert('Pago completado por ' + details.payer.name.given_name + '!');
+        
+     const mensaje = document.getElementById('mensajeCorreoReserva').value;
 
-        / conectar con BD */
+    fetch('/enviar_correo/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        // si no usas @csrf_exempt, agrega el token CSRF aquí
+        'X-CSRFToken': '{{ csrf_token }}'
+      },
+      body: new URLSearchParams({
+        'mensaje': mensaje
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Respuesta del servidor:', data.status);
+    })
+    .catch(error => {
+      console.error('Error al enviar correo:', error);
+    });
+
+        // Enviar el formulario
+        document.getElementById('reservaForm').submit();
+        const rutCliente = "{{ id_reserva|escapejs }}";
+        window.location.href = `/registroPagoBoleta/${rutCliente}/`;
+        /* conectar con BD */
       });
     }
   }).render('#paypal-button-container');

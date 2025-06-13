@@ -89,6 +89,9 @@ urlpatterns = [
     # PERFIL EMPLEADO
     path("listar_empleado/<id>/", listar_empleado, name="listar_empleado"),
 
+    # RESERVACION EXITOSA
+    path("registroPagoBoleta/<idReserva>/", registroPagoBoleta, name="registroPagoBoleta"),
+    path("enviar_correo/", enviar_correo, name="enviar_correo"),
 
 
     # HABITACION EMPLEADO

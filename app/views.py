@@ -195,7 +195,19 @@ def reservas(request, id):
                 }
                 return render(request, 'app/Publicas/reserva/reservas.html', data)
                 
-            
+            detalle_reserva = f"""
+                RUT del Cliente: {formulario.cleaned_data['rut_cliente']}
+                ID de Reserva: {formulario.cleaned_data['id_reserva']}
+                Fecha de Inicio: {fecha_inicio}
+                Fecha Final: {fecha_final}
+                Días de estadía: {diferencia_dias}
+                Habitación: {n_habitacion}
+                Precio Habitación por noche: {precio_habitacion}
+                Servicio: {serv}
+                Precio Servicio por día: {precio_servicio}
+                Total a pagar: ${total_calculado}
+            """
+
             datos_reserva = {
                 'rut_cliente': formulario.cleaned_data['rut_cliente'],
                 'id_reserva': formulario.cleaned_data['id_reserva'],
@@ -208,6 +220,7 @@ def reservas(request, id):
                 'habitaciones': Habitacion.objects.all(),
                 'total_calculado': total_calculado,
                 'form': ReservaForm(),
+                'detalle_reserva_str': detalle_reserva,
             }
             if request.method == 'POST':
                 formulario = ReservaForm(request.POST, request.FILES)
@@ -222,6 +235,39 @@ def reservas(request, id):
             data['mensaje'] = "Error al crear la reserva"
 
     return render(request, 'app/Publicas/reserva/reservas.html', data)
+
+
+
+
+def registroPagoBoleta(request,idReserva):
+    reser = reserva.objects.get(id_reserva=idReserva)
+    data ={
+        'formBoleta':boletaform(),
+        'formPago':pagoform(),
+        'reservaGenerada':reser,
+        'fecha_actual': datetime.now()
+    }
+    if request.method == 'POST':
+        form = boletaform(request.POST)
+        form2 = pagoform(request.POST)
+        if form.is_valid():
+            detalle = form.save(commit=False)
+            detalle.save()
+            return redirect('inicio')  # O alguna página de éxito
+        if form2.is_valid():
+            detalle = form2.save(commit=False)
+            detalle.save()
+            return redirect('inicio')  # O alguna página de éxito
+    else:
+        form = boletaform()
+        form2 = pagoform()
+    return render(request, 'app/Publicas/reservaExitosa/reservaExitosa.html',data)
+
+
+
+
+
+
 
 """ INFORMACION HABITACIONES """
 def informacion_habitaciones(request):
@@ -528,29 +574,33 @@ from django.conf import settings
 
 
 
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from django.core.mail import send_mail
+from django.conf import settings
+
+@csrf_exempt
 def enviar_correo(request):
-    enviado = False
-
-    if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        email = request.POST.get('email')  # correo del destinatario desde el formulario
+    if request.method == 'POST' and request.user.is_authenticated:
         mensaje = request.POST.get('mensaje')
+        if not mensaje:
+            return JsonResponse({'status': 'error', 'detalle': 'Mensaje vacío'})
 
-        if nombre and email and mensaje and request.user.is_authenticated:
-            mensaje_completo = f"Mensaje de {nombre} ({email}):\n\n{mensaje}"
-            remitente = settings.EMAIL_HOST_USER  # debe coincidir con el correo configurado para enviar
+        mensaje_completo = mensaje
+        remitente = settings.EMAIL_HOST_USER
+        email_usuario = request.user.email
 
+        try:
             send_mail(
                 'Nuevo mensaje de contacto',
                 mensaje_completo,
-                remitente,       # Desde
-                [email],         # A: correo ingresado en el formulario
+                remitente,
+                [email_usuario],
                 fail_silently=False,
             )
-            enviado = True
+            return JsonResponse({'status': 'enviado'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'detalle': str(e)})
 
-    return render(request, 'app/paginaPrueba.html', {'enviado': enviado})
-
-
-
+    return JsonResponse({'status': 'no_autenticado_o_datos_incompletos'})
 

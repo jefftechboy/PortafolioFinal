@@ -1,0 +1,111 @@
+<h1>La reserva fue generada exitosamente</h1>
+<button id="botonSumbitforms" style="display: none;">terminar proceso</button>
+<form method="POST" id="formBoleta" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="{{ formBoleta.id_boleta.name }}" value="B{{ reservaGenerada.id_reserva }}">
+    <input type="hidden" name="{{ formBoleta.fecha.name }}" value="{{ fecha_actual|date:'Y-m-d' }}"  >
+    <input type="hidden" name="{{ formBoleta.hora.name }}" value="{{ fecha_actual|time:'H:i' }}" >
+    <input type="hidden" name="{{ formBoleta.id_reserva.name }}" value="{{ reservaGenerada.id_reserva }}">
+</form>
+<form method="POST" id="formPago" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name="{{ formPago.id_pago.name }}" value="P{{ reservaGenerada.id_reserva }}">
+    <input type="hidden" name="{{ formPago.monto.name }}" value="{{ reservaGenerada.precio_total }}" >
+    <input type="hidden" name="{{ formPago.fecha.name }}" value="{{ fecha_actual|date:'Y-m-d' }}" >
+    <input type="hidden" name="{{ formPago.id_boleta.name }}" value="B{{ reservaGenerada.id_reserva }}">
+</form>
+
+<textarea id="mensajeCorreoReserva" hidden>
+    ¡Gracias por tu reserva!
+
+    Boleta de pago:
+      Formato de pago: PayPal
+      ID de Reserva: {{ reservaGenerada.id_reserva }}
+      Fecha: {{ fecha_actual|date:'Y-m-d' }}
+      Hora: {{ fecha_actual|time:'H:i' }}
+      Total de pago: {{ reservaGenerada.precio_total }}
+
+    
+    ¡Muchas gracias te esperamos en NewRapaNui!
+  </textarea>
+
+
+
+<script>
+  // Ejecutar el código cuando el DOM esté completamente cargado
+  document.addEventListener('DOMContentLoaded', function () {
+    const boton = document.getElementById('botonSumbitforms');
+
+    // Activar el click del botón automáticamente a los 5 segundos
+    setTimeout(() => {
+      boton.click();
+    }, 5000); // 5000 ms = 5 segundos
+
+    // Agregar evento de envío
+    boton.addEventListener('click', async function () {
+      const formBoleta = document.getElementById('formBoleta');
+      const formPago = document.getElementById('formPago');
+
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+      // Crear los FormData
+      const dataBoleta = new FormData(formBoleta);
+      const dataPago = new FormData(formPago);
+
+      try {
+        // Enviar formulario de boleta
+        const responseBoleta = await fetch(formBoleta.action, {
+          method: 'POST',
+          body: dataBoleta,
+          headers: {
+            'X-CSRFToken': csrfToken
+          }
+        });
+
+        // Enviar formulario de pago
+        const responsePago = await fetch(formPago.action, {
+          method: 'POST',
+          body: dataPago,
+          headers: {
+            'X-CSRFToken': csrfToken
+          }
+        });
+
+
+        // Obtener el contenido del mensaje desde el textarea oculto
+        const mensaje = document.getElementById('mensajeCorreoReserva').value;
+
+            // Enviar el correo
+            await fetch('/enviar_correo/', {
+            method: 'POST',  // ← corregido aquí
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': csrfToken  // usar el mismo token extraído arriba
+            },
+            body: new URLSearchParams({
+                'mensaje': mensaje
+            })
+            })
+            .then(response => response.json())
+            .then(data => {
+            console.log('Respuesta del servidor:', data.status);
+            })
+            .catch(error => {
+            console.error('Error al enviar correo:', error);
+            });
+
+
+
+
+
+
+        // Redirigir si ambos formularios se enviaron correctamente
+        window.location.href = "{% url 'inicio' %}";
+
+      } catch (error) {
+        console.error('Ocurrió un error:', error);
+        alert('Hubo un problema al completar el proceso. Intenta nuevamente.');
+      }
+    });
+  });
+</script>
