@@ -1,111 +1,167 @@
-<h1>La reserva fue generada exitosamente</h1>
-<button id="botonSumbitforms" style="display: none;">terminar proceso</button>
-<form method="POST" id="formBoleta" enctype="multipart/form-data">
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reserva exitosa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("{% static 'app/img/fondoContra.jpg' %}");  
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.65);
+      padding: 40px 30px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      background-color: #7a9c75;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      display: none;
+    }
+
+    button:hover {
+      background-color: #688562;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>La reserva fue generada exitosamente</h1>
+    <button id="botonSumbitforms">Terminar proceso</button>
+  </div>
+
+  <form method="POST" id="formBoleta" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="{{ formBoleta.id_boleta.name }}" value="B{{ reservaGenerada.id_reserva }}">
     <input type="hidden" name="{{ formBoleta.fecha.name }}" value="{{ fecha_actual|date:'Y-m-d' }}"  >
     <input type="hidden" name="{{ formBoleta.hora.name }}" value="{{ fecha_actual|time:'H:i' }}" >
     <input type="hidden" name="{{ formBoleta.id_reserva.name }}" value="{{ reservaGenerada.id_reserva }}">
-</form>
-<form method="POST" id="formPago" enctype="multipart/form-data">
+  </form>
+
+  <form method="POST" id="formPago" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="{{ formPago.id_pago.name }}" value="P{{ reservaGenerada.id_reserva }}">
     <input type="hidden" name="{{ formPago.monto.name }}" value="{{ reservaGenerada.precio_total }}" >
     <input type="hidden" name="{{ formPago.fecha.name }}" value="{{ fecha_actual|date:'Y-m-d' }}" >
     <input type="hidden" name="{{ formPago.id_boleta.name }}" value="B{{ reservaGenerada.id_reserva }}">
-</form>
+  </form>
 
-<textarea id="mensajeCorreoReserva" hidden>
-    ¡Gracias por tu reserva!
+  <textarea id="mensajeCorreoReserva" hidden>
+¡Gracias por tu reserva!
 
-    Boleta de pago:
-      Formato de pago: PayPal
-      ID de Reserva: {{ reservaGenerada.id_reserva }}
-      Fecha: {{ fecha_actual|date:'Y-m-d' }}
-      Hora: {{ fecha_actual|time:'H:i' }}
-      Total de pago: {{ reservaGenerada.precio_total }}
+Boleta de pago:
+  Formato de pago: PayPal
+  ID de Reserva: {{ reservaGenerada.id_reserva }}
+  Fecha: {{ fecha_actual|date:'Y-m-d' }}
+  Hora: {{ fecha_actual|time:'H:i' }}
+  Total de pago: {{ reservaGenerada.precio_total }}
 
-    
-    ¡Muchas gracias te esperamos en NewRapaNui!
+¡Muchas gracias te esperamos en NewRapaNui!
   </textarea>
 
+  <script>
+    // Ejecutar el código cuando el DOM esté completamente cargado
+    document.addEventListener('DOMContentLoaded', function () {
+      const boton = document.getElementById('botonSumbitforms');
 
-
-<script>
-  // Ejecutar el código cuando el DOM esté completamente cargado
-  document.addEventListener('DOMContentLoaded', function () {
-    const boton = document.getElementById('botonSumbitforms');
-
-    // Activar el click del botón automáticamente a los 5 segundos
-    setTimeout(() => {
+      // Activar el click del botón automáticamente a los 5 segundos
+      setTimeout(() => {
       boton.click();
-    }, 5000); // 5000 ms = 5 segundos
+      }, 5000); // 5000 ms = 5 segundos
 
-    // Agregar evento de envío
-    boton.addEventListener('click', async function () {
-      const formBoleta = document.getElementById('formBoleta');
-      const formPago = document.getElementById('formPago');
+      // Agregar evento de envío
+      boton.addEventListener('click', async function () {
+        const formBoleta = document.getElementById('formBoleta');
+        const formPago = document.getElementById('formPago');
 
-      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-      // Crear los FormData
-      const dataBoleta = new FormData(formBoleta);
-      const dataPago = new FormData(formPago);
+        // Crear los FormData
+        const dataBoleta = new FormData(formBoleta);
+        const dataPago = new FormData(formPago);
 
-      try {
-        // Enviar formulario de boleta
-        const responseBoleta = await fetch(formBoleta.action, {
-          method: 'POST',
-          body: dataBoleta,
-          headers: {
-            'X-CSRFToken': csrfToken
-          }
-        });
+        try {
+          // Enviar formulario de boleta
+          const responseBoleta = await fetch(formBoleta.action, {
+            method: 'POST',
+            body: dataBoleta,
+            headers: {
+              'X-CSRFToken': csrfToken
+            }
+          });
 
-        // Enviar formulario de pago
-        const responsePago = await fetch(formPago.action, {
-          method: 'POST',
-          body: dataPago,
-          headers: {
-            'X-CSRFToken': csrfToken
-          }
-        });
+          // Enviar formulario de pago
+          const responsePago = await fetch(formPago.action, {
+            method: 'POST',
+            body: dataPago,
+            headers: {
+              'X-CSRFToken': csrfToken
+            }
+          });
 
+          // Obtener el contenido del mensaje desde el textarea oculto
+          const mensaje = document.getElementById('mensajeCorreoReserva').value;
 
-        // Obtener el contenido del mensaje desde el textarea oculto
-        const mensaje = document.getElementById('mensajeCorreoReserva').value;
-
-            // Enviar el correo
-            await fetch('/enviar_correo/', {
+          // Enviar el correo
+          await fetch('/enviar_correo/', {
             method: 'POST',  // ← corregido aquí
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'X-CSRFToken': csrfToken  // usar el mismo token extraído arriba
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-CSRFToken': csrfToken  // usar el mismo token extraído arriba
             },
             body: new URLSearchParams({
-                'mensaje': mensaje
+              'mensaje': mensaje
             })
-            })
-            .then(response => response.json())
-            .then(data => {
+          })
+          .then(response => response.json())
+          .then(data => {
             console.log('Respuesta del servidor:', data.status);
-            })
-            .catch(error => {
+          })
+          .catch(error => {
             console.error('Error al enviar correo:', error);
-            });
+          });
 
+          // Redirigir si ambos formularios se enviaron correctamente
+          window.location.href = "{% url 'inicio' %}";
 
+        } catch (error) {
+          console.error('Ocurrió un error:', error);
+          alert('Hubo un problema al completar el proceso. Intenta nuevamente.');
+        }
+      });
 
-
-
-
-        // Redirigir si ambos formularios se enviaron correctamente
-        window.location.href = "{% url 'inicio' %}";
-
-      } catch (error) {
-        console.error('Ocurrió un error:', error);
-        alert('Hubo un problema al completar el proceso. Intenta nuevamente.');
-      }
+      // Mostrar el botón
+      boton.style.display = 'inline-block';
     });
-  });
-</script>
+  </script>
+</body>
+</html>

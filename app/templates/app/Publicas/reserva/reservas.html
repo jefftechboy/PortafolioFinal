@@ -47,57 +47,57 @@
 
   <!-- FORMULARIO DERECHA -->
   <div class="confirmacion-datos">
-    <!-- Template reservas.html -->
-    <p style="text-align: center;">{{ error_fecha }}</p>
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
+  <p class="mensaje-error">{{ error_fecha }}</p>
 
-       <!-- Oculta el dropdown generado automáticamente -->
-      <div style="display: none;">
-          {{ form.rut_cliente }}
-      </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
 
-      <!-- Campo personalizado para escribir el RUT -->
-      <input type="hidden" id="rut_cliente_input" name="{{ form.rut_cliente.name }}" value="{{ clienteInfo.Rut_cliente }}">
+    <input type="hidden" id="rut_cliente_input" name="{{ form.rut_cliente.name }}" value="{{ clienteInfo.Rut_cliente }}">
 
+    <div class="campo-form tarjeta-dato">
+      <label>N° Reserva</label>
+      <input type="number" name="{{ form.id_reserva.name }}" value="{{ identificador }}" readonly>
+    </div>
 
-      <div class="titulosInputs"><p>N° Reversa
-        <input type="number" name="{{ form.id_reserva.name }}" value="{{ identificador }}" readonly>
-      </p></div>
+    <div class="campo-form tarjeta-dato">
+      <label>Fecha ingreso</label>
+      <input type="date" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}">
+    </div>
 
-      <div class="titulosInputs">
-        <p>Fecha ingreso  
-          <input type="date" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}" placeholder="Fecha Inicio">
-        </p></div>
+    <div class="campo-form tarjeta-dato">
+      <label>Fecha partida</label>
+      <input type="date" name="{{ form.fechaFinal.name }}" value="{{ form.fechaFinal.value }}">
+    </div>
 
-      <div class="titulosInputs"><p>Fecha partida
-        <input type="date" name="{{ form.fechaFinal.name }}" value="{{ form.fechaFinal.value }}" placeholder="Fecha Final">
-      </p></div>
-      
-      <div class="titulosInputs"><p>Servicio
-        {{ form.n_s_ext }}
-      </p></div>
-      
-      <div class="titulosInputs"><p>Habitacion
-        {{ form.n_habitacion }}
-      </p></div>
+    <div class="campo-form tarjeta-dato">
+      <label>Servicio</label>
+      {{ form.n_s_ext }}
+    </div>
 
+    <div class="campo-form tarjeta-dato">
+      <label>Habitación</label>
+      {{ form.n_habitacion }}
+    </div>
 
-      <div class="titulosInputs">
-        <input type="hidden" name="{{ form.precio_total.name }}" value="0" placeholder="Valor Total">
-      </div>
+    <input type="hidden" name="{{ form.precio_total.name }}" value="0">
 
-      
+    {% if error_fecha != 'Dia fecha invalida' %}
+        <div class="contenedorInputs">
+          <button type="submit" class="boton-reservar">Crear Reserva</button>
+        </div>
+      {% endif %}
       {% if error_fecha == 'Dia fecha invalida' %}
         <div class="contenedorInputs">
           <button type="submit" class="boton-reservar">Otra vez</button>
         </div>
       {% endif %}
-      {% if error_fecha != 'Dia fecha invalida' %}
-        <div class="contenedorInputs">
-          <button type="submit" class="boton-reservar">Crear Reserva</button>
-        </div>
-      {% endif %}
+  </form>
+</div>
+
+
+      
+      
+      
 </form>
 
   </div>
