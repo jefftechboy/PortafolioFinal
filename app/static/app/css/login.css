@@ -25,21 +25,56 @@
     box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   }
   
-  .inputLogin {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    margin: 0.5rem 0;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    transition: border 0.3s;
-  }
-  
-  .inputLogin:focus {
-    border-color: #7a9c75;
-    box-shadow: 0 0 5px #6c63ff50;
-  }
+input.inputLogin {
+  width: 100%;
+  height: 42px;
+  padding: 0 1rem;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.5;
+  outline: none;
+  box-sizing: border-box;
+   background-color: #ffffff; /* gris oscuro sólido */
+  color: rgb(0, 0, 0); /* texto visible en fondo oscuro */
+  font-family: inherit; /* igual fuente */
+  -webkit-appearance: none; /* elimina estilos nativos en Safari/Chrome */
+  -moz-appearance: none; /* para Firefox */
+  appearance: none; /* general */
+}
+
+input.inputLogin::placeholder {
+  color: #000000; /* placeholder igual para todos */
+}
+
+/* Para evitar que el navegador agregue padding o estilo al password */
+input[type="password"].inputLogin {
+  -webkit-text-security: disc; /* oculta el texto como password, pero sin afectar otros estilos */
+}
+
+/* Opcional: quitar estilos extra en Firefox para inputs password */
+input[type="password"].inputLogin:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #fff;
+}
+
+.row, .col {
+  padding: 0;
+  margin: 0;
+}
+
+/* Para que el botón ocupe el mismo ancho y altura */
+.btn-primary.w-100 {
+  height: 42px;           /* Igual altura que inputs */
+  border-radius: 12px;    /* Bordes redondeados iguales */
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0;             /* Padding vertical ajustado para centrar texto */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
   
   .button {
     width: 100%;

@@ -42,6 +42,8 @@ header a .logo {
 }
 
 .perfil-icon {
+  border: none;           /* Elimina el borde */
+  outline: none;          /* Elimina el contorno al hacer clic */
   background-color: #7a9c75;
   border-radius: 50%;
   width: 50px;
@@ -53,12 +55,15 @@ header a .logo {
   color: white;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
 }
 
 .perfil-icon:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
+
+
 
   nav {
   display: flex;

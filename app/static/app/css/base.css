@@ -1,130 +1,147 @@
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   flex: 1;
 }
 
 .main-content {
-  flex: 1; /* Esto empuja el footer al final */
+  flex: 1;
 }
+
 header {
-    background: #ACB087;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-  }
+  background: #ACB087;
+  display: flex;
+  align-items: center;
+  padding: 10px 40px;
+  position: relative;
+  max-width: 100%;
+}
+
+/* Logo a la izquierda */
+header img.logo {
+  width: 16%;
+  height: auto;
+  margin-right: 385px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer; /* cambia el cursor para que parezca clickeable */
+}
+
+header img.logo:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav ocupa todo el espacio entre logo y perfil */
+nav {
+  flex-grow: 1;              /* toma todo el espacio disponible */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* alinea links a la izquierda */
+  gap: 20px;                  /* espacio entre links */
+  padding-left: 0;            /* sin padding para que quede más a la izquierda */
+  position: relative;
+  height: 60px;
   
-  /* Logo: Ajusta el tamaño y margen */
- header img {
-  width: 5%;
-  height: auto;
-  margin-right: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-header a .logo {
-  width: 40%;
-  height: auto;
-  margin-right: 20px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-.logo {
-  font-weight: bold;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
 }
 
-.logo:hover {
-  transform: translateY(-5px);
+/* Links dentro del nav */
+.nav-links {
+  display: flex;
+  gap: 20px;
 }
 
-.perfil-icon {
+/* Botón perfil a la derecha, separado */
+.nav-profile {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
+}
+
+/* Estilo links nav */
+nav .nav-links a {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  background-color: #7a9c75;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+nav .nav-links a:hover {
+  background-color: #5b7f5c;
+  transform: translateY(-3px);
+}
+
+/* Botón perfil */
+nav .nav-profile button,
+nav .nav-profile a {
+  color: white;
   background-color: #7a9c75;
   border-radius: 50%;
   width: 50px;
   height: 50px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+nav .nav-profile button:hover,
+nav .nav-profile a:hover {
+  background-color: #5b7f5c;
+  transform: translateY(-3px);
+}
+
+/* Otros estilos que ya tenías (footer, offcanvas, etc) */
+
+.perfil-icon-custom {
+  background-color: #7a9c75 !important;
+  border-radius: 50% !important;
+  width: 50px;
+  height: 50px;
+  padding: 0 !important;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 24px;
-  color: white;
+  color: white !important;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: none !important;
+  outline: none !important;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.perfil-icon:hover {
+.perfil-icon-custom:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-  nav {
-  display: flex;
-  gap: 10px;
+.perfil-icon-custom:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  padding: 8px 16px;
-  background-color: #7a9c75;
-  border-radius: 8px;
-  color: white;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-nav a:hover {
-  background-color: #5b7f5c;
-  color: #f0f0f0;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-nav a.active {
-  background-color: #cbb99e;
-}
-  
-  
-  .menu a {
-    text-decoration: none;
-    color: white;
-    padding: 8px 16px;
-    background-color: #6b8b6d;
-    border-radius: 20px;
-  }
-  
-  /* Icono de perfil */
-  .icon {
-    background-color: #ece8df;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-/* Asegura que el body use toda la altura */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-/* Body con flex columna */
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Altura mínima 100% de la ventana */
-}
-
-/* Main que ocupa el espacio restante */
-main {
-  flex: 1; /* Expande para llenar el espacio vertical restante */
+.perfil-icon-custom i {
+  font-size: 25px;
 }
 
 /* Footer fijo al final */
@@ -134,17 +151,13 @@ main {
   text-align: left;
   padding: 15px 30px;
   width: 100%;
-  /* No uses position: fixed para que no quede flotando,
-     sino que siga el flujo normal pero siempre al final */
   box-sizing: border-box;
-
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-start;
 }
 
-/* Footer links */
 .footer a {
   display: inline-block;
   padding: 10px 20px;
@@ -162,7 +175,6 @@ main {
   transform: translateY(-5px);
 }
 
-/* Responsive footer */
 @media (max-width: 768px) {
   .footer {
     flex-direction: column;
@@ -175,17 +187,69 @@ main {
     max-width: 200px;
   }
 }
-.footer a:hover {
-  background-color: #7a9c75;
-  transform: translateY(-5px);
-}
-  
-.logo {
-  font-weight: bold;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+
+/* Offcanvas background */
+.offcanvas-background {
+  position: relative;
+  background-image: url('/static/app/img/moais-ojos.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
-.logo:hover {
-  transform: translateY(-5px);
+.offcanvas-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.offcanvas-background > * {
+  position: relative;
+  z-index: 1;
+}
+
+.offcanvas-background h5.offcanvas-title {
+  color: #ffffff;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.offcanvas-background a {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.offcanvas-background a:hover {
+  color: #6b8b6d;
+  text-decoration: underline;
+}
+
+.offcanvas-background form button.a {
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.offcanvas-background form button.a:hover {
+  background-color: white;
+  color: black;
+}
+
+.offcanvas-background .offcanvas-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
