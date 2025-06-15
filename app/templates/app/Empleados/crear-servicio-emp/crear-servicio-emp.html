@@ -41,22 +41,24 @@
       <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
 
-        <div class="titulosInputs"><p>Nombre</p></div>
-        <input type="text" name="{{ form.n_s_ext.name }}" value="{{ form.n_s_ext.value|default_if_none:'' }}" placeholder="Nombre del servicio">
+         <div class="titulosInputs"><p>Nombre</p></div>
+        {{ form.n_s_ext }}
 
         <div class="titulosInputs"><p>Descripción Breve</p></div>
-        <input type="text" name="{{ form.descripcion_breve.name }}" value="{{ form.descripcion_breve.value|default_if_none:'' }}" placeholder="Descripción del servicio">
-        
+        {{ form.descripcion_breve }}
+
         <div class="titulosInputs"><p>Descripción</p></div>
-        <input type="text" name="{{ form.descripcions_ext.name }}" value="{{ form.descripcions_ext.value|default_if_none:'' }}" placeholder="Descripción del servicio">
+        {{ form.descripcions_ext }}
 
         <div class="titulosInputs"><p>Valor</p></div>
-        <input type="number" name="{{ form.precios_ext.name }}" value="{{ form.precios_ext.value|default_if_none:'' }}" placeholder="Precio del servicio">
+        {{ form.precios_ext }}
 
         <div class="titulosInputs"><p>Empresa</p></div>
         {{ form.empresa }}
+
+        <div class="titulosInputs"><p>Imagen</p></div>
         {{ form.imagen }}
-        <div class="contenedorInputs">
+        <div class="contenedorInputs" style="margin-top: 20px;">
           <button type="submit" class="button">Crear servicio</button>
         </div>
       </form>

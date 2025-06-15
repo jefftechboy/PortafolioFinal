@@ -18,7 +18,11 @@
                 <p class="card-text">{{ Habitaciones.descripcion }}</p>
                     <div class="card-footer-info">
                         <h3 class="precio">${{ Habitaciones.precio }} CLP / noche</h3>
-                        <a href="{% url 'login' %}" class="btn-custom">¡Reserva Ya!</a>
+                         {% if user.is_authenticated %}
+                            {% if user.groups.all.0.name == 'Cliente' %}
+                                <a href="{% url 'reservas' 123456789 %}" class="btn-custom">¡Reserva Ya!</a>
+                            {% endif %}
+                        {% endif %}
                       </div>
                 
             </div>

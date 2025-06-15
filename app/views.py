@@ -53,11 +53,13 @@ def crear_usuario(request):
 
 def perfil_usuario(request, id):
     try:
-        cliente = Cliente.objects.get(Rut_cliente=id)
+        cliente = Cliente.objects.get(email_cliente=id)
     except Cliente.DoesNotExist:
         return redirect('crear_usuario', id=id)  # Usa el name correcto de tu URL
 
-    reserv = reserva.objects.filter(rut_cliente=id)
+    cliente = Cliente.objects.get(email_cliente=id)
+    rutCliente = cliente.Rut_cliente
+    reserv = reserva.objects.filter(rut_cliente=rutCliente)
     data = {
         'reservas': reserv,
         'clientes': ClienteForm(instance=cliente),
@@ -79,7 +81,6 @@ def perfil_usuario(request, id):
 def crear_usuario(request, id):
     data = {
         'form': ClienteForm(initial={
-                'Rut_cliente': id,  # o cliente.id si es una FK
                 'email_cliente': request.user.email
             }),    
     }
@@ -89,14 +90,6 @@ def crear_usuario(request, id):
             form.save()
             return redirect('inicio')
     return render(request, 'app/Usuarios/perfil-usuario/crear_perfil_usuario.html', data)
-
-
-
-
-
-
-
-
 
 
 # VISTA PERFIL USUARIO
@@ -113,7 +106,7 @@ def editar_perfil_usuario(request, id):
         formulario = ClienteForm(data=request.POST, instance=cliente, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            return redirect(to="perfil_usuario",id=cliente.Rut_cliente)
+            return redirect(to="perfil_usuario",id=cliente.email_cliente)
         else:
             data["form"] = formulario
     return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html", data)
@@ -138,7 +131,7 @@ def eliminar_perfil_usuario(request, id):
 """" RESERVAS CLIENTES """
     # VISTA RESERVAS
 def reservas(request, id):
-    cliente = Cliente.objects.get(Rut_cliente=id)
+    cliente = Cliente.objects.get(email_cliente=id)
 
     now = datetime.now()
     identificador = now.strftime("%Y%m%d%H%M%S") + now.strftime("%f")[:3]
@@ -549,7 +542,7 @@ def registro_usuario(request):
             user = formulario.save()
 
              # Agregar al grupo "Clientes"
-            grupo_clientes, creado = Group.objects.get_or_create(name='Clientes')
+            grupo_clientes, creado = Group.objects.get_or_create(name='Cliente')
             user.groups.add(grupo_clientes)
 
 

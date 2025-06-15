@@ -35,6 +35,7 @@
     </a>
         <nav>
           <div class="nav-links">
+            <a href="{% url 'inicio' %}">Inicio</a>
             <a href="{% url 'informacion_servicios' %}">Servicios</a>
             <a href="{% url 'informacion_habitaciones' %}">Habitación</a>
             <a href="{% url 'conocenos' %}">Conocenos</a>
@@ -43,17 +44,28 @@
 
           <div class="nav-profile">
             {% if user.is_authenticated %}
-              <button class="btn perfil-icon-custom"
+            <div class="row">
+              <div class="col-6">
+                <div style="text-align: center; margin-top: 18px;">
+                  {{ user.username }}
+                </div>
+              </div>
+              <div class="col-6">
+                <button class="btn perfil-icon-custom"
                 type="button"
                 data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight"
                 aria-controls="offcanvasRight">
                 <i class="bi bi-person-fill"></i>
-              </button>
+                </button>
+              </div>
+            </div>
             {% else %}
-              <a href="{% url 'login' %}" class="perfil-icon-custom" aria-label="Iniciar Sesión">
-                <i class="bi bi-person-fill"></i>
-              </a>
+            <div class="row">
+                <a href="{% url 'login' %}" type="button" class="perfil-icon-custom" aria-label="Iniciar Sesión">
+                  <i class="bi bi-box-arrow-in-right" style="margin-right: 8px;"></i>
+                </a>
+            </div>
             {% endif %}
           </div>
         </nav>
@@ -63,10 +75,11 @@
 
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasRightLabel">
-          Administracion Hotel 
-          <br> {{ user.username }} 
-          <br> {{ user.email }} 
+          Administracion New Rapa Nui 
           <br> {{ user.groups.all.0.name }}
+          <br> 
+          <p></p>
+          {{ user.username }} 
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
@@ -74,12 +87,11 @@
       <div class="offcanvas-body">
         {% if user.is_authenticated %}
           {% if user.groups.all.0.name == 'Cliente' %}
-            <a href="{% url 'perfil_usuario' 123456789 %}">Perfil Usuario</a>
-            <a href="{% url 'reservas' 123456789 %}">Reservas</a>
+            <a href="{% url 'perfil_usuario' user.email %}">Perfil Usuario</a>
+            <a href="{% url 'reservas' user.email %}">Reservas</a>
           {% endif %}
           {% if user.groups.all.0.name == 'Empleado' %}
             <a href="{% url 'listar_servicio' %}">Servicios Emp</a>
-            <br>
             <a href="{% url 'listar_habitacion_emp' %}">Habitación Emp</a>
             <a href="{% url 'listar_cliente_emp' %}">Cliente Emp</a>
             <a href="{% url 'listar_reservas_emp' %}">Reserva Emp</a>
@@ -91,7 +103,7 @@
             <a href="{% url 'listar_cliente_emp' %}">Cliente Emp</a>
             <a href="{% url 'listar_reservas_emp' %}">Reserva Emp</a>
             <a href="{% url 'agenda' %}">Agenda Emp</a>
-            <a href="{% url 'listar_empleado' 206694394  %}">Perfil Emp</a>
+            <a href="{% url 'listar_empleado' user.email  %}">Perfil Emp</a>
           {% endif %}
         {% endif %}
         <form method="POST" action="{% url 'logout' %}">

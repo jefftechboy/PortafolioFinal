@@ -24,6 +24,8 @@ body::before {
 
 .habitacion-container {
   padding: 100px 60px;
+    width: 50%;
+
 }
 
 h1 {

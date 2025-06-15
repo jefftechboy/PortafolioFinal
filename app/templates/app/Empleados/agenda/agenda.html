@@ -41,7 +41,6 @@
             {% for r in reservas %}
              <section class="info-section">
                 <div class="column">
-                  <h2>Habitación</h2>
                   <div class="card">
                     Reserva N°: {{ r.id_reserva }}<br>
                     <small>Del: {{ r.fechaInicio }}</small>
@@ -49,7 +48,6 @@
                   </div>
                 </div>
                 <div class="column">
-                  <h2>Detalles</h2>
                   <div class="card">
                     <small>Cliente: {{ r.rut_cliente.Pnombre_cliente }} {{ r.rut_cliente.Papellido_cliente }} {{ r.rut_cliente.Sapellido_cliente }}</small>
 

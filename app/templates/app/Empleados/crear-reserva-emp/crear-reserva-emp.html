@@ -36,7 +36,7 @@
         {% csrf_token %}
 
         <div class="titulosInputs"><p>Identificador</p></div>
-        <input type="text" name="{{ form.id_reserva.name }}" value="{{ form.id_reserva.value|default_if_none:'' }}" placeholder="Nombre del servicio">
+        <input type="text" name="{{ form.id_reserva.name }}" value="{{ form.id_reserva.value|default_if_none:'' }}" placeholder="Nombre del servicio" readonly>
         
         <div class="titulosInputs"><p>Fecha ingreso</p></div>
         <input type="datetime" name="{{ form.fechaInicio.name }}" value="{{ form.fechaInicio.value }}" placeholder="Nombre del servicio">
@@ -52,10 +52,7 @@
         
         <div class="titulosInputs"><p>Habitacion</p></div>
         {{ form.n_habitacion }}
-        
-        <div class="titulosInputs"><p>Nacionalidad</p></div>
-        {{ form.id_pais }}
-        
+                
         <div class="titulosInputs"><p>Total</p></div>
         <input type="number" name="{{ form.precio_total.name }}" value="{{ form.precio_total.value }}" placeholder="Valor Total">
         
