@@ -20,7 +20,7 @@
                         <h3 class="precio">${{ Habitaciones.precio }} CLP / noche</h3>
                          {% if user.is_authenticated %}
                             {% if user.groups.all.0.name == 'Cliente' %}
-                                <a href="{% url 'reservas' 123456789 %}" class="btn-custom">¡Reserva Ya!</a>
+                                <a href="{% url 'reservas' user.email %}" class="btn-custom">¡Reserva Ya!</a>
                             {% endif %}
                         {% endif %}
                       </div>
