@@ -1,0 +1,30 @@
+{% autoescape off %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Restablecer contraseña</title>
+  <link rel="stylesheet" href="{% static 'app/css/Cuentas/cambioContrasena/correoCambioContrasena.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h2>Restablecer tu contraseña</h2>
+    <p>Hemos recibido una solicitud para cambiar tu contraseña.</p>
+    
+    <a class="button" href="{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}">
+      Ir a la página de restablecimiento
+    </a>
+
+    <p class="note">Si no solicitaste este cambio, puedes ignorar este correo.</p>
+
+    <hr>
+
+    <p class="link">
+      También puedes copiar y pegar este enlace en tu navegador:<br>
+      {{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+    </p>
+  </div>
+</body>
+</html>
+{% endautoescape %}

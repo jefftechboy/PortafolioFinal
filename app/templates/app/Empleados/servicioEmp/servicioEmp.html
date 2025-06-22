@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="contenedor-recuadro">
+
+  <!-- Recuadro único que contiene lista y formulario -->
+  <div class="recuadro-servicio">
+
+    <!-- Lista de Servicios -->
+    <div class="lado izquierdo">
+      <h3>Servicios Existentes</h3>
+      <ul>
+        {% for p in servicios %}
+          <li>
+            <a href="{% url 'modificar_servicio_ext' p.n_s_ext %}"><i class="fas fa-pen"></i></a>
+              {{ p.n_s_ext }} 
+            <a  href="{% url 'eliminar_servicio_ext' p.n_s_ext %}"><i class="fas fa-trash"></i></a>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="btn btn-success" href="{% url 'listar_servicio' %}">Crear Nuevo</a>
+    </div>
+
+    <!-- Formulario -->
+    <div class="lado derecho">
+      <h2 class="reservaTitulo">Crear Servicio</h2>
+
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+         <div class="titulosInputs"><p>Nombre</p></div>
+        {{ form.n_s_ext }}
+
+        <div class="titulosInputs"><p>Descripción Breve</p></div>
+        {{ form.descripcion_breve }}
+
+        <div class="titulosInputs"><p>Descripción</p></div>
+        {{ form.descripcions_ext }}
+
+        <div class="titulosInputs"><p>Valor</p></div>
+        {{ form.precios_ext }}
+
+        <div class="titulosInputs"><p>Empresa</p></div>
+        {{ form.empresa }}
+
+        <div class="titulosInputs"><p>Imagen</p></div>
+        {{ form.imagen }}
+        <div class="contenedorInputs" style="margin-top: 20px;">
+          <button type="submit" class="button">Crear servicio</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

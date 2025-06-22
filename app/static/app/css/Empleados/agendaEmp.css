@@ -1,0 +1,119 @@
+
+.contenedorAgenda {
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+.servicio-container {
+  padding: 60px;
+}
+.servicio-box {
+  background: #f5f0ea;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  max-width: 1500px;
+  margin: 0 auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.listadoReservas {
+  overflow-y: scroll;
+  height: 370px;
+  margin-top: 20px;
+}
+
+.infoGeneralReserva {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.columnasReservas {
+  flex: 1;
+  min-width: 280px;
+}
+
+.columnasReservas h2 {
+  margin-bottom: 15px;
+  font-size: 22px;
+  color: #444;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+}
+
+.card span {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #4caf50;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* BOTONES Y ACCIONES */
+.acciones,
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+.selectorFechas {
+  background-color: #fdf6ff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px auto;
+  max-width: 550px;  /* Ajusta a un valor razonable para pantallas pequeñas */
+  min-width: 300px;  /* Evita que el calendario se deforme demasiado */
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.selectorFechas label {
+  display: block;
+  font-size: 20px;
+  font-weight: 600;
+  color: #5b7f5c;
+  margin-bottom: 6px;
+}
+
+.selectorFechas input[type="date"] {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.selectorFechas input[type="date"]:focus {
+  border-color: #5b7f5c;
+  outline: none;
+  box-shadow: 0 0 4px rgba(91, 127, 92, 0.4);
+}

@@ -1,0 +1,66 @@
+
+.card-login {
+    background-color: #f5f0ea;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-login h3 {
+    color: #4e704d;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.card-login form {
+    width: 100%;
+}
+
+.card-login input[type="text"],
+.card-login input[type="email"],
+.card-login input[type="password"] {
+    width: 80%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+.card-login label[for="id_password1"],
+.card-login label[for="id_password2"] {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+
+.card-login input[type="text"]:focus,
+.card-login input[type="email"]:focus,
+.card-login input[type="password"]:focus {
+    border-color: #7a9c75;
+    box-shadow: 0 0 5px rgba(122, 156, 117, 0.5);
+}
+
+.btn-success {
+    background-color: #7a9c75;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 25px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #68845f;
+}
+
+a {
+    color: #7a9c75;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
+}

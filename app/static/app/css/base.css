@@ -6,10 +6,14 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  flex: 1;
+  background-image: url("../img/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .main-content {
@@ -50,7 +54,7 @@ nav {
   padding-left: 0;            /* sin padding para que quede más a la izquierda */
   position: relative;
   height: 60px;
-  
+  margin-right: 600px;
 }
 
 /* Links dentro del nav */
@@ -61,14 +65,23 @@ nav {
 
 /* Botón perfil a la derecha, separado */
 .nav-profile {
-  position: absolute;
   right: 10px;
-  top: 50%;
+  margin-top: 60px;
+  gap: 10px;
+  margin-left: 180px;
   transform: translateY(-50%);
   transition: background-color 0.3s ease, transform 0.2s ease;
   
 }
-
+.botonIniciarSesion{
+margin-left: 170px;
+}
+.nombreUsuario{
+  text-align: center; 
+  margin-top: 22px
+  ;margin-right: 180px;
+  margin-left: 50px;
+}
 /* Estilo links nav */
 nav .nav-links a {
   font-size: 1.2rem;
@@ -175,18 +188,6 @@ nav .nav-profile a:hover {
   transform: translateY(-5px);
 }
 
-@media (max-width: 768px) {
-  .footer {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .footer a {
-    width: 100%;
-    max-width: 200px;
-  }
-}
 
 /* Offcanvas background */
 .offcanvas-background {

@@ -19,7 +19,7 @@ def conocenos(request):
 
 # VISTA PERFIL EMPLEADO
 def perfil_empleado(request):
-    return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html")
+    return render(request, "app/Empleados/perfilEmp/perfilEmp.html")
 
 
 
@@ -35,14 +35,14 @@ def detalle_servicios(request):
     return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html', data)
 
 # VISTA AGENDA
-def agenda(request):
-    return render(request, "app/Empleados/agenda/agenda.html")
+def agendaEmp(request):
+    return render(request, "app/Empleados/agendaEmp/agendaEmp.html")
 
 
 """ --------------------------------- CRUD COMPLETADOS --------------------------------- """
 def crear_usuario(request):
 
-    return render(request, "app/Usuarios/perfil-usuario/crear_perfil_usuario.html", data)
+    return render(request, "app/Usuarios/perfilCliente/crear_perfil_usuario.html", data)
 """ -------- PERFIL EXISTENTES ------ """
 # VISTA PERFIL USUARIO
 
@@ -75,7 +75,7 @@ def perfil_usuario(request, id):
             data['form'] = formulario
             data['mensaje'] = "Error al actualizar el perfil"
 
-    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html", data)
+    return render(request, "app/Usuarios/perfilCliente/perfilCliente.html", data)
 
 
 def crear_usuario(request, id):
@@ -89,7 +89,7 @@ def crear_usuario(request, id):
         if form.is_valid():
             form.save()
             return redirect('inicio')
-    return render(request, 'app/Usuarios/perfil-usuario/crear_perfil_usuario.html', data)
+    return render(request, 'app/Usuarios/perfilCliente/crear_perfil_usuario.html', data)
 
 
 # VISTA PERFIL USUARIO
@@ -109,7 +109,7 @@ def editar_perfil_usuario(request, id):
             return redirect(to="perfil_usuario",id=cliente.email_cliente)
         else:
             data["form"] = formulario
-    return render(request, "app/Usuarios/perfil-usuario/perfil-usuario.html", data)
+    return render(request, "app/Usuarios/perfilCliente/perfilCliente.html", data)
 
 # ---------- ELIMINAR
 def eliminar_perfil_usuario(request, id):
@@ -186,7 +186,7 @@ def reservas(request, id):
                     'clienteInfo': cliente,
                     'identificador': identificador,
                 }
-                return render(request, 'app/Publicas/reserva/reservas.html', data)
+                return render(request, 'app/Usuarios/reserva/reservas.html', data)
                 
             detalle_reserva = f"""
                 RUT del Cliente: {formulario.cleaned_data['rut_cliente']}
@@ -222,12 +222,12 @@ def reservas(request, id):
                     formfinal.precio_total = total_calculado   # aquí asignas el valor correcto
                     formfinal.save()
             data['mensaje'] = "Reserva creada correctamente"
-            return render(request, "app/Publicas/confirmacion-reserva/confirmacion-reserva.html", datos_reserva)
+            return render(request, "app/Usuarios/confirmacionReserva/confirmacionReserva.html", datos_reserva)
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear la reserva"
 
-    return render(request, 'app/Publicas/reserva/reservas.html', data)
+    return render(request, 'app/Usuarios/reserva/reservas.html', data)
 
 
 
@@ -254,7 +254,7 @@ def registroPagoBoleta(request,idReserva):
     else:
         form = boletaform()
         form2 = pagoform()
-    return render(request, 'app/Publicas/reservaExitosa/reservaExitosa.html',data)
+    return render(request, 'app/Usuarios/reservaExitosa/reservaExitosa.html',data)
 
 
 
@@ -306,7 +306,7 @@ def listar_empleado(request,id):
     data = {
         'empleadoDatos': empleado
     }
-    return render(request, "app/Empleados/perfil-empleado/perfil-empleado.html", data)
+    return render(request, "app/Empleados/perfilEmp/perfilEmp.html", data)
 
 """ HABITACION EMPLEADO """
 # ---------- CREAR + LISTAR
@@ -320,11 +320,11 @@ def listar_habitacion_emp(request):
         if formulario.is_valid():
             formulario.save()
             data['mensaje'] = "Habitación creada correctamente"
-            return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
+            return render(request, "app/Empleados/habitacionEmp/habitacionEmp.html", data)
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear la habitación"     
-    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
+    return render(request, "app/Empleados/habitacionEmp/habitacionEmp.html", data)
 # ---------- MODIFICAR
 def modificar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
@@ -339,7 +339,7 @@ def modificar_habitacion_emp(request, id):
             return redirect(to="listar_habitacion_emp")
         else:
             data["form"] = formulario
-    return render(request, "app/Empleados/habitacion-emp/habitacion-emp.html", data)
+    return render(request, "app/Empleados/habitacionEmp/habitacionEmp.html", data)
 # ---------- ELIMINAR
 def eliminar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
@@ -358,11 +358,11 @@ def listar_servicio(request):
         if formulario.is_valid():
             formulario.save()
             data['mensaje'] = "Servicio creado correctamente"
-            return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
+            return render(request, "app/Empleados/servicioEmp/servicioEmp.html", data)
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear la habitación"
-    return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)  
+    return render(request, "app/Empleados/servicioEmp/servicioEmp.html", data)  
 # ---------- MODIFICAR
 def modificar_servicio_ext(request, id):
     servicio = Servicio_Ext.objects.get(n_s_ext=id)
@@ -377,7 +377,7 @@ def modificar_servicio_ext(request, id):
             return redirect(to="listar_servicio")
         else:
             data["form"] = formulario
-    return render(request, "app/Empleados/crear-servicio-emp/crear-servicio-emp.html", data)
+    return render(request, "app/Empleados/servicioEmp/servicioEmp.html", data)
 # ---------- ELIMINAR
 def eliminar_servicio_ext(request, id):
     servicio = Servicio_Ext.objects.get(n_s_ext=id)
@@ -425,7 +425,7 @@ def listar_reservas_emp(request):
             data['form'] = formulario
             data['mensaje'] = "Error al crear la reserva"
             data['reservas'] = reserva.objects.all()
-    return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
+    return render(request, "app/Empleados/reservaEmp/reservaEmp.html", data)
 
 
 
@@ -456,7 +456,7 @@ def modificar_reserva_emp(request, id):
             return redirect(to="listar_reservas_emp")
         else:
             data["form"] = formulario
-    return render(request, "app/Empleados/crear-reserva-emp/crear-reserva-emp.html", data)
+    return render(request, "app/Empleados/reservaEmp/reservaEmp.html", data)
 # ---------- ELIMINAR RESERVA
 def eliminar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
@@ -476,12 +476,12 @@ def listar_cliente_emp(request):
         if formulario.is_valid():
             formulario.save()
             data['mensaje'] = "Cliente creado correctamente"
-            return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
+            return render(request, "app/Empleados/clienteEmp/clienteEmp.html", data)
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear el cliente"
             data['clientes'] = Cliente.objects.all()
-    return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
+    return render(request, "app/Empleados/clienteEmp/clienteEmp.html", data)
 # ---------- MODIFICAR CLIENTE
 def modificar_cliente_emp(request, id):
     cliente = Cliente.objects.get(pk=id)
@@ -496,7 +496,7 @@ def modificar_cliente_emp(request, id):
             return redirect("listar_cliente_emp")
         else:
             data["form"] = formulario
-    return render(request, "app/Empleados/cliente-emp/cliente-emp.html", data)
+    return render(request, "app/Empleados/clienteEmp/clienteEmp.html", data)
 # ---------- ELIMINAR CLIENTE
 def eliminar_cliente_emp(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
@@ -526,7 +526,7 @@ def listar_agenda_emp(request):
     data = {
         'reservas': reservas
     }
-    return render(request, "app/Empleados/agenda/agenda.html", data)
+    return render(request, "app/Empleados/agendaEmp/agendaEmp.html", data)
 
 
 
@@ -556,7 +556,7 @@ def registro_usuario(request):
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear el usuario"
-    return render(request, "registration/registro.html",data)
+    return render(request, "registration/crearCuenta/crearCuenta.html",data)
 
 from django.core.mail import send_mail
 from django.conf import settings

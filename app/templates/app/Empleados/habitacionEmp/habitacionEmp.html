@@ -1,0 +1,70 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <div class="habitacion-container">
+  <div class="habitacion-box" style= "background-color: #e9d8c4";>
+    <div class="lista-habitacion" >
+        <ul>
+          {% for p in Habitaciones %}
+          <li>
+            <a href="{% url 'modificar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-pen"></i></a>
+              {{ p.n_habitacion }} 
+            <a  href="{% url 'eliminar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-trash"></i></a>
+          </li>
+          {% endfor %}
+        </ul>
+        <a class="crear-btn  btn-success"  href="{% url 'listar_habitacion_emp' %}" >Crear Nuevo</a>
+      </div>
+
+      <div class="formulario">
+        <form method="POST" action="" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <h1>Habitación</h1>
+          <label>Nombre</label>
+            <input 
+              class="inputNomHab"
+              type="text"
+              name="{{ form.n_habitacion.name }}"
+              id="numHabitacion"
+              placeholder="Numero habitacion"
+              value="{{ form.n_habitacion.value|default_if_none:'' }}">
+          
+          <label>Breve Descripción</label>
+          <input 
+            class="inputDesHab" 
+            type="text" 
+            name="{{ form.descripcion_breve.name }}"  
+            id="descripcion_breve" 
+            value="{{ form.descripcion_breve.value|default_if_none:'' }}"  
+            placeholder="Descripcion breve habitacion" >
+          <label>Descripción</label>
+          <input 
+            class="inputDesHab" 
+            type="text" 
+            name="{{ form.descripcion.name }}"  
+            id="descripcion" 
+            value="{{ form.descripcion.value|default_if_none:'' }}"  
+            placeholder="Descripcion habitacion" >
+
+          <label>Valor</label>
+            <input 
+              class="inputValHab" 
+              type="number" 
+              name="{{ form.precio.name }}" 
+              id="precio" 
+              value="{{ form.precio.value|default_if_none:'' }}" 
+              placeholder="Precio de habitacion" >
+          <label>Imagen</label>
+            {{ form.imagen }}
+              <!-- boton crear habitacon -->
+              <div class="row">
+                  <div  class="contenedorInputs">
+                    <button type="submit" class="btn btn-success" style="width: 95%; margin-left: 2.5% ;margin-top: 10px;">Confirmar</button>
+                  </div>
+              </div>
+            </form>
+      <div class="acciones">
+  </div>
+ {% endblock %}

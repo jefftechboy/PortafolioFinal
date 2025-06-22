@@ -1,0 +1,26 @@
+.botones-reserva {
+      background-color:#7a9c75;
+      color: white;
+      padding: 10px 12px;
+      max-width: 140px;
+      white-space: nowrap;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 10px;
+      border: none;       /* quita borde */
+      outline: none;      /* quita outline al enfocar */
+    }
+    .botones-reserva:first-child {
+      margin-left: 0;
+    }
+    .botones-reserva:hover {
+      background-color: #6b8b6d;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }

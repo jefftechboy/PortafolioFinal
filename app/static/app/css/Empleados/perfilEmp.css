@@ -1,0 +1,75 @@
+
+.perfil-icon {
+  background-color: #7a9c75;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+.perfil-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.menu a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  background-color: #6b8b6d;
+  border-radius: 20px;
+}
+
+/* Icono de perfil */
+.icon {
+  background-color: #ece8df;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  background-color: #e9d8c4;
+  margin: 50px auto;
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 900px;
+}
+
+
+/* Otros estilos para formulario */
+.form-icon {
+  text-align: center;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}

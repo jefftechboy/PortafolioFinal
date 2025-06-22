@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar contraseña</title>
+  <link rel="stylesheet" href="{% static 'app/css/Cuentas/cambioContrasena/actualizarContrasenas.css' %}">
+</head>
+<body>
+  <div class="container">
+    <form method="post">
+      {% csrf_token %}
+        {{ form.new_password1.label_tag }}
+        {{ form.new_password1 }}
+
+        {{ form.new_password2.label_tag }}
+        {{ form.new_password2 }}
+      <button type="submit">Cambiar contraseña</button>
+    </form>
+  </div>
+</body>
+</html>

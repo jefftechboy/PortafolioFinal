@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Restablecer contraseña</title>
+  <link rel="stylesheet" href="{% static 'app/css/Cuentas/cambioContrasena/formularioCambioContrasena.css' %}">
+</head>
+<body>
+  <div class="card">
+    <h1>Restablecer contraseña</h1>
+    <form method="post">
+      {% csrf_token %}
+      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+      {{ form.email }}
+      <button type="submit">Enviar correo para restablecer</button>
+    </form>
+  </div>
+</body>
+</html>

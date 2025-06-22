@@ -1,0 +1,115 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Cliente EMP{% endblock %}
+
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'app/css/cliente-emp.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="cliente-container">
+  <div class="cliente-box" style="background-color: #e9d8c4;">
+    <div class="lado izquierdo">
+  <h3>Clientes Existentes</h3>
+  <table style="width:100%; font-size:14px;">
+    <tbody>
+        <ul>
+          {% for r in clientes %}
+          <li>
+            <a   href="{% url 'modificar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-pen"></i></a>
+              {{ r.Rut_cliente }}
+            <a href="{% url 'eliminar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-trash"></i></a>
+          </li>
+          {% endfor %}
+        </ul>
+    </tbody>
+  </table>
+</div>
+    <!-- Formulario Cliente -->
+    <section class="formulario">
+      <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Cliente</h1>
+              <label for="{{ form.Rut_cliente.id_for_label }}">RUT Cliente</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.Rut_cliente.name }}" 
+                id="{{ form.Rut_cliente.id_for_label }}"
+                value="{{ form.Rut_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: 12.345.678-9">
+
+              <label for="{{ form.Pnombre_cliente.id_for_label }}">Primer Nombre</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.Pnombre_cliente.name }}" 
+                id="{{ form.Pnombre_cliente.id_for_label }}"
+                value="{{ form.Pnombre_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: Juan">
+
+              <label for="{{ form.Snombre_cliente.id_for_label }}">Segundo Nombre</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.Snombre_cliente.name }}" 
+                id="{{ form.Snombre_cliente.id_for_label }}"
+                value="{{ form.Snombre_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: Pablo">
+
+              <label for="{{ form.Papellido_cliente.id_for_label }}">Primer Apellido</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.Papellido_cliente.name }}" 
+                id="{{ form.Papellido_cliente.id_for_label }}"
+                value="{{ form.Papellido_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: Pérez">
+
+              <label for="{{ form.Sapellido_cliente.id_for_label }}">Segundo Apellido</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.Sapellido_cliente.name }}" 
+                id="{{ form.Sapellido_cliente.id_for_label }}"
+                value="{{ form.Sapellido_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: González">
+
+              <label for="{{ form.email_cliente.id_for_label }}">Email</label>
+              <input 
+                class="inputCliente"
+                type="email" 
+                name="{{ form.email_cliente.name }}" 
+                id="{{ form.email_cliente.id_for_label }}"
+                value="{{ form.email_cliente.value|default_if_none:'' }}" 
+                placeholder="cliente@correo.cl" readonly >
+
+              <label for="{{ form.telefono_cliente.id_for_label }}">Teléfono</label>
+              <input 
+                class="inputCliente"
+                type="number" 
+                name="{{ form.telefono_cliente.name }}" 
+                id="{{ form.telefono_cliente.id_for_label }}"
+                value="{{ form.telefono_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: 987654321">
+
+              <label for="{{ form.direccion_cliente.id_for_label }}">Dirección</label>
+              <input 
+                class="inputCliente"
+                type="text" 
+                name="{{ form.direccion_cliente.name }}" 
+                id="{{ form.direccion_cliente.id_for_label }}"
+                value="{{ form.direccion_cliente.value|default_if_none:'' }}" 
+                placeholder="Ej: Av. Siempre Viva 123">
+
+              <div class="row">
+                  <div  class="contenedorInputs">
+                    <button type="submit" class="btn btn-success" style="width: 95%; margin-left: 2.5% ;margin-top: 10px;">Confirmar</button>
+                  </div>
+              </div>
+            </form>
+  </div>
+</main>
+{% endblock %}
+
