@@ -2,6 +2,7 @@
 {% load static %}
 
 
+
 {% block content %}
 <div class="contenedor-recuadro">
 
@@ -16,7 +17,8 @@
           <li>
             <a href="{% url 'modificar_servicio_ext' p.n_s_ext %}"><i class="fas fa-pen"></i></a>
               {{ p.n_s_ext }} 
-            <a  href="{% url 'eliminar_servicio_ext' p.n_s_ext %}"><i class="fas fa-trash"></i></a>
+            <a  href="#" onclick="eliminarServicioConfirmacion('{{ p.n_s_ext }}')" ><i class="fas fa-trash"></i></a>
+            <!-- {% url 'eliminar_servicio_ext' p.n_s_ext %} -->
           </li>
         {% endfor %}
       </ul>

@@ -5,52 +5,58 @@ from django.utils.dateparse import parse_date
 from datetime import datetime
 from django.contrib.auth.models import User,Group
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 
-""" --------------------------------- VISTAS SIN FUNCIONES --------------------------------- """
+""" --------------------------------- INICIO --------------------------------- """
 # VISTA INICIO 
 def inicio(request):
     return render(request, 'app/Publicas/inicio/inicio.html')
+""" --------------------------------- CONOCENOS --------------------------------- """
 # VISTA CONOCENOS
 def conocenos(request):
     return render(request, 'app/Publicas/conocenos/conocenos.html')
 
-
-""" --------------------------------- CRUD PENDIENTES --------------------------------- """
-
+""" --------------------------------- PERFIL EMPLEADO --------------------------------- """
 # VISTA PERFIL EMPLEADO
 def perfil_empleado(request):
     return render(request, "app/Empleados/perfilEmp/perfilEmp.html")
 
 
-
-
-
-
-
+""" --------------------------------- SERVICIOS --------------------------------- """
 # VISTA SERVICIOS
 def servicios(request):
     return render(request, 'app/Publicas/servicios/servicios.html')
-# VISTA SERVICIOS
+# VISTA DETALLE SERVICIOS
 def detalle_servicios(request):
     return render(request, 'app/Publicas/detalle-servicios/detalle-servicios.html', data)
 
+""" --------------------------------- AGENDA --------------------------------- """
 # VISTA AGENDA
 def agendaEmp(request):
     return render(request, "app/Empleados/agendaEmp/agendaEmp.html")
+
+
+
+
 
 
 """ --------------------------------- CRUD COMPLETADOS --------------------------------- """
 def crear_usuario(request):
 
     return render(request, "app/Usuarios/perfilCliente/crear_perfil_usuario.html", data)
-""" -------- PERFIL EXISTENTES ------ """
-# VISTA PERFIL USUARIO
 
 
 
 
 
 
+
+""" --------------------------------------------  PERFIL USUARIO ----------------------------------------"""
+# LISTAR
 def perfil_usuario(request, id):
     try:
         cliente = Cliente.objects.get(email_cliente=id)
@@ -76,8 +82,7 @@ def perfil_usuario(request, id):
             data['mensaje'] = "Error al actualizar el perfil"
 
     return render(request, "app/Usuarios/perfilCliente/perfilCliente.html", data)
-
-
+# CREAR
 def crear_usuario(request, id):
     data = {
         'form': ClienteForm(initial={
@@ -91,8 +96,7 @@ def crear_usuario(request, id):
             return redirect('inicio')
     return render(request, 'app/Usuarios/perfilCliente/crear_perfil_usuario.html', data)
 
-
-# VISTA PERFIL USUARIO
+# EDITAR
 def editar_perfil_usuario(request, id):
     reserv = reserva.objects.filter(rut_cliente=id)
     cliente = Cliente.objects.get(Rut_cliente=id)
@@ -111,7 +115,7 @@ def editar_perfil_usuario(request, id):
             data["form"] = formulario
     return render(request, "app/Usuarios/perfilCliente/perfilCliente.html", data)
 
-# ---------- ELIMINAR
+# ELIMINAR
 def eliminar_perfil_usuario(request, id):
     cliente = Cliente.objects.filter(Rut_cliente=id)
     cliente.delete()
@@ -128,8 +132,7 @@ def eliminar_perfil_usuario(request, id):
 
 
 
-"""" RESERVAS CLIENTES """
-    # VISTA RESERVAS
+""" --------------------------------------------  RESERVAS CLIENTES ----------------------------------------"""
 def reservas(request, id):
     cliente = Cliente.objects.get(email_cliente=id)
 
@@ -231,7 +234,7 @@ def reservas(request, id):
 
 
 
-
+""" --------------------------------------------  PAGO BOLETA ----------------------------------------"""
 def registroPagoBoleta(request,idReserva):
     reser = reserva.objects.get(id_reserva=idReserva)
     data ={
@@ -262,7 +265,7 @@ def registroPagoBoleta(request,idReserva):
 
 
 
-""" INFORMACION HABITACIONES """
+""" --------------------------------------------  INFORMACION HABITACIONES ----------------------------------------"""
 def informacion_habitaciones(request):
     habitaciones = Habitacion.objects.all()
     data = {
@@ -270,7 +273,7 @@ def informacion_habitaciones(request):
     }
     return render(request, "app/Publicas/habitaciones/habitaciones.html", data)
 
-""" INFORMACION HABITACIONES DETALLE """
+""" --------------------------------------------  INFORMACION HABITACIONES DETALLE ----------------------------------------"""
 def detalle_Habitaciones(request,id):
     habitacionde = Habitacion.objects.get(n_habitacion=id)
     data = {
@@ -279,7 +282,7 @@ def detalle_Habitaciones(request,id):
     return render(request, 'app/Publicas/detalle-habitaciones/detalle-habitaciones.html',data)
 
 
-"""  INFORMACION SERVICIOS """
+""" --------------------------------------------  INFORMACION SERVICIOS ----------------------------------------"""
 def informacion_servicios(request):
     servicios = Servicio_Ext.objects.all()
     data = {
@@ -288,7 +291,7 @@ def informacion_servicios(request):
     return render(request, "app/Publicas/servicios/servicios.html", data)
 
 
-""" INFORMACION SERVICIOS DETALLE """
+""" --------------------------------------------  INFORMACION SERVICIOS DETALLE ----------------------------------------"""
 def detalle_servicios(request,id):
     serviciode = Servicio_Ext.objects.get(n_s_ext=id)
     data = {
@@ -299,7 +302,7 @@ def detalle_servicios(request,id):
 
 
 
-""" PERFIL EMPREADO  """
+""" --------------------------------------------  PERFIL EMPREADO ----------------------------------------"""
 # ---------- LISTAR EMPLEADO LOGEADO
 def listar_empleado(request,id):
     empleado = Empleado.objects.get(Rut_Empleado=id)
@@ -308,7 +311,7 @@ def listar_empleado(request,id):
     }
     return render(request, "app/Empleados/perfilEmp/perfilEmp.html", data)
 
-""" HABITACION EMPLEADO """
+""" --------------------------------------------  HABITACION EMPLEADO + ----------------------------------------"""
 # ---------- CREAR + LISTAR
 def listar_habitacion_emp(request):
     data = {
@@ -319,7 +322,7 @@ def listar_habitacion_emp(request):
         formulario = habitacionform(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = "Habitación creada correctamente"
+            messages.success(request,"Habitacion Creada Exitosamente")
             return render(request, "app/Empleados/habitacionEmp/habitacionEmp.html", data)
         else:
             data['form'] = formulario
@@ -336,6 +339,7 @@ def modificar_habitacion_emp(request, id):
         formulario = habitacionform(data=request.POST, instance=habitacion, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Habitacion Editada Exitosamente")
             return redirect(to="listar_habitacion_emp")
         else:
             data["form"] = formulario
@@ -344,9 +348,10 @@ def modificar_habitacion_emp(request, id):
 def eliminar_habitacion_emp(request, id):
     habitacion = Habitacion.objects.get(n_habitacion=id)
     habitacion.delete()
+    messages.success(request,"Habitacion Eliminada Exitosamente")
     return redirect(to="listar_habitacion_emp")
 
-""" SERVICIO EMPLEADO """
+""" --------------------------------------------  SERVICIO EMPLEADO + ----------------------------------------"""
 # ---------- CREAR + LISTAR
 def listar_servicio(request):
     data = {
@@ -357,11 +362,10 @@ def listar_servicio(request):
         formulario = ServicioExtForm(request.POST, request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = "Servicio creado correctamente"
+            messages.success(request,"Servicio Creado Exitosamente")
             return render(request, "app/Empleados/servicioEmp/servicioEmp.html", data)
         else:
             data['form'] = formulario
-            data['mensaje'] = "Error al crear la habitación"
     return render(request, "app/Empleados/servicioEmp/servicioEmp.html", data)  
 # ---------- MODIFICAR
 def modificar_servicio_ext(request, id):
@@ -374,6 +378,7 @@ def modificar_servicio_ext(request, id):
         formulario = ServicioExtForm(data=request.POST, instance= servicio, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Servicio Modificado Exitosamente")
             return redirect(to="listar_servicio")
         else:
             data["form"] = formulario
@@ -382,33 +387,11 @@ def modificar_servicio_ext(request, id):
 def eliminar_servicio_ext(request, id):
     servicio = Servicio_Ext.objects.get(n_s_ext=id)
     servicio.delete()
+    messages.success(request,"Servicio Eliminado Exitosamente")
     return redirect(to="listar_servicio")
 
-""" RESERVA EMPLEADO """
-
-
-
-
-
-
-
-
-
-
+""" --------------------------------------------  RESERVA EMPLEADO + ----------------------------------------"""
 # ---------- CREAR Y LISTAR
-
-
-
-
-
-
-
-
-
-
-
-
-
 def listar_reservas_emp(request):
     data = {
         'form': ReservaForm(),
@@ -426,22 +409,6 @@ def listar_reservas_emp(request):
             data['mensaje'] = "Error al crear la reserva"
             data['reservas'] = reserva.objects.all()
     return render(request, "app/Empleados/reservaEmp/reservaEmp.html", data)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ---------- MODIFICAR RESERVA
 def modificar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
@@ -453,6 +420,7 @@ def modificar_reserva_emp(request, id):
         formulario = ReservaForm(data=request.POST, instance=reservas, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Reserva Editada Exitosamente")
             return redirect(to="listar_reservas_emp")
         else:
             data["form"] = formulario
@@ -461,9 +429,10 @@ def modificar_reserva_emp(request, id):
 def eliminar_reserva_emp(request, id):
     reservas = reserva.objects.get(id_reserva=id)  # Cambiar a tu modelo de reservas
     reservas.delete()
+    messages.success(request,"Reserva Eliminada Exitosamente")
     return redirect(to="listar_reservas_emp")
 
-""" CLIENTE EMPLEADO """
+""" --------------------------------------------  CLIENTE EMPLEADO + ----------------------------------------"""
 # ---------- CREAR + LISTAR CLIENTE
 def listar_cliente_emp(request):
     data = {
@@ -475,7 +444,7 @@ def listar_cliente_emp(request):
         formulario = ClienteForm(request.POST)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = "Cliente creado correctamente"
+            messages.success(request,"Cliente Creado Exitosamente")
             return render(request, "app/Empleados/clienteEmp/clienteEmp.html", data)
         else:
             data['form'] = formulario
@@ -493,6 +462,7 @@ def modificar_cliente_emp(request, id):
         formulario = ClienteForm(request.POST, instance=cliente, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
+            messages.success(request,"Cliente Modificado Exitosamente")
             return redirect("listar_cliente_emp")
         else:
             data["form"] = formulario
@@ -501,11 +471,12 @@ def modificar_cliente_emp(request, id):
 def eliminar_cliente_emp(request, id):
     cliente = get_object_or_404(Cliente, pk=id)
     cliente.delete()
+    messages.success(request,"Cliente Creado Exitosamente")
     return redirect("listar_cliente_emp")
 
-""" AGENDA RESERVAS """
-# ---------- LISTAR RESERVAS
+""" --------------------------------------------  AGENDA RESERVAS ----------------------------------------"""
 
+# ---------- LISTAR RESERVAS
 def listar_agenda_emp(request):
     reservas = reserva.objects.all()
 
@@ -528,10 +499,8 @@ def listar_agenda_emp(request):
     }
     return render(request, "app/Empleados/agendaEmp/agendaEmp.html", data)
 
+""" --------------------------------------------  REGISTRO DE USUARIOS ----------------------------------------"""
 
-
-
-""" REGISTRO DE USUARIOS """
 def registro_usuario(request):
     data = {
         'form': UserRegisterForm()
@@ -551,26 +520,13 @@ def registro_usuario(request):
                 password=formulario.cleaned_data['password1']
             )
             login(request, user)
-            
             return redirect(to="inicio")
         else:
             data['form'] = formulario
             data['mensaje'] = "Error al crear el usuario"
     return render(request, "registration/crearCuenta/crearCuenta.html",data)
 
-from django.core.mail import send_mail
-from django.conf import settings
-
-
-
-
-
-
-
-from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
-from django.core.mail import send_mail
-from django.conf import settings
+""" --------------------------------------------  CORREOS ----------------------------------------"""
 
 @csrf_exempt
 def enviar_correo(request):

@@ -1,7 +1,6 @@
 {% extends 'app/base.html' %}
 
 {% load static %}
-
 {% block content %}
   <div class="habitacion-container">
   <div class="habitacion-box" style= "background-color: #e9d8c4";>
@@ -11,11 +10,11 @@
           <li>
             <a href="{% url 'modificar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-pen"></i></a>
               {{ p.n_habitacion }} 
-            <a  href="{% url 'eliminar_habitacion_emp' p.n_habitacion %}"><i class="fas fa-trash"></i></a>
+            <a  href="#" onclick="eliminarHabitacionConfirmacion('{{ p.n_habitacion }}')" ><i class="fas fa-trash"></i></a>
           </li>
           {% endfor %}
         </ul>
-        <a class="crear-btn  btn-success"  href="{% url 'listar_habitacion_emp' %}" >Crear Nuevo</a>
+        <a  style="  text-decoration: none;width: 100%;margin-left: 20%" class="crear-btn  btn-success"  href="{% url 'listar_habitacion_emp' %}" >Crear Nuevo</a>
       </div>
 
       <div class="formulario">

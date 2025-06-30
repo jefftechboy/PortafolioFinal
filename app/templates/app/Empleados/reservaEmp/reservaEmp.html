@@ -16,7 +16,7 @@
       <li>
         <a   href="{% url 'modificar_reserva_emp' r.id_reserva %}"><i class="fas fa-pen"></i></a>
           {{ r.id_reserva }}
-        <a href="{% url 'eliminar_reserva_emp' r.id_reserva %}"><i class="fas fa-trash"></i></a>
+        <a href="#" onclick="eliminarReservaConfirmacion('{{ r.id_reserva }}')" ><i class="fas fa-trash"></i></a>
       </li>
       {% endfor %}
   </table>

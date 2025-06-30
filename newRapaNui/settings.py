@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-yu3@olnnkv8yx+&-a$)m23s0-@i$klel9%g)+lho*qf_*k(68$
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 
 LOGIN_REDIRECT_URL = '/'

@@ -86,6 +86,7 @@
                 </div>
                 <div class="col-6">
                   <button class="btn perfil-icon-custom"
+                    style="margin-right: 80px;"
                     type="button"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasRight"
@@ -152,7 +153,6 @@
       </header>
       <main  class="main-content">
         {% block content %}
-        {{ error }}
         {% endblock %}
       </main>
       <footer class="footer">
@@ -175,6 +175,7 @@
         <script src="{% static 'app/js/Empleados/perfil-empleado.js' %}"></script>
         <script src="{% static 'app/js/Empleados/servicio-emp.js' %}"></script>
         <script src="{% static 'app/js/Empleados/agendaEmp.js' %}"></script>
+        <script src="{% static 'app/js/Empleados/reservas-emp.js' %}"></script>
        <!-- USUARIOS -->    
         <script src="{% static 'app/js/Usuarios/confirmacion-reserva.js' %}"></script>
         <script src="{% static 'app/js/Usuarios/perfilCliente.js' %}"></script>
@@ -208,5 +209,21 @@
       <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
       <!-- JS personalizado -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+      <!-- SWEET ALERT -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      {% if messages %}
+        {% for m in messages %}
+          <script>
+            Swal.fire({
+              "title":"Felicitaciones",
+              "text": "{{ m }}",
+              "icon": "success"
+            })
+          </script>
+        {% endfor %}
+      {% endif %}
+
+      {% block js %}
+      {% endblock %}
   </body>
 </html>

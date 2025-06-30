@@ -19,7 +19,9 @@
           <li>
             <a   href="{% url 'modificar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-pen"></i></a>
               {{ r.Rut_cliente }}
-            <a href="{% url 'eliminar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-trash"></i></a>
+            <!--  
+              <a href="{% url 'eliminar_cliente_emp' r.Rut_cliente %}"><i class="fas fa-trash"></i></a>
+              --> 
           </li>
           {% endfor %}
         </ul>
